@@ -25,11 +25,20 @@ main{display:block}
 .esquerda{
     position: relative;
     overflow: visible;
-    width: 820;
+    width: 820px;
     padding: 1em;
     box-shadow: 0px 2px 3px #777777;
     height: auto;
     border-right: 1px solid #0078e7;
+    background-color: #f8f8f8;
+}
+
+.direita{
+    position: relative;
+    overflow: visible;
+    width: 420px;
+    margin: -670px auto auto 900px;
+
 }
 
 h1{
