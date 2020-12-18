@@ -14,9 +14,20 @@ html{
     -webkit-text-size-adjust:100%
 }
 
-body{margin:0}
+body{
+    margin: 100 300 0 300;
+    width: 1320;
+    
+}
 
 main{display:block}
+
+.esquerda{
+    position: relative;
+    overflow: visible;
+    width: 820;
+    height: auto;
+}
 
 h1{
     font-size:2em;
@@ -73,7 +84,11 @@ button,input{overflow:visible}
 
 button,select{
     text-transform:none
-}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}
+}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{
+    outline:1px dotted ButtonText
+}
+
+fieldset{padding:.35em .75em .625em}
 
 legend{
     -webkit-box-sizing:border-box;
@@ -172,7 +187,10 @@ html{font-family:sans-serif}
     box-sizing:border-box
 }
 
-.pure-button::-moz-focus-inner{padding:0;border:0}
+.pure-button::-moz-focus-inner{
+    padding:0;
+    border:0
+}
 
 .pure-button-group{
     letter-spacing:-.31em;
@@ -190,7 +208,9 @@ html{font-family:sans-serif}
 
 .pure-button{
     font-family:inherit;
-    font-size:100%;padding:.5em 1em;color:rgba(0,0,0,.8);
+    font-size:100%;
+    padding:.5em 1em;
+    color:rgba(0,0,0,.8);
     border:none transparent;
     background-color:#e6e6e6;
     text-decoration:none;
@@ -244,7 +264,8 @@ html{font-family:sans-serif}
 }
 
 .pure-form input[type=color],.pure-form input[type=date],.pure-form input[type=datetime-local],.pure-form input[type=datetime],.pure-form input[type=email],.pure-form input[type=month],.pure-form input[type=number],.pure-form input[type=password],.pure-form input[type=search],.pure-form input[type=tel],.pure-form input[type=text],.pure-form input[type=time],.pure-form input[type=url],.pure-form input[type=week],.pure-form select,.pure-form textarea{
-    padding:.5em .6em;display:inline-block;
+    padding:.5em .6em;
+    display:inline-block;
     border:1px solid #ccc;
     -webkit-box-shadow:inset 0 1px 3px #ddd;
     box-shadow:inset 0 1px 3px #ddd;
@@ -276,7 +297,15 @@ html{font-family:sans-serif}
     border-color:#129fea
 }
 
-.pure-form input[type=checkbox]:focus,.pure-form input[type=file]:focus,.pure-form input[type=radio]:focus{outline:thin solid #129fea;outline:1px auto #129fea}.pure-form .pure-checkbox,.pure-form .pure-radio{margin:.5em 0;display:block}
+.pure-form input[type=checkbox]:focus,.pure-form input[type=file]:focus,.pure-form input[type=radio]:focus{
+    outline:thin solid #129fea;
+    outline:1px auto #129fea
+}
+
+.pure-form .pure-checkbox,.pure-form .pure-radio{
+    margin:.5em 0;
+    display:block
+}
 
 .pure-form input[type=color][disabled],.pure-form input[type=date][disabled],.pure-form input[type=datetime-local][disabled],.pure-form input[type=datetime][disabled],.pure-form input[type=email][disabled],.pure-form input[type=month][disabled],.pure-form input[type=number][disabled],.pure-form input[type=password][disabled],.pure-form input[type=search][disabled],.pure-form input[type=tel][disabled],.pure-form input[type=text][disabled],.pure-form input[type=time][disabled],.pure-form input[type=url][disabled],.pure-form input[type=week][disabled],.pure-form select[disabled],.pure-form textarea[disabled]{
     cursor:not-allowed;
@@ -296,7 +325,14 @@ html{font-family:sans-serif}
     border-color:#ccc
 }
 
-.pure-form input:focus:invalid,.pure-form select:focus:invalid,.pure-form textarea:focus:invalid{color:#b94a48;border-color:#e9322d}.pure-form input[type=checkbox]:focus:invalid:focus,.pure-form input[type=file]:focus:invalid:focus,.pure-form input[type=radio]:focus:invalid:focus{outline-color:#e9322d}
+.pure-form input:focus:invalid,.pure-form select:focus:invalid,.pure-form textarea:focus:invalid{
+    color:#b94a48;
+    border-color:#e9322d
+}
+
+.pure-form input[type=checkbox]:focus:invalid:focus,.pure-form input[type=file]:focus:invalid:focus,.pure-form input[type=radio]:focus:invalid:focus{
+    outline-color:#e9322d
+}
 
 .pure-form select{
     height:2.25em;
@@ -335,7 +371,7 @@ html{font-family:sans-serif}
 
 .pure-form-aligned input,.pure-form-aligned select,.pure-form-aligned textarea,.pure-form-message-inline{
     display:inline-block;
-    vertical-align:middle
+    vertical-align:middle;
 }
 
 .pure-form-aligned textarea{vertical-align:top}
@@ -346,11 +382,11 @@ html{font-family:sans-serif}
     text-align:right;
     display:inline-block;
     vertical-align:middle;
-    width:10em;
+    width:15em;
     margin:0 1em 0 0
 }
 
-.pure-form-aligned .pure-controls{margin:1.5em 0 0 11em}
+.pure-form-aligned .pure-controls{margin:1.5em 0 0 16.3em}
 
 .pure-form .pure-input-rounded,.pure-form input.pure-input-rounded{
     border-radius:2em;
@@ -449,15 +485,15 @@ html{font-family:sans-serif}
 .pure-menu-item,.pure-menu-list{position:relative}
 
 .pure-menu-list{
-    list-style:none;
-    margin:0;
+    list-style:square;
+    margin:0 0 0 500;
     padding:0
 }
 
 .pure-menu-item{
     padding:0;
     margin:0;
-    height:100%
+    height:10%
 }
 
 .pure-menu-heading,.pure-menu-link{
@@ -475,7 +511,7 @@ html{font-family:sans-serif}
 
 .pure-menu-horizontal .pure-menu-heading,.pure-menu-horizontal .pure-menu-item,.pure-menu-horizontal .pure-menu-separator{
     display:inline-block;
-    vertical-align:middle
+    vertical-align:middle;
 }
 
 .pure-menu-item .pure-menu-item{display:block}
