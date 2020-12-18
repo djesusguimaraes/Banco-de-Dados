@@ -1,0 +1,142 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="normalize_pure.css">
+    <script>
+        function rand() {
+            var inc = cadFuncionario.c.value; 
+            inc += 1; 
+            cadFuncionario.c.value = inc; 
+            if(cadFuncionario.c.value > 1) { 
+                cadFuncionario.botao.disabled;
+            }else{
+                document.getElementById("gera").innerHTML = Math.floor(Math.random() * 65536);
+            }
+        }
+        function mascara(i,t){
+            var v = i.value;
+
+            if(isNaN(v[v.length-1])){
+                i.value = v.substring(0, v.length-1);
+                return;
+            }
+
+            if(t == "data"){
+                i.setAttribute("maxlength", "10");
+                if (v.length == 2 || v.length == 5) i.value += "/";
+            }
+
+            if(t == "cpf"){
+                i.setAttribute("maxlength", "14");
+                if (v.length == 3 || v.length == 7) i.value += ".";
+                if (v.length == 11) i.value += "-";
+            }
+
+            if(t == "tel"){
+                if(v.length == 7) i.value += "-";
+            }
+
+            if(t == "cnpj"){
+                i.setAttribute("maxlength", "18");
+                if (v.length == 2 || v.length == 6) i.value += ".";
+                if (v.length == 10) i.value += "/";
+                if (v.length == 15) i.value += "-";
+            }
+        }
+
+        function onlyOne(checkbox) {
+            var checkboxes = document.getElementsByName('check')
+            checkboxes.forEach((item) => {
+                if (item !== checkbox) item.checked = false
+            })
+        }
+    </script>
+    
+</head>
+<body>
+    <header>
+        <div class="pure-menu pure-menu-horizontal">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected">
+                    <a href="#" class="pure-menu-link">Home</a>
+                </li>
+                <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                    <a href="#" id="menuLink1" class="pure-menu-link">Contact</a>
+                    <ul class="pure-menu-children">
+                        <li class="pure-menu-item">
+                            <a href="#" class="pure-menu-link">Email</a>
+                        </li>
+                        <li class="pure-menu-item">
+                            <a href="#" class="pure-menu-link">Twitter</a>
+                        </li>
+                        <li class="pure-menu-item">
+                            <a href="#" class="pure-menu-link">Tumblr Blog</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="pure-menu-item pure-menu-selected">
+                    <a href="#" class="pure-menu-link">Administração</a>
+                </li>
+            </ul>
+        </div>
+        <div class="topo">
+            <img src="../img/water.jpg" alt="">
+        </div>
+    </header>
+    <div class="esquerda">
+        <h1>Solicitação de Serviços</h1>
+        <form name="cadFuncionario" class="pure-form pure-form-aligned" action="Funcionario.php" method="POST">
+            <fieldset id="cliente">
+                <legend>Dados do Cliente</legend>
+                <div class="pure-control-group">
+                    <label for="aligned-name" class="pure-label">Nome</label>
+                    <input type="text" id="aligned-name" placeholder="Digite seu nome..." required/>
+                    <span class="pure-form-message-inline">*</span>
+                </div>
+                <div class="pure-control-group">
+                    <label for="cpf" class="pure-label">CPF</label>
+                    <input oninput="mascara(this, 'cpf')" type="text" id="cpf" autocomplete="off" placeholder="Digite seu CPF..." required/>
+                    <span class="pure-form-message-inline">*</span>
+                </div>
+                <div class="pure-control-group">
+                    <label for="aligned-foo" class="pure-label">Contato</label>
+                    <input oninput="mascara(this, 'tel')" maxlength="12" type="tel" id="aligned-foo" placeholder="Digite seu telefone..."/>
+                </div>
+            </fieldset>
+            <fieldset id="veiculo">
+                <legend>Dados do Veículo</legend>
+                <div class="pure-control-group">
+                    <label for="" class="pure-label">Tipo de Veículo</label>
+                    <input type="checkbox" class="pure-tipo" id="carro" name="check" onclick="onlyOne(this)"/>
+                    <label for="carro">Carro</label>
+                    <input type="checkbox" class="pure-tipo" id="moto" name="check" onclick="onlyOne(this)"/>
+                    <label for="moto" >Moto</label>
+                </div>
+                <div class="pure-control-group">
+                    <label for="modelo" class="pure-label">Modelo</label>
+                    <input type="text" id="modelo"/>
+                </div>
+                <div class="pure-control-group">
+                    <label for="ano" class="pure-label">Ano</label>
+                    <input type="number"/>
+                </div>
+                <div class="pure-control-group">
+                    <label for="pertences" class="pure-label">Pertences</label>
+                    <textarea name="pertences" id="pertences" cols="22" rows="3"></textarea>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Escolha Serviços</legend>
+                <div class="pure-control-group">
+                    <label for="servico">Opções</label>
+                    <li><input type="checkbox"/></li>
+                </div>
+                <div class="pure-controls">
+                    <button type="submit" class="pure-button pure-button-primary">Wash</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+    
+</html>
