@@ -10,7 +10,6 @@ Copyright (c) Nicolas Gallagher and Jonathan Neal
 */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */    
 html{
-    background-color: #fff;
     line-height:1.15;
     -webkit-text-size-adjust:100%
 }
@@ -22,7 +21,7 @@ body{
     font-size: 1.1em;
     position: relative;
     display: block;
-    margin: 100 auto;
+    margin: 0 auto;
     width: 1320;
 }
 
