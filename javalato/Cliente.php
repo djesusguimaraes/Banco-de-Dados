@@ -1,41 +1,66 @@
 <?php
-require 'connForDB.php';
 
+namespace connPHPPostgres;
 
-    if (!empty(POST['telefone']))
-    {
-        $telefone = POST['telefone'];
-    }
+   class ClientModel
+   {
+       private $conn;
 
-    if (!empty(POST['nome'])) {
-        $nome = POST['nome'];
-    }
+       public function __construct($conn)
+       {
+           $this->conn = $conn;
+       }
 
-    if (!empty(POST['idClient'])) {
-        $idClient = POST['idClient'];
-    }
+       public function showByID($id)
+       {
+           $stmt = $this->conn->query("SELECT Telefone, Nome, ID_Cliente, CPF, ID_Serviço FROM public.Cliente WHERE ID_Cliente='$id'");
+           $stocks = [];
+           while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
 
-    if (!empty(POST['cpf'])) {
-        $cpf = POST['cpf'];
-    }
+               $stocks[] = [
+                   'Telefone' => $row['Telefone'],
+                   'Nome' => $row['Nome'],
+                   'ID_Cliente' => $row['ID_Cliente'],
+                   'CPF' => $row['CPF'],
+                   'ID_Serviço' => $row['ID_Serviço']
+               ];
+           }
+           return $stocks;
+       }
 
-    if (!empty(POST['idServico'])) {
-        $idServico = POST['idServico'];
-    }
+       public function insert($Telefone, $Nome, $CPF, $ID_Servico, $Carro)
+       {
 
-    $pdo = banco::connect();
-    $postgresql = "INSERT INTO Cliente (Telefone, Nome, ID_Client, CPF, ID_Serviço) value (?,?,?,?,?)";
-    $forPDO = $pdo::prepare($postgresql);
-    $forPDO->execute(array($telefone, $nome, $idClient, $cpf, $idServico));
-    banco::disconnect();
-    header('Location: index.php');
+           {
+               $sql = "INSERT INTO Cliente (Telefone,Nome, CPF, ID_Serviço, Carro) VALUES (:Telefone,:Nome, :CPF, :ID_Serviço, :Carro)";
+               $stmt = $this->conn->prepare($sql);
+
+               $stmt->bindValue(':Telefone', $Telefone);
+               $stmt->bindValue(':Nome', $Nome);
+               $stmt->bindValue(':CPF', $CPF);
+               $stmt->bindValue(':ID_Serviço', $ID_Servico);
+               $stmt->bindValue(':Carro', $Carro);
+               $stmt->execute();
+           }
+       }
+
+       public function deleteByCPF($CPF)
+       {
+
+           $sql = "DELETE from public.Cliente WHERE CPF='$CPF'";
+           $stmt = $this->conn->prepare($sql);
+
+           $stmt->execute();
+       }
+   }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="normalize_pure.css">
+    <link rel="stylesheet" href="../css/normalize_pure.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Fugaz+One&family=Sarabun:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
     <script type="java/javascript" src="../js/functions.js"></script>
@@ -79,8 +104,8 @@ require 'connForDB.php';
             <fieldset id="cliente">
                 <legend>Dados do Cliente</legend>
                 <div class="pure-control-group">
-                    <label for="aligned-name" class="pure-label">Nome</label>
-                    <input type="text" id="aligned-name" placeholder="Digite seu nome..." required/>
+                    <label for="name" class="pure-label">Nome</label>
+                    <input type="text" id="name" placeholder="Digite seu nome..." required/>
                     <span class="pure-form-message-inline">*</span>
                 </div>
                 <div class="pure-control-group">
@@ -89,8 +114,8 @@ require 'connForDB.php';
                     <span class="pure-form-message-inline">*</span>
                 </div>
                 <div class="pure-control-group">
-                    <label for="aligned-foo" class="pure-label">Contato</label>
-                    <input oninput="mascara(this, 'tel')" maxlength="12" type="tel" id="aligned-foo" placeholder="Digite seu telefone..."/>
+                    <label for="foo" class="pure-label">Contato</label>
+                    <input oninput="mascara(this, 'tel')" maxlength="12" type="tel" id="foo" placeholder="Digite seu telefone..."/>
                 </div>
             </fieldset>
             <fieldset id="veiculo">
