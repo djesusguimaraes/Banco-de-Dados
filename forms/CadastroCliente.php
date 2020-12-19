@@ -1,6 +1,6 @@
 <?php
 
-require '../bd/Cliente.php';
+require '../bd/models/Cliente.php';
 
 include_once '../bd/db.ini.php';
 
