@@ -13,19 +13,18 @@ namespace connPHPPostgres;
 
        public function showByID($id)
        {
-           $stmt = $this->conn->query("SELECT Telefone, Nome, ID_Cliente, CPF, ID_Serviço FROM public.Cliente WHERE ID_Cliente='$id'");
+           $stmt = $this->conn->query("SELECT Telefone, Nome, CPF, ID_Serviço FROM public.Cliente WHERE CPF='$id'");
            $stocks = [];
            while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
 
                $stocks[] = [
                    'Telefone' => $row['Telefone'],
                    'Nome' => $row['Nome'],
-                   'ID_Cliente' => $row['ID_Cliente'],
                    'CPF' => $row['CPF'],
                    'ID_Serviço' => $row['ID_Serviço']
                ];
            }
-           return $stocks;
+           return $stmocks;
        }
 
        public function insert($Telefone, $Nome, $CPF, $ID_Servico, $Carro)

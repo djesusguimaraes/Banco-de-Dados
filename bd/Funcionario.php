@@ -1,5 +1,6 @@
 <?php
-require 'connForDB.php';
+
+namespace connPHPPostgres;
 
 class FuncionarioModel
 {

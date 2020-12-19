@@ -1,11 +1,10 @@
 <?php
 
-require '../../bd/Cliente.php';
+require '../bd/Cliente.php';
 
-include_once '../db.ini.php';
+include_once '../bd/db.ini.php';
 
 use connPHPPostgres\ClientModel as ClientModel;
-
 
 $Telefone = null;
 $Nome = null;
@@ -26,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Carro = $_REQUEST['carro'];
 
     try {
-        $clientRegister = new ClientModel($conn);
+        $clientRegister = new ClientModel($pdo);
         $clientRegister->insert($Telefone, $Nome, $CPF, $ID_Servico, $Carro);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
@@ -34,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
@@ -82,17 +82,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <legend>Dados do Cliente</legend>
                 <div class="pure-control-group">
                     <label for="name" class="pure-label">Nome</label>
-                    <input type="text" value="<?php echo !empty($dependent_name) ? $dependent_name : ''; ?>" id="nome" placeholder="Digite seu nome..." required/>
+                    <input type="text" value="<?php echo !empty($Nome) ? $Nome : ''; ?>" id="nome" placeholder="Digite seu nome..." required/>
                     <span class="pure-form-message-inline">*</span>
                 </div>
                 <div class="pure-control-group">
                     <label for="cpf" class="pure-label">CPF</label>
-                    <input oninput="mascara(this, 'cpf')" type="text" id="cpf" autocomplete="off" placeholder="Digite seu CPF..." required/>
+                    <input oninput="mascara(this, 'cpf')" type="text" value="<?php echo !empty($CPF) ? $CPF : ''; ?>" id="cpf" autocomplete="off" placeholder="Digite seu CPF..." required/>
                     <span class="pure-form-message-inline">*</span>
                 </div>
                 <div class="pure-control-group">
                     <label for="foo" class="pure-label">Contato</label>
-                    <input oninput="mascara(this, 'tel')" maxlength="12" type="text" id="tel" placeholder="Digite seu telefone..."/>
+                    <input oninput="mascara(this, 'tel')" maxlength="12" type="text" value="<?php echo !empty($Telefone) ? $Telefone : ''; ?>" id="tel" placeholder="Digite seu telefone..."/>
                 </div>
             </fieldset>
             <fieldset id="veiculo">
