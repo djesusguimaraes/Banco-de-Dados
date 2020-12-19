@@ -1,56 +1,55 @@
 <?php
 require 'connForDB.php';
 
+class FuncionarioModel
+{
+    private $conn;
 
-    if (!empty(POST['nome']))
+    public function __construct($conn)
     {
-        $nome = POST['nome'];
+        $this->conn = $conn;
     }
 
-    if (!empty(POST['idFuncionario'])) {
-        $idFuncionario = POST['idFuncionario'];
+    public function showByID($id)
+    {
+        $stmt = $this->conn->query("SELECT Nome, ID_Funcionario, CPF, ID_funcao FROM public.Funcionario WHERE ID_Funcionario='$id'");
+        $stocks = [];
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+
+            $stocks[] = [
+                'name' => $row['name'],
+                'id_employee' => $row['id_employee'],
+                'cpf' => $row['cpf'],
+                'id_funcao' => $row['id_funcao'],
+            ];
+        }
+        return $stocks;
     }
 
-    if (!empty(POST['cpf'])) {
-        $cpf = POST['cpf'];
+    public function insertInto($Nome, $ID_Funcionario, $CPF, $ID_Funcao)
+    {
+
+        {
+            $sql = "INSERT INTO Funcionario (Nome,ID_Funcionario, CPF) VALUES (:Nome, :ID_Funcionario, :CPF, :ID_Funcao)";
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->bindValue(':Nome', $Nome);
+            $stmt->bindValue(':ID_Funcionario', $ID_Funcionario);
+            $stmt->bindValue(':CPF', $CPF);
+            $stmt->bindValue(':ID_Funcao', $ID_Funcao);
+
+            $stmt->execute();
+        }
     }
 
-    if (!empty(POST['idFuncao'])) {
-        $idFuncao = POST['idFuncao'];
+    public function deleteByID($id)
+    {
+
+        $sql = "DELETE from public.Funcionario WHERE ID_Funcionario='$id'";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute();
     }
 
-    $pdo = banco::connect();
-    $postgresql = "INSERT INTO Servico (Nome, ID_Funcionario, CPF, ID_Função) value (?,?,?,?)";
-    $forPDO = $pdo::prepare($postgresql);
-    $forPDO->execute(array($nome, $idFuncionario, $cpf, $idFuncao));
-    banco::disconnect();
-    header('Location: index.php');
-
+}
 ?>
-<html lang="pt-br">
-<header>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="normalize_pure.css">
-</header>
-    <div id="cadastroFuncionario">
-    <form action="" method='POST'>
-        <div>
-        <label for="nome">Nome Completo: </label>
-        <input type="text" id="name">
-        <script>
-            function rand() {
-                document.getElementById("gera").innerHTML = Math.floor(Math.random() * 65536);    
-            }
-        </script>
-        <h4>Número de Identificação:</h4>
-        <label for="idFuncionario" id="gera" onclick="rand()">Gerar</label>
-        <label for="cpf">CPF:</label>
-        <input type="text" name="cpf" \ pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" \ title="Digite um CPF no formato: xxx.xxx.xxx-xx">
-        <label for="idFuncao">Cargo:</label>
-        <input type="text">
-        </div>
-    </form>
-
-    </div>
-
-</html>

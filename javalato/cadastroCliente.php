@@ -1,35 +1,55 @@
 <?php
 require 'connForDB.php';
 
+class FuncionarioModel
+{
+    private $conn;
 
-    if (!empty(POST['telefone']))
+    public function __construct($conn)
     {
-        $telefone = POST['telefone'];
+        $this->conn = $conn;
     }
 
-    if (!empty(POST['nome'])) {
-        $nome = POST['nome'];
+    public function showByID($id)
+    {
+        $stmt = $this->conn->query("SELECT Nome, ID_Funcionario, CPF, ID_funcao FROM public.Funcionario WHERE ID_Funcionario='$id'");
+        $stocks = [];
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+
+            $stocks[] = [
+                'name' => $row['name'],
+                'id_employee' => $row['id_employee'],
+                'cpf' => $row['cpf'],
+                'id_funcao' => $row['id_funcao'],
+            ];
+        }
+        return $stocks;
     }
 
-    if (!empty(POST['idClient'])) {
-        $idClient = POST['idClient'];
+    public function insertInto($Nome, $ID_Funcionario, $CPF, $ID_Funcao)
+    {
+
+        {
+            $sql = "INSERT INTO Funcionario (Nome,ID_Funcionario, CPF) VALUES (:Nome, :ID_Funcionario, :CPF, :ID_Funcao)";
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->bindValue(':Nome', $Nome);
+            $stmt->bindValue(':ID_Funcionario', $ID_Funcionario);
+            $stmt->bindValue(':CPF', $CPF);
+            $stmt->bindValue(':ID_Funcao', $ID_Funcao);
+
+            $stmt->execute();
+        }
     }
 
-    if (!empty(POST['cpf'])) {
-        $cpf = POST['cpf'];
+    public function deleteByID($id)
+    {
+
+        $sql = "DELETE from public.Funcionario WHERE ID_Funcionario='$id'";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute();
     }
 
-    if (!empty(POST['idServico'])) {
-        $idServico = POST['idServico'];
-    }
-
-    $pdo = banco::connect();
-    $postgresql = "INSERT INTO Cliente (Telefone, Nome, ID_Client, CPF, ID_Serviço) value (?,?,?,?,?)";
-    $forPDO = $pdo::prepare($postgresql);
-    $forPDO->execute(array($telefone, $nome, $idClient, $cpf, $idServico));
-    banco::disconnect();
-    header('Location: index.php');
-
+}
 ?>
-
-<!DOCTYPE html>

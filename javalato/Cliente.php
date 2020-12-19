@@ -1,58 +1,44 @@
+<?php
+require 'connForDB.php';
+
+
+    if (!empty(POST['telefone']))
+    {
+        $telefone = POST['telefone'];
+    }
+
+    if (!empty(POST['nome'])) {
+        $nome = POST['nome'];
+    }
+
+    if (!empty(POST['idClient'])) {
+        $idClient = POST['idClient'];
+    }
+
+    if (!empty(POST['cpf'])) {
+        $cpf = POST['cpf'];
+    }
+
+    if (!empty(POST['idServico'])) {
+        $idServico = POST['idServico'];
+    }
+
+    $pdo = banco::connect();
+    $postgresql = "INSERT INTO Cliente (Telefone, Nome, ID_Client, CPF, ID_Serviço) value (?,?,?,?,?)";
+    $forPDO = $pdo::prepare($postgresql);
+    $forPDO->execute(array($telefone, $nome, $idClient, $cpf, $idServico));
+    banco::disconnect();
+    header('Location: index.php');
+
+?>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="normalize_pure.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Fugaz+One&family=Sarabun:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
-    <script>
-        function rand() {
-            var inc = cadFuncionario.c.value; 
-            inc += 1; 
-            cadFuncionario.c.value = inc; 
-            if(cadFuncionario.c.value > 1) { 
-                cadFuncionario.botao.disabled;
-            }else{
-                document.getElementById("gera").innerHTML = Math.floor(Math.random() * 65536);
-            }
-        }
-        function mascara(i,t){
-            var v = i.value;
-
-            if(isNaN(v[v.length-1])){
-                i.value = v.substring(0, v.length-1);
-                return;
-            }
-
-            if(t == "data"){
-                i.setAttribute("maxlength", "10");
-                if (v.length == 2 || v.length == 5) i.value += "/";
-            }
-
-            if(t == "cpf"){
-                i.setAttribute("maxlength", "14");
-                if (v.length == 3 || v.length == 7) i.value += ".";
-                if (v.length == 11) i.value += "-";
-            }
-
-            if(t == "tel"){
-                if(v.length == 7) i.value += "-";
-            }
-
-            if(t == "cnpj"){
-                i.setAttribute("maxlength", "18");
-                if (v.length == 2 || v.length == 6) i.value += ".";
-                if (v.length == 10) i.value += "/";
-                if (v.length == 15) i.value += "-";
-            }
-        }
-
-        function onlyOne(checkbox) {
-            var checkboxes = document.getElementsByName('check')
-            checkboxes.forEach((item) => {
-                if (item !== checkbox) item.checked = false
-            })
-        }
-    </script>
+    <script type="java/javascript" src="../js/functions.js"></script>
     
 </head>
 <body>
@@ -89,7 +75,7 @@
     </header>
     <div class="esquerda">
         <h1>Solicitação de Serviços</h1>
-        <form name="cadFuncionario" class="pure-form pure-form-aligned" action="Funcionario.php" method="POST">
+        <form name="cadCliente" class="pure-form pure-form-aligned" action="Cliente.php" method="POST">
             <fieldset id="cliente">
                 <legend>Dados do Cliente</legend>
                 <div class="pure-control-group">

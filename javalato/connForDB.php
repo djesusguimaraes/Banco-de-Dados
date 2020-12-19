@@ -1,10 +1,13 @@
 <?php
 
-Class banco
+namespace connPHPPostgres;
+
+Class connection
 {
 
     private static $servername = "localhost";
     private static $username = "root";
+    private static $port = "5432"; //find connection port
     private static $password = "";
     private static $dbName = "javalato";
 
@@ -20,7 +23,8 @@ Class banco
         if (self::$conn == null)
         {
             try {
-                self::$conn = new PDO("pgsql:host=" .self::$servername, "username=" .self::$username, "password=" .self::$password, "dbName=" .self::$dbName);
+                self::$conn = new \PDO("pgsql:host=" .self::$servername.";". "port=" .self::$port, "dbName=" .self::$dbName,"username=" .self::$username, "password=" .self::$password);
+                self::$conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             }
             catch(PDOException $exception)
             {
