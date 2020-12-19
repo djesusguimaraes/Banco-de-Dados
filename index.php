@@ -6,5 +6,4 @@ use connPHPPostgres\connection as connection;
 
 $pdo = connection::get()->connect();
 
-
 ?>

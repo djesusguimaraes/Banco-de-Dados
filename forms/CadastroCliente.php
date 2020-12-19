@@ -77,33 +77,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
     <div class="esquerda">
         <h1>Solicitação de Serviços</h1>
-        <form name="cadCliente" class="pure-form pure-form-aligned" action="Cliente.php" method="POST">
+        <form name="cadCliente" class="pure-form pure-form-aligned" action="CadastroCliente.php" method="POST">
             <fieldset id="cliente">
                 <legend>Dados do Cliente</legend>
                 <div class="pure-control-group">
                     <label for="name" class="pure-label">Nome</label>
-                    <input type="text" value="<?php echo !empty($Nome) ? $Nome : ''; ?>" id="nome" placeholder="Digite seu nome..." required/>
+                    <input type="text" value="<?php echo !empty($Nome) ? $Nome : ''; ?>" name="nome" id="nome" placeholder="Digite seu nome..." required/>
                     <span class="pure-form-message-inline">*</span>
                 </div>
                 <div class="pure-control-group">
                     <label for="cpf" class="pure-label">CPF</label>
-                    <input oninput="mascara(this, 'cpf')" type="text" value="<?php echo !empty($CPF) ? $CPF : ''; ?>" id="cpf" autocomplete="off" placeholder="Digite seu CPF..." required/>
+                    <input oninput="mascara(this, 'cpf')" type="text" value="<?php echo !empty($CPF) ? $CPF : ''; ?>" name="cpf" id="cpf" autocomplete="off" placeholder="Digite seu CPF..." required/>
                     <span class="pure-form-message-inline">*</span>
                 </div>
                 <div class="pure-control-group">
                     <label for="foo" class="pure-label">Contato</label>
-                    <input oninput="mascara(this, 'tel')" maxlength="12" type="text" value="<?php echo !empty($Telefone) ? $Telefone : ''; ?>" id="tel" placeholder="Digite seu telefone..."/>
+                    <input oninput="mascara(this, 'tel')" maxlength="12" type="text" value="<?php echo !empty($Telefone) ? $Telefone : ''; ?>" name="tel" id="tel" placeholder="Digite seu telefone..."/>
                 </div>
             </fieldset>
             <fieldset id="veiculo">
                 <legend>Dados do Veículo</legend>
                 <div class="pure-control-group">
-                    <label for="carro" class="pure-label">Modelo</label>
-                    <input type="text" id="carro"/>
+                    <label for="modelo" class="pure-label">Modelo</label>
+                    <input type="text" id="modelo"/>
                 </div>
                 <div class="pure-control-group">
-                    <label for="carro" class="pure-label">Ano</label>
-                    <input type="number" id="carro"/>
+                    <label for="ano" class="pure-label">Ano</label>
+                    <input type="number" name="" id="ano"/>
                 </div>
                 <div class="pure-control-group">
                     <label for="pertences" class="pure-label">Pertences</label>

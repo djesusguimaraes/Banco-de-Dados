@@ -2,6 +2,6 @@
 
 require 'connForDB.php';
 
-use ConnPHPPostgres\connection as connection;
+use connPHPPostgres\connection as connection;
 
-$conn = connection::start();
+$pdo = connection::get()->connect();

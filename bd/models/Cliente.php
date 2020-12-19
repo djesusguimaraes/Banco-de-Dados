@@ -24,7 +24,7 @@ namespace connPHPPostgres;
                    'ID_Serviço' => $row['ID_Serviço']
                ];
            }
-           return $stmocks;
+           return $stocks;
        }
 
        public function insert($Telefone, $Nome, $CPF, $ID_Servico, $Carro)
