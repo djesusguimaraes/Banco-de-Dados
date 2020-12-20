@@ -27,7 +27,13 @@ Class connection
                 $params['user'], 
                 $params['password']);
 
-        $pdo = new \PDO($conStr);
+        try{
+            $pdo = new \PDO($conStr);
+            echo "deu bom";
+        }catch(\PDOException $e){
+            echo $e->getMessage();
+        }
+        
   
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
@@ -46,3 +52,4 @@ Class connection
     }
     
 }
+echo "connForDB\n";

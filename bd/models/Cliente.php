@@ -13,7 +13,7 @@ class ClientModel
 
     public function showByID($id)
     {
-        $stmt = $this->conn->query("SELECT Nome, CPF, Carro, Telefone, ID_Serviço FROM public.Cliente WHERE CPF='$id'");
+        $stmt = $this->conn->pg_query("SELECT Nome, CPF, Carro, Telefone, ID_Serviço FROM public.Cliente WHERE CPF='$id'");
         $stocks = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
 
@@ -42,7 +42,6 @@ class ClientModel
             // $stmt->bindValue(':servico', $ID_servico);
             $stmt->execute();
 
-            $stmt->close();
         }
     }
 
@@ -53,7 +52,7 @@ class ClientModel
         $stmt = $this->conn->prepare($sql);
 
         $stmt->execute();
-        $stmt->close();
     }
 }
+echo "Cliente\n";
 ?>

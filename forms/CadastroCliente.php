@@ -1,16 +1,15 @@
 <?php
 
-require '../bd/models/Cliente.php';
+require '../bd/models/Funcionario.php';
 
 include_once '../bd/db.ini.php';
 
-use connPHPPostgres\ClientModel as ClientModel;
+use connPHPPostgres\FuncionarioModel as FuncionarioModel;
 
-$Telefone = null;
+// $Telefone = null;
 $Nome = null;
 $CPF = null;
 // $ID_servico = 0;
-$Carro = null;
 
 if(!empty($_POST['cpf'])){
     $CPF = $_REQUEST['cpf'];
@@ -18,25 +17,92 @@ if(!empty($_POST['cpf'])){
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $Nome =  $_REQUEST['nome'];
-    $CPF =  $_REQUEST['cpf'];
-    $Modelo = $_REQUEST['modelo'];
-    $Ano = $_REQUEST['ano'];
-    $Carro = $Modelo.$Ano;
-    $Telefone =  $_REQUEST['tel'];
+    $Nome =  isset($_POST['nome']) ? $_POST['nome']: ' ';
+    $CPF =  isset($_POST['cpf']) ? $_POST['cpf']: ' ';
+    // $Modelo = isset($_POST['modelo']) ? $_POST['modelo']: ' ';
+    // $Ano = isset($_POST['ano']) ? $_POST['ano']: ' ';
+    // $Carro = isset($_POST['modelo']) ? $_POST['carro']: ' ';
+    // $Telefone =  isset($_POST['tel']) ? $_POST['tel']: ' ';
     
-    // $ID_servico =  $_REQUEST['servico'];
+    // $ID_servico =  $_POST['servico'];
 
     try {
-        $clientRegister = new ClientModel($pdo);
-        $clientRegister->insert($Nome, $CPF, $Carro, $Telefone);
+        $clientRegister = new FuncionarioModel($pdo);
+        $clientRegister->insertINto($Nome, $CPF);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
     }
 }
 
 ?>
+
 <!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+    <title>Adicionar novo dependente</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row py-5">
+            <!-- <div class="col"><a href="../pages/funcionarios.php"><img src="../assets/images/backbutton.png" height="30px"></a></div> -->
+            <div class="col">
+                <h4>Cadastrar novo dependente</h4>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <form action="CadastroCliente.php" method="post">
+            <!-- Alerta em caso de erro -->
+            <?php if (!empty($error)) : ?>
+                <span class="text-danger"><?php echo $error; ?></span>
+            <?php endif; ?>
+
+            <!-- <input type="hidden" name="id" value="<?php echo $id; ?>" /> -->
+
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input class="form-control" value="<?php echo !empty($Nome) ? $Nome : ''; ?>" type="text" name="nome" id="nome" required>
+            </div>
+
+            <!-- <div class="form-group">
+                <label for="Sex">Sexo:</label>
+                <br>
+                <input type="radio" id="male" name="sex" value="M" <?php echo $sex === 'M' ? "checked" : '' ?> required>
+                <label for="male">Masculino</label><br>
+                <input type="radio" id="female" name="sex" value="F" <?php echo $sex === 'F' ? "checked" : '' ?>>
+                <label for="female">Feminino</label><br>
+                <input type="radio" id="other" name="sex" value="O" <?php echo $sex == 'O' ? "checked" : '' ?>>
+                <label for="other">Outro</label>
+            </div> -->
+
+
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input class="form-control" type="text" value="<?php echo !empty($CPF) ? $CPF : ''; ?>" name="cpf" id="cpf" required>
+            </div>
+
+            <!-- <div class="form-group">
+                <label for="tel">ID:</label>
+                <input class="form-control" value="<?php echo !empty($ID_funcionario) ? $ID_funcionario : ''; ?>" type="text" name="fucionario" id="fucionario" required>
+            </div> -->
+
+            <input class="btn btn-primary" type="submit" value="Cadastrar">
+
+        </form>
+    </div>
+
+</body>
+
+</html>
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
@@ -81,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="central">
         <div class="esquerda">
             <h1>Solicitação de Serviços</h1>
-            <form name="cadCliente" class="pure-form pure-form-aligned" action="CadastroCliente.php" method="POST">
+            <form name="cadCliente" class="pure-form pure-form-aligned" action="CadastroCliente.php" method="post">
                 <fieldset id="cliente">
                     <legend>Dados do Cliente</legend>
                     <div class="pure-control-group">
@@ -166,4 +232,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </body>
     
-</html>
+</html> -->

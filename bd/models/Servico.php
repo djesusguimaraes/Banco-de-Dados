@@ -31,7 +31,7 @@ class ServicoModel
 
         {
             $sql = "INSERT INTO Servico (Nome, Descricao, ID_Servico) VALUES (:Nome, :Descricao, :ID_Servico)";
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':Nome', $Nome);
             $stmt->bindValue(':Descricao', $Descricao);

@@ -4,40 +4,34 @@ namespace connPHPPostgres;
 
 class FuncionarioModel
 {
-    private $conn;
+    private $pdo;
 
-    public function __construct($conn)
+    public function __construct($pdo)
     {
-        $this->conn = $conn;
+        $this->pdo = $pdo;
     }
 
-    public function showByID($id)
+    public function showByID($CPF)
     {
-        $stmt = $this->conn->query("SELECT Nome, ID_Funcionario, CPF, ID_funcao FROM public.Funcionario WHERE ID_Funcionario='$id'");
-        $stocks = [];
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+        $stmt = $this->pdo->query("SELECT \"Nome_funcionario\", \"CPF\" FROM public.\"Funcionario\" WHERE \"CPF\" = '$CPF'");
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-            $stocks[] = [
-                'name' => $row['name'],
-                'id_employee' => $row['id_employee'],
-                'cpf' => $row['cpf'],
-                'id_funcao' => $row['id_funcao'],
-            ];
-        }
+        $stocks = [
+            'nome' => $row['Nome_funcionario'],
+            'cpf' => $row['CPF'],
+        ];
         return $stocks;
     }
 
-    public function insertInto($Nome, $ID_Funcionario, $CPF, $ID_Funcao)
+    public function insert($Nome_funcionario, $CPF)
     {
 
         {
-            $sql = "INSERT INTO Funcionario (Nome,ID_Funcionario, CPF) VALUES (:Nome, :ID_Funcionario, :CPF, :ID_Funcao)";
-            $stmt = $this->conn->prepare($sql);
+            $sql = "INSERT INTO public.\"Funcionario\" (\"Nome_funcionario\", \"CPF\") VALUES (:Nome, :CPF)";
+            $stmt = $this->pdo->prepare($sql);
 
-            $stmt->bindValue(':Nome', $Nome);
-            $stmt->bindValue(':ID_Funcionario', $ID_Funcionario);
+            $stmt->bindValue(':Nome', $Nome_funcionario);
             $stmt->bindValue(':CPF', $CPF);
-            $stmt->bindValue(':ID_Funcao', $ID_Funcao);
 
             $stmt->execute();
         }
@@ -47,7 +41,7 @@ class FuncionarioModel
     {
 
         $sql = "DELETE from public.Funcionario WHERE ID_Funcionario='$id'";
-        $stmt = $this->conn->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute();
     }
