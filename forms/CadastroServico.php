@@ -6,30 +6,23 @@ include_once '../bd/db.ini.php';
 
 use connPHPPostgres\ServicoModel as ServicoModel;
 
-$Telefone = null;
-$Nome = null;
-$CPF = null;
-// $ID_servico = 0;
-$Carro = null;
+$Nome_servico = null;
+$Descricao = null;
+$ID_servico = null;
 
-if(!empty($_POST['cpf'])){
-    $CPF = $_REQUEST['cpf'];
+if(!empty($_POST['servico'])){
+    $ID_servico = $_REQUEST['servico'];
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $Nome =  $_REQUEST['nome'];
-    $CPF =  $_REQUEST['cpf'];
-    $Modelo = $_REQUEST['modelo'];
-    $Ano = $_REQUEST['ano'];
-    $Carro = $Modelo.$Ano;
-    $Telefone =  $_REQUEST['tel'];
+    $Nome_servico =  $_REQUEST['nome'];
+    $Descricao =  $_REQUEST['descricao'];
+    $ID_servico = $_REQUEST['servicos'];
     
-    // $ID_servico =  $_REQUEST['servico'];
-
     try {
         $clientRegister = new ServicoModel($pdo);
-        $clientRegister->insert($Nome, $CPF, $Carro, $Telefone);
+        $clientRegister->insert($Nome_servico, $Descricao, $ID_servico);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
     }
