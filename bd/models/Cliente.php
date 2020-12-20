@@ -2,54 +2,55 @@
 
 namespace connPHPPostgres;
 
-   class ClientModel
-   {
-       private $conn;
+class ClientModel
+{
+    private $conn;
 
-       public function __construct($conn)
-       {
-           $this->conn = $conn;
-       }
+    public function __construct($conn)
+    {
+       $this->conn = $conn;
+    }
 
-       public function showByID($id)
-       {
-           $stmt = $this->conn->query("SELECT Telefone, Nome, CPF, ID_Serviço FROM public.Cliente WHERE CPF='$id'");
-           $stocks = [];
-           while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+    public function showByID($id)
+    {
+        $stmt = $this->conn->query("SELECT Nome, CPF, Carro, Telefone, ID_Serviço FROM public.Cliente WHERE CPF='$id'");
+        $stocks = [];
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
 
-               $stocks[] = [
-                   'Telefone' => $row['Telefone'],
-                   'Nome' => $row['Nome'],
-                   'CPF' => $row['CPF'],
-                   'ID_Serviço' => $row['ID_Serviço']
-               ];
-           }
-           return $stocks;
-       }
+            $stocks[] = [
+                'Nome' => $row['Nome'],
+                'CPF' => $row['CPF'],
+                'Carro' => $row['Carro'],
+                'Telefone' => $row['Telefone'],
+                'ID_Serviço' => $row['ID_Serviço']
+            ];
+        }
+        return $stocks;
+    }
 
-       public function insert($Telefone, $Nome, $CPF, $ID_Servico, $Carro)
-       {
+    public function insert($Telefone, $Nome, $CPF, $Carro)
+    {
 
-           {
-               $sql = "INSERT INTO Cliente (Telefone, Nome, CPF, ID_Serviço, Carro) VALUES (:tel,:nome, :cpf, :servico, :carro)";
-               $stmt = $this->conn->prepare($sql);
+        {
+            $sql = "INSERT INTO Cliente (Nome, CPF, Carro, Telefone) VALUES (:nome, :cpf, :carro, :tel)";
+            $stmt = $this->conn->prepare($sql);
 
-               $stmt->bindValue(':tel', $Telefone);
-               $stmt->bindValue(':nome', $Nome);
-               $stmt->bindValue(':cpf', $CPF);
-               $stmt->bindValue(':servico', $ID_Servico);
-               $stmt->bindValue(':carro', $Carro);
-               $stmt->execute();
-           }
-       }
+            $stmt->bindValue(':nome', $Nome);
+            $stmt->bindValue(':cpf', $CPF);
+            $stmt->bindValue(':carro', $Carro);
+            $stmt->bindValue(':tel', $Telefone);
+            // $stmt->bindValue(':servico', $ID_Servico);
+            $stmt->execute();
+        }
+    }
 
-       public function deleteByCPF($CPF)
-       {
+    public function deleteByCPF($CPF)
+    {
 
-           $sql = "DELETE from public.Cliente WHERE CPF='$CPF'";
-           $stmt = $this->conn->prepare($sql);
+        $sql = "DELETE from public.Cliente WHERE CPF='$CPF'";
+        $stmt = $this->conn->prepare($sql);
 
-           $stmt->execute();
-       }
-   }
+        $stmt->execute();
+    }
+}
 ?>

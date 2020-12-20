@@ -9,10 +9,10 @@ use connPHPPostgres\ClientModel as ClientModel;
 $Telefone = null;
 $Nome = null;
 $CPF = null;
-$ID_Servico = 0;
+// $ID_Servico = 0;
 $Carro = null;
 
-if(!empty($_GET['cpf'])){
+if(!empty($_POST['cpf'])){
     $CPF = $_REQUEST['cpf'];
 }
 
@@ -20,15 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $Nome =  $_REQUEST['nome'];
     $CPF =  $_REQUEST['cpf'];
-    $Telefone =  $_REQUEST['tel'];
     $Modelo = $_REQUEST['modelo'];
     $Ano = $_REQUEST['ano'];
     $Carro = $Modelo.$Ano;
-    $ID_Servico =  $_REQUEST['servico'];
+    $Telefone =  $_REQUEST['tel'];
+    
+    // $ID_Servico =  $_REQUEST['servico'];
 
     try {
         $clientRegister = new ClientModel($pdo);
-        $clientRegister->insert($Telefone, $Nome, $CPF, $ID_Servico, $Carro);
+        $clientRegister->insert($Nome, $CPF, $Carro, $Telefone);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
     }
@@ -108,9 +109,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="ano" class="pure-label">Ano</label>
                         <input type="number" value="<?php echo !empty($Ano) ? $Ano : ''; ?>" name="ano" id="ano"/>
                     </div>
+                    <!-- <div class="pure-control-group">
+                        <label for="servico" class="pure-label">Ano</label>
+                        <input type="number" value="" name="servico" id="servico"/>
+                    </div> -->
                 </fieldset>
                 <fieldset>
-                    <legend>Escolha Serviços</legend>
+                    <!-- <legend>Escolha Serviços</legend>
                     <div class="pure-control-group">
                         <label for="servico" class="pure-label">Opções</label>
                         <div class="pure-control-group">
@@ -131,16 +136,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <option value="14">Insul Film</option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="pure-controls">
-                        <button type="submit" class="pure-button pure-button-primary">Wash</button>
+                        <button type="submit" method="post" class="pure-button pure-button-primary" value="Cadastrar">Wash</button>
                     </div>
                 </fieldset>
             </form>
         </div>
 
         <div class="direita">
-            <h1>Lista de Serviços</h1>
+            <!-- <h1>Lista de Serviços</h1>
             <ol type="1" class="lista_opcoes">
                 <li>Ducha Simples</li>
                 <li>Ducha Completa</li>
@@ -157,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li>Polimento Técnico</li>
                 <li>Insul Film</li>
             </ol>
-        </div>
+        </div> -->
     </div>
 </body>
     
