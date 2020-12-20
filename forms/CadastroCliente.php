@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div> -->
                     <div class="pure-controls">
-                        <button type="submit" method="post" class="pure-button pure-button-primary" value="Cadastrar">Wash</button>
+                        <button type="submit" class="pure-button pure-button-primary" value="Cadastrar">Wash</button>
                     </div>
                 </fieldset>
             </form>

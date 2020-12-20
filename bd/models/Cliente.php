@@ -41,6 +41,8 @@ class ClientModel
             $stmt->bindValue(':tel', $Telefone);
             // $stmt->bindValue(':servico', $ID_servico);
             $stmt->execute();
+
+            $stmt->close();
         }
     }
 
@@ -51,6 +53,7 @@ class ClientModel
         $stmt = $this->conn->prepare($sql);
 
         $stmt->execute();
+        $stmt->close();
     }
 }
 ?>

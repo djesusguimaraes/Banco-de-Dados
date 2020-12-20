@@ -1,9 +1,6 @@
 <?php
 
-require 'bd/connForDB.php';
-
-use connPHPPostgres\connection as connection;
-
-$pdo = connection::get()->connect();
-
 ?>
+<html>
+    <a href="forms/CadastroCliente.php">Cliente</a>
+</html>

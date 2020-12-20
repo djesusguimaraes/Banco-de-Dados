@@ -11,7 +11,7 @@ Class connection
     // private static $password = "farofa";
     // private static $dbname = "javalato";
 // $conn = new PDO("mysql:host={$dbhost};dbname={$dbname}", $dbuser, $dbpass);
-    private static $conn;
+    public static $conn;
 
     public static function connect()
     {
@@ -41,7 +41,8 @@ Class connection
         if (null === static::$conn) {
             static::$conn = new static();
         }
-
+        
         return static::$conn;
     }
+    
 }
