@@ -9,7 +9,7 @@ use connPHPPostgres\ClientModel as ClientModel;
 $Telefone = null;
 $Nome = null;
 $CPF = null;
-// $ID_Servico = 0;
+// $ID_servico = 0;
 $Carro = null;
 
 if(!empty($_POST['cpf'])){
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Carro = $Modelo.$Ano;
     $Telefone =  $_REQUEST['tel'];
     
-    // $ID_Servico =  $_REQUEST['servico'];
+    // $ID_servico =  $_REQUEST['servico'];
 
     try {
         $clientRegister = new ClientModel($pdo);

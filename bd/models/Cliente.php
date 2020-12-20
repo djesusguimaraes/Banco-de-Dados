@@ -22,7 +22,7 @@ class ClientModel
                 'CPF' => $row['CPF'],
                 'Carro' => $row['Carro'],
                 'Telefone' => $row['Telefone'],
-                'ID_Serviço' => $row['ID_Serviço']
+                'ID_serviço' => $row['ID_serviço']
             ];
         }
         return $stocks;
@@ -32,14 +32,14 @@ class ClientModel
     {
 
         {
-            $sql = "INSERT INTO Cliente (Nome, CPF, Carro, Telefone) VALUES (:nome, :cpf, :carro, :tel)";
+            $sql = "INSERT INTO Cliente (Nome, CPF, Carro, Telefone, ID_servico) VALUES (:nome, :cpf, :carro, :tel)";
             $stmt = $this->conn->prepare($sql);
 
             $stmt->bindValue(':nome', $Nome);
             $stmt->bindValue(':cpf', $CPF);
             $stmt->bindValue(':carro', $Carro);
             $stmt->bindValue(':tel', $Telefone);
-            // $stmt->bindValue(':servico', $ID_Servico);
+            // $stmt->bindValue(':servico', $ID_servico);
             $stmt->execute();
         }
     }
