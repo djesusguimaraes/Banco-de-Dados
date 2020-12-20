@@ -28,6 +28,7 @@ main{display:block}
 .esquerda{
     position: relative;
     overflow: visible;
+    padding: 2em;
     width: 700px;
     height: auto;
     border-right: 1px solid #0078e7;
@@ -36,9 +37,11 @@ main{display:block}
 .direita{
     display: block;
     justify-content: right;
+    padding: 2em;
     position: relative;
     overflow: visible;
     width: 500px;
+    margin: -675px 805px auto;
 }
 
 div.central{
