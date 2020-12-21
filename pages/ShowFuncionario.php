@@ -1,10 +1,10 @@
 <?php
 
-require '../db/models/Funcionario.php';
+require '../bd/models/Funcionario.php';
 
-include_once '../db/db.ini.php';
+include_once '../bd/db.ini.php';
 
-use ConexaoPHPPostgres\FuncionarioModel as FuncionarioModel;
+use connPHPPostgres\FuncionarioModel as FuncionarioModel;
 
 $funcionarioModel = new FuncionarioModel($pdo);
 
@@ -15,6 +15,7 @@ try{
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -59,7 +60,7 @@ try{
         </div>
     </header>
     
-    <div class="direita">
+    <div class="esquerda">
         <table border="1"> 
             <tr> 
             <th>Nome</th> 
@@ -67,14 +68,12 @@ try{
             <th>Telefone</th> 
             <th>ID do Funcionário</th> 
             </tr> 
-            <?php while($dado = $stmt->fetch_array()) { ?> 
-            <tr> 
-            <td><?php echo $dado['Nome_funcionario']; ?></td>
-            <td><?php echo $dado['CPF']; ?></td> 
-            <td><?php echo $dado['Telefone']; ?></td>  
-            <td><?php echo $dado['ID_funcionario']; ?></td>  
-            </tr> 
-            <?php } ?> 
+                <tr> 
+                    <td><?php echo $funcionario['Nome_funcionario']; ?></td>
+                    <td><?php echo $funcionario['CPF']; ?></td> 
+                    <td><?php echo $funcionario['Telefone']; ?></td>  
+                    <td><?php echo $funcionario['ID_funcionario']; ?></td>  
+                </tr>
         </table>
     </div>
 </body>

@@ -13,14 +13,17 @@ class FuncionarioModel
 
     public function show()
     {
-        $stmt = $this->pdo->query("SELECT \"Nome_funcionario\", \"CPF\", \"Telefone\", \"ID_funcionario\" FROM public.\"Funcionario\";");
+        $stmt = $this->pdo->query("SELECT * FROM public.\"Funcionario\";");
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-        $stocks = [
-            'nome' => $row['Nome_funcionario'],
-            'cpf' => $row['CPF'],
-            'tel' => $row['Telefone'],
-            'funcao' => $row['ID_funcionario']
-        ];
+        $stocks = [];
+        while($row == $stmt->fetch(\PDO::FETCH_ASSOC)){
+            $stocks = [
+                'nome' => $row['Nome_funcionario'],
+                'cpf' => $row['CPF'],
+                'tel' => $row['Telefone'],
+                'funcao' => $row['ID_funcionario']
+            ];
+        }
         return $stocks;
     }
 
