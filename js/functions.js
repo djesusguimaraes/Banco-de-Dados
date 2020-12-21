@@ -30,7 +30,7 @@ function mascara(i,t){
     if(t == "tel"){
         if(v.length == 7) i.value += "-";
     }
-
+    
     if(t == "cnpj"){
         i.setAttribute("maxlength", "18");
         if (v.length == 2 || v.length == 6) i.value += ".";

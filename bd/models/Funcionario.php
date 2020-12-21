@@ -13,25 +13,27 @@ class FuncionarioModel
 
     public function showByID($CPF)
     {
-        $stmt = $this->pdo->query("SELECT \"Nome_funcionario\", \"CPF\" FROM public.\"Funcionario\" WHERE \"CPF\" = '$CPF'");
+        $stmt = $this->pdo->query("SELECT \"Nome_funcionario\", \"CPF\", \"Telefone\" FROM public.\"Funcionario\" WHERE \"CPF\" = '$CPF'");
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         $stocks = [
             'nome' => $row['Nome_funcionario'],
             'cpf' => $row['CPF'],
+            'tel' => $row['Telefone']
         ];
         return $stocks;
     }
 
-    public function insert($Nome_funcionario, $CPF)
+    public function insert($Nome_funcionario, $CPF, $Telefone)
     {
 
         {
-            $sql = "INSERT INTO public.\"Funcionario\" (\"Nome_funcionario\", \"CPF\") VALUES (:Nome, :CPF)";
+            $sql = "INSERT INTO public.\"Funcionario\" (\"Nome_funcionario\", \"CPF\", \"Telefone\") VALUES (:nome, :cpf, :tel)";
             $stmt = $this->pdo->prepare($sql);
 
-            $stmt->bindValue(':Nome', $Nome_funcionario);
-            $stmt->bindValue(':CPF', $CPF);
+            $stmt->bindValue(':nome', $Nome_funcionario);
+            $stmt->bindValue(':cpf', $CPF);
+            $stmt->bindValue(':tel', $Telefone);
 
             $stmt->execute();
         }

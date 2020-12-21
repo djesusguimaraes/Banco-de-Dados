@@ -29,9 +29,16 @@ main{display:block}
     position: relative;
     overflow: visible;
     padding: 2em;
-    width: 700px;
+    width: 500px;
     height: auto;
-    border-right: 1px solid #0078e7;
+}
+
+.meio{
+    display: block;
+    justify-content: center;
+    margin: 100px auto;
+    
+    text-align: center;
 }
 
 .direita{
@@ -40,15 +47,17 @@ main{display:block}
     padding: 2em;
     position: relative;
     overflow: visible;
-    width: 500px;
-    margin: -675px 805px auto;
+    width: 300px;
+    margin: -475px 820px auto;
 }
+
 
 div.central{
     display: block;
     position: relative;
+    text-align: center;
     overflow: visible;
-    width: 1300px;
+    width: 1200px;
     margin: 0 auto;
 }
 
@@ -62,7 +71,7 @@ li{
     font-size: 4em;
     font-family: 'Fugaz One', cursive;
     color: #fff;
-    margin: 35px auto auto 200px;
+    margin: 25px auto auto 200px;
 }
 
 .slogan{
@@ -509,10 +518,6 @@ html{font-family:sans-serif}
     font-size:.875em
 }
 
-.topo{
-    margin: 0;
-}
-
 @media only screen and (max-width :480px){
     .pure-form button[type=submit]{margin:.7em 0 0}
     .pure-form input:not([type]),.pure-form input[type=color],.pure-form input[type=date],.pure-form input[type=datetime-local],.pure-form input[type=datetime],.pure-form input[type=email],.pure-form input[type=month],.pure-form input[type=number],.pure-form input[type=password],.pure-form input[type=search],.pure-form input[type=tel],.pure-form input[type=text],.pure-form input[type=time],.pure-form input[type=url],.pure-form input[type=week],.pure-form label{
@@ -568,7 +573,8 @@ html{font-family:sans-serif}
 }
 
 .pure-menu-horizontal{
-    margin: 0px 800px auto ;
+    margin-left: 1300px;
+    margin-top: 85px;
     position: absolute;
     width:50%;
     white-space:nowrap
@@ -577,8 +583,9 @@ html{font-family:sans-serif}
 .pure-menu-horizontal .pure-menu-list{display:inline-block}
 
 .pure-menu-horizontal .pure-menu-heading,.pure-menu-horizontal .pure-menu-item,.pure-menu-horizontal .pure-menu-separator{
-    display:inline-block;
-    vertical-align:middle;
+    display: inline-block;
+    vertical-align:right;
+    text-align: right;
 }
 
 .pure-menu-item .pure-menu-item{display:block}

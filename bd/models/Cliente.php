@@ -4,42 +4,41 @@ namespace connPHPPostgres;
 
 class ClientModel
 {
-    private $conn;
+    private $pdo;
 
-    public function __construct($conn)
+    public function __construct($pdo)
     {
-       $this->conn = $conn;
+       $this->pdo = $pdo;
     }
 
-    public function showByID($id)
+    public function showByID($CPF)
     {
-        $stmt = $this->conn->pg_query("SELECT Nome, CPF, Carro, Telefone, ID_Serviço FROM public.Cliente WHERE CPF='$id'");
+        $stmt = $this->pdo->pg_query("SELECT \"Nome\", \"CPF\", \"Carro\", \"Telefone\", \"Placa\"  FROM public.\"Cliente\" WHERE \"CPF\"='$CPF'");
         $stocks = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-
             $stocks[] = [
                 'Nome' => $row['Nome'],
                 'CPF' => $row['CPF'],
                 'Carro' => $row['Carro'],
                 'Telefone' => $row['Telefone'],
-                'ID_serviço' => $row['ID_serviço']
+                'Placa' => $row['Placa']
             ];
         }
         return $stocks;
     }
 
-    public function insert($Telefone, $Nome, $CPF, $Carro)
+    public function insert($Nome, $CPF, $Carro, $Telefone, $Placa)
     {
 
         {
-            $sql = "INSERT INTO Cliente (Nome, CPF, Carro, Telefone, ID_servico) VALUES (:nome, :cpf, :carro, :tel)";
-            $stmt = $this->conn->prepare($sql);
+            $sql = "INSERT INTO \"Cliente\" (\"Nome\", \"CPF\", \"Carro\", \"Telefone\", \"Placa\") VALUES (:nome, :cpf, :carro, :tel, :placa)";
+            $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':nome', $Nome);
             $stmt->bindValue(':cpf', $CPF);
             $stmt->bindValue(':carro', $Carro);
             $stmt->bindValue(':tel', $Telefone);
-            // $stmt->bindValue(':servico', $ID_servico);
+            $stmt->bindValue(':placa', $Placa);
             $stmt->execute();
 
         }
@@ -48,11 +47,10 @@ class ClientModel
     public function deleteByCPF($CPF)
     {
 
-        $sql = "DELETE from public.Cliente WHERE CPF='$CPF'";
-        $stmt = $this->conn->prepare($sql);
+        $sql = "DELETE from public.\"Cliente\" WHERE \"CPF\"='$CPF'";
+        $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute();
     }
 }
-echo "Cliente\n";
 ?>
