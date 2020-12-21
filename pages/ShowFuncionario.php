@@ -1,5 +1,7 @@
 <?php
-include '../db/models/Funcionario.php';
+
+require '../db/models/Funcionario.php';
+
 include_once '../db/db.ini.php';
 
 use ConexaoPHPPostgres\FuncionarioModel as FuncionarioModel;

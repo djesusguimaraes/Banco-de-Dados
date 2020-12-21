@@ -11,7 +11,7 @@ class ClientModel
        $this->pdo = $pdo;
     }
 
-    public function showByID($CPF)
+    public function showByCPF($CPF)
     {
         $stmt = $this->pdo->pg_query("SELECT \"Nome\", \"CPF\", \"Carro\", \"Telefone\", \"Placa\"  FROM public.\"Cliente\" WHERE \"CPF\"='$CPF'");
         $stocks = [];

@@ -7,23 +7,33 @@ include_once '../../bd/db.ini.php';
 use connPHPPostgres\FuncionarioModel as FuncionarioModel;
 $funcionarioRegister = new FuncionarioModel($pdo);
 
+try{
+    $funcionarios = $funcionarioRegister->show();
+}catch(PDOException $e){
+    $erro = $e->getMessage();
+}
+
+
 $Nome_funcionario = null;
 $CPF = null;
 $Telefone = null;
+$ID_funcionario = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $Nome_funcionario =  $_REQUEST['nome'];
     $CPF =  $_REQUEST['cpf'];
     $Telefone = $_REQUEST['tel'];
+    $ID_funcionario = $_REQUEST['funcao'];
 
     try {
-        $funcionarioRegister->insert($Nome_funcionario, $CPF, $Telefone);
+        $funcionarioRegister->insert($Nome_funcionario, $CPF, $Telefone, $ID_funcionario);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../../css/normalize_pure.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Fugaz+One&family=PT+Sans:ital@1&family=Sarabun:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
-    <script src="../js/functions.js"></script>
+    <script src="../../js/functions.js"></script>
     
 </head>
 <body>
@@ -71,20 +81,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form class="pure-form pure-form-stacked" action="CadastroFuncionario.php" method="post">
             <fieldset>
                 <legend>Dados do Funcionário</legend>
+                
                 <label for="stacked-name">Nome Funcionário</label>
                 <input type="text" value="<?php echo !empty($Nome_funcionario) ? $Nome_funcionario : ''; ?>" name="nome" id="stacked-name" placeholder="Seu nome..." />
                 <span class="pure-form-message">Campo obrigatório.</span>
+                
                 <label for="cpf">CPF</label>
                 <input type="text" oninput="mascara(this, 'cpf')" value="<?php echo !empty($CPF) ? $CPF : ''; ?>" name="cpf" id="cpf" autocomplete="off" placeholder="000.000.000-00" />
                 <span class="pure-form-message">Campo obrigatório.</span>
+                
                 <label for="tel">Telefone</label>
                 <input type="text" oninput="mascara(this, 'tel')" value="<?php echo !empty($Telefone) ? $Telefone : ''; ?>" name="tel" id="tel"/>
+                
+                <label for="funcao">ID do Funcionário</label>
+                <input type="text" value="<?php echo !empty($ID_funcionario) ? $ID_funcionario : ' '; ?>" name="funcao" id="funcao" placeholder="#4392" />
+                <span class="pure-form-message">Campo obrigatório.</span>
             </fieldset>   
             <button type="submit" class="pure-button pure-button-primary" value="Cadastrar">Cadastrar</button>
         </form>
     </div>
     <div class="direita">
-        
+        <table border="1"> 
+            <tr> 
+            <th>Nome</th> 
+            <th>CPF</th> 
+            <th>Telefone</th> 
+            <th>ID do Funcionário</th> 
+            </tr> 
+            <?php while($dado = $stmt->fetch_array()) { ?> 
+            <tr> 
+            <td><?php echo $dado['Nome_funcionario']; ?></td>
+            <td><?php echo $dado['CPF']; ?></td> 
+            <td><?php echo $dado['Telefone']; ?></td>  
+            <td><?php echo $dado['ID_funcionario']; ?></td>  
+            </tr> 
+            <?php } ?> 
+        </table>
     </div>
 </body>
 
