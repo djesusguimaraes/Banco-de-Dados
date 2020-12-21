@@ -14,10 +14,9 @@ class FuncionarioModel
     public function all()
     {
         $stmt = $this->pdo->query("SELECT * FROM public.funcionario;");
-        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
         $stocks = [];
-        while($row == $stmt->fetch(\PDO::FETCH_ASSOC)){
-            $stocks = [
+        while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            $stocks[] = [
                 'nome' => $row['nome'],
                 'cpf' => $row['cpf'],
                 'telefone' => $row['telefone'],
@@ -27,30 +26,31 @@ class FuncionarioModel
         return $stocks;
     }
 
-    public function showByID($ID_funcionario)
+    public function showByID($id)
     {
-        $stmt = $this->pdo->query("SELECT nome, CPF, Telefone FROM public.funcionario WHERE ID_funcionario = '$ID_fucionario'");
+        $stmt = $this->pdo->query("SELECT * FROM public.funcionario WHERE id_funcionario = '$id';");
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         $stocks = [
             'nome' => $row['nome'],
-            'CPF' => $row['CPF'],
-            'Telefone' => $row['Telefone']
+            'cpf' => $row['cpf'],
+            'telefone' => $row['telefone'],
+            'id_funcionario' => $row['id_funcionario'],
         ];
         return $stocks;
     }
 
-    public function insert($nome, $CPF, $Telefone, $ID_funcionario)
+    public function insert($nome, $cpf, $telefone, $funcao)
     {
 
         {
-            $sql = "INSERT INTO public.funcionario (nome, CPF, Telefone, ID_funcionario) VALUES (:nome, :cpf, :tel, :funcao)";
+            $sql = "INSERT INTO public.funcionario (nome, cpf, telefone, id_funcionario) VALUES (:nome, :cpf, :tel, :funcao);";
             $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':nome', $nome);
-            $stmt->bindValue(':cpf', $CPF);
-            $stmt->bindValue(':tel', $Telefone);
-            $stmt->bindValue(':funcao', $ID_funcionario);
+            $stmt->bindValue(':cpf', $cpf);
+            $stmt->bindValue(':tel', $telefone);
+            $stmt->bindValue(':funcao', $funcao);
             $stmt->execute();
         }
     }
@@ -58,7 +58,7 @@ class FuncionarioModel
     public function deleteByID($id)
     {
 
-        $sql = "DELETE from public.funcionario WHERE id_funcionario='$id'";
+        $sql = "DELETE FROM public.funcionario WHERE id_funcionario='$id';";
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute();

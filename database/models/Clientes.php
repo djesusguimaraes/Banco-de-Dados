@@ -22,7 +22,10 @@ class ClientModel
                 'cpf' => $row['cpf'],
                 'carro' => $row['carro'],
                 'telefone' => $row['telefone'],
-                'placa' => $row['placa']
+                'placa' => $row['placa'],
+                'id_servico' => $row['id_servico'],
+                'id_funcionario' => $row['id_funcionario']
+
             ];
         }
         return $stocks;
@@ -30,7 +33,7 @@ class ClientModel
 
     public function showByCPF($cpf)
     {
-        $stmt = $this->pdo->pg_query("SELECT * FROM public.cliente WHERE cpf='$cpf'");
+        $stmt = $this->pdo->pg_query("SELECT * FROM public.cliente WHERE cpf='$cpf';");
         $stocks = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $stocks[] = [
@@ -44,11 +47,11 @@ class ClientModel
         return $stocks;
     }
 
-    public function insert($nome, $cpf, $carro, $telefone, $placa)
+    public function insert($nome, $cpf, $carro, $telefone, $placa, $servico, $funcionario)
     {
 
         {
-            $sql = "INSERT INTO public.cliente (nome, cpf, carro, telefone, placa) VALUES (:nome, :cpf, :carro, :tel, :placa)";
+            $sql = "INSERT INTO public.cliente(nome, cpf, carro, telefone, placa, id_servico, id_funcionario) VALUES (:nome, :cpf, :carro, :tel, :placa, :servico, :funcao);";
             $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':nome', $nome);
@@ -56,6 +59,8 @@ class ClientModel
             $stmt->bindValue(':carro', $carro);
             $stmt->bindValue(':tel', $telefone);
             $stmt->bindValue(':placa', $placa);
+            $stmt->bindValue(':servico', $servico);
+            $stmt->bindValue(':funcao', $funcionario);
             $stmt->execute();
 
         }
@@ -64,7 +69,7 @@ class ClientModel
     public function deleteByCPF($cpf)
     {
 
-        $sql = "DELETE FROM public.cliente WHERE cpf='$cpf'";
+        $sql = "DELETE FROM public.cliente WHERE cpf='$cpf';";
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute();

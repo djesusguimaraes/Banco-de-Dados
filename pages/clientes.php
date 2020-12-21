@@ -5,7 +5,12 @@ require '../database/models.php';
 include_once '../database/ini.php';
 
 use conpostgres\ClientModel as ClientModel;
+use conpostgres\FuncionarioModel as FuncionarioModel;
+use conpostgres\ServicoModel as ServicoModel;
+
 $Client = new ClientModel($pdo);
+$Funcionario = new FuncionarioModel($pdo);
+$Servico = new ServicoModel($pdo);
 
 $Clientes = $Client->all();
 
@@ -25,41 +30,8 @@ if (!empty($_POST['cpf'])) {
 <?php
 require '../templates/header.php';
 ?>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="index.php">JAVALATO</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                    <a class="nav-link" href="pages/clientes.php">Cliente</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="pages/funcionarios.php">Funcionário</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="pages/servicos.php">Serviço</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Sobre
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Ação</a>
-                        <a class="dropdown-item" href="#">Outra ação</a>
-                        <a class="dropdown-item" href="#">Algo mais aqui</a>
-                    </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <br>
-<div class="container-lg">
+<div class="container">
+<h2><strong>Clientes</strong></h2>
     <table class="table">
     <thead class="thead-light">
         <tr>
@@ -68,7 +40,10 @@ require '../templates/header.php';
         <th scope="col">Carro</th>
         <th scope="col">Telefone</th>
         <th scope="col">Placa</th>
+        <th scope="col">Serviço</th>
+        <th scope="col">Funcionário</th>
         <th scope="col">Ações</th>
+
         </tr>
     </thead>
     <tbody>
@@ -79,11 +54,13 @@ require '../templates/header.php';
             <td><?php echo htmlspecialchars($dado['carro']); ?></td>
             <td><?php echo htmlspecialchars($dado['telefone']); ?></td>
             <td><?php echo htmlspecialchars($dado['placa']); ?></td>
+            <td><?php echo htmlspecialchars($dado['id_servico']);?></td>
+            <td><?php echo htmlspecialchars($Funcionario->showByID($dado['id_funcionario'])['nome']); ?></td>
             <td>
             <div class="d-inline-block">
                 <form action="clientes.php" method="post">
                     <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']); ?>">
-                    <button type="submit" class="btn btn-outline-danger"?>Delete</button>
+                    <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                 </form>
                 <form action="clientes.php" method="post">
                     <input type="hidden" name="cpf" value="">

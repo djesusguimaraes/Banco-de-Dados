@@ -4,46 +4,56 @@ require '../../database/models.php';
 
 include_once '../../database/ini.php';
 
-use connPHPPostgres\FuncionarioModel as FuncionarioModel;
+use conpostgres\FuncionarioModel as FuncionarioModel;
 $funcionarioRegister = new FuncionarioModel($pdo);
 
-$Nome_funcionario = null;
-$CPF = null;
-$Telefone = null;
-$ID_funcionario = null;
+$nome = null;
+$cpf = null;
+$telefone = null;
+$funcao = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $Nome_funcionario =  $_REQUEST['nome'];
-    $CPF =  $_REQUEST['cpf'];
-    $Telefone = $_REQUEST['tel'];
-    $ID_funcionario = $_REQUEST['funcao'];
+    $nome =  $_REQUEST['nome'];
+    $cpf =  $_REQUEST['cpf'];
+    $telefone = $_REQUEST['tel'];
+    $funcao = $_REQUEST['funcao'];
 
     try {
-        $funcionarioRegister->insert($Nome_funcionario, $CPF, $Telefone, $ID_funcionario);
+        $funcionarioRegister->insert($nome, $cpf, $telefone, $funcao);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
     }
 }
+
 ?>
 <?php
 require '../../templates/header.php';
 ?>
-<div>
-    <form>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Endereço de email</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
-        <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Senha</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
-    </div>
-    <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Clique em mim</label>
-    </div>
+
+<div class="container-sm">
+<h2><strong>Cadastro de Funcionário</strong></h2>
+<form action="createFuncionario.php" method="post">
+    <fieldset>
+        <div class="form-group">
+            <label for="nome">Nome Completo</label>
+            <input type="text" class="form-control" max-lenght="80" name="nome" id="nome" placeholder="Seu nome">
+            <small id="help" class="form-text text-muted">Campo Obrigatório</small>
+        </div>
+        <div class="form-group">
+            <label for="cpf">CPF</label>
+            <input type="text" oninput="mascara(this, 'cpf');" class="form-control" max-lenght="14" name="cpf" id="cpf" placeholder="Seu CPF">
+            <small id="help" class="form-text text-muted">Campo Obrigatório</small>
+        </div>
+        <div class="form-group">
+            <label for="tel">Telefone</label>
+            <input type="text" oninput="mascara(this, 'tel');" class="form-control" max-lenght="14" name="tel" id="tel" placeholder="Ex: (00) 00000-0000">
+        </div>
+        <div class="form-group">
+            <label for="funcao">ID Funcionário</label>
+            <input type="text" class="form-control" max-lenght="5" name="funcao" id="funcao" placeholder="Ex: 54234">
+        </div>
+    </fieldset>
     <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
 </div>
