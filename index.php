@@ -14,7 +14,6 @@
 </head>
 <body>
     <header>
-    <!-- <div class="esquerda"><a href="../index.php"><img src="../img/backbutton.png" height="20px"></a></div> -->
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
                 <li class="pure-menu-item pure-menu-selected">
@@ -27,7 +26,7 @@
                             <a href="pages/insert/CadastraServico.php" class="pure-menu-link">Serviços</a>
                         </li>
                         <li class="pure-menu-item">
-                            <a href="pages/insert/CadastroCliente.php" class="pure-menu-link">Cadastro</a>
+                            <a href="pages/ShowCliente.php" class="pure-menu-link">Cadastro</a>
                         </li>
                         <li class="pure-menu-item">
                             <a href="pages/sobre.php" class="pure-menu-link">Sobre nós</a>
@@ -47,8 +46,8 @@
     </header>
     <div class="central">
         <div class="meio">
-            <a href="pages/insert/CadastroCliente.php"><img src="img/cliente_click.png" height="200"></a>
-            <a href="pages/insert/CadastroFuncionario.php"><img src="img/funcionario_click.png" height="200"></a>
+            <a href="pages/ShowCliente.php"><img src="img/cliente_click.png" height="200"></a>
+            <a href="pages/ShowFuncionario.php"><img src="img/funcionario_click.png" height="200"></a>
             <a href="pages/insert/CadastroServico.php"><img src="img/servico_click.png" height="200"></a>
         </div>
     </div>

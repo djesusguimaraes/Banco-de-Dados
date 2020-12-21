@@ -7,75 +7,76 @@ include_once '../db/db.ini.php';
 use ConexaoPHPPostgres\FuncionarioModel as FuncionarioModel;
 
 $funcionarioModel = new FuncionarioModel($pdo);
-$funcionarios = $funcionarioModel->show();
+
+try{
+    $funcionarios = $funcionarioModel->show();
+}catch(PDOException $e){
+    $erro = $e->getMessage();
+}
 
 ?>
-<?php
-include('../../templates/header.php');
-?>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<div class="container">
-
-    <div class="row py-5">
-        <div class="col"><a href="../../pages/funcionarios.php"><img src="../../assets/images/backbutton.png" height="40px"></a></div>
-        <div class="col">
-            <h4>Cadastrar novo funcionário</h4>
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/normalize_pure.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Fugaz+One&family=PT+Sans:ital@1&family=Sarabun:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    <script src="../js/functions.js"></script>
+    
+</head>
+<body>
+    <header>
+        <div class="pure-menu pure-menu-horizontal">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected">
+                    <a href="#" class="pure-menu-link">Home</a>
+                </li>
+                <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                    <a href="#" id="menuLink1" class="pure-menu-link">Sobre</a>
+                    <ul class="pure-menu-children">
+                        <li class="pure-menu-item">
+                            <a href="#" class="pure-menu-link">Serviços</a>
+                        </li>
+                        <li class="pure-menu-item">
+                            <a href="#" class="pure-menu-link">Cadastro</a>
+                        </li>
+                        <li class="pure-menu-item">
+                            <a href="#" class="pure-menu-link">Sobre nós</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="pure-menu-item pure-menu-selected">
+                    <a href="#" class="pure-menu-link">Administração</a>
+                </li>
+            </ul>
         </div>
-        <div class="col"></div>
+        <div class="topo">
+            <p class="logo">JavaLato</p>
+            <p class="slogan">Seu carro em boas mãos.</p>
+            <img src="../img/Group 1.png" alt="">
+        </div>
+    </header>
+    
+    <div class="direita">
+        <table border="1"> 
+            <tr> 
+            <th>Nome</th> 
+            <th>CPF</th> 
+            <th>Telefone</th> 
+            <th>ID do Funcionário</th> 
+            </tr> 
+            <?php while($dado = $stmt->fetch_array()) { ?> 
+            <tr> 
+            <td><?php echo $dado['Nome_funcionario']; ?></td>
+            <td><?php echo $dado['CPF']; ?></td> 
+            <td><?php echo $dado['Telefone']; ?></td>  
+            <td><?php echo $dado['ID_funcionario']; ?></td>  
+            </tr> 
+            <?php } ?> 
+        </table>
     </div>
+</body>
 
-    <form action="funcionario.php" method="post">
-        <!-- Alerta em caso de erro -->
-        <?php if (!empty($error)) : ?>
-            <span class="text-danger"><?php echo $error; ?></span>
-        <?php endif; ?>
-
-        <div class="form-group">
-            <label for="Nome">Primeiro Nome:</label>
-            <input class="form-control" value="<?php echo !empty($fname) ? $fname : ''; ?>" type="text" name="fname" id="primeironome" required>
-        </div>
-
-        <div class="form-group">
-            <label for="Sobrenome">Sobrenome:</label>
-            <input class="form-control" type="text" value="<?php echo !empty($lname) ? $lname : ''; ?>" name="lname" id="sobrenome" required>
-        </div>
-
-        <div class="form-group">
-            <label for="Ssn">Snn:</label>
-            <input class="form-control" type="text" value="<?php echo !empty($ssn) ? $ssn : ''; ?>" name="ssn" id="ssn" required>
-        </div>
-
-        <div class="form-group">
-            <label for="dno">Departamento:</label>
-            <select class="form-control" id="dno" name="dno" value="<?php echo !empty($dno) ? $dno : ''; ?>" required>
-                <?php foreach ($departments as $department) : ?>
-                    <tr>
-                        <option value="<?php echo htmlspecialchars($department['dnumber']); ?>" <?php echo $department['dnumber'] == $dno ? "selected" : '' ?>><?php echo htmlspecialchars($department['dname']); ?></option>
-                    </tr>
-                <?php endforeach; ?>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="Salary">Salario:</label>
-            <input class="form-control" type="number" value="<?php echo !empty($salary) ? $salary : ''; ?>" name="salary" id="salary" required>
-        </div>
-
-        <div class="form-group">
-            <label for="Address">Endereço:</label>
-            <input class="form-control" type="text" value="<?php echo !empty($address) ? $address : ''; ?>" name="address" id="address" required>
-        </div>
-
-        <div class="form-group">
-            <label for="Data">Data Nascimento:</label>
-            <input class="form-control" type="date" value="<?php echo !empty($bdate) ? $bdate : ''; ?>" name="bdate" id="datanascimento" required>
-        </div>
-
-        <input class="btn btn-primary" type="submit" value="Cadastrar">
-
-    </form>
-</div>
-
-<?php
-include('../../templates/footer.php');
-?>
+</html>

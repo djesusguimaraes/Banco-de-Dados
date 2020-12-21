@@ -1,8 +1,8 @@
 <?php
 
-require '../bd/models/Cliente.php';
+require '../../bd/models/Cliente.php';
 
-include_once '../bd/db.ini.php';
+include_once '../../bd/db.ini.php';
 
 use connPHPPostgres\ClientModel as ClientModel;
 
@@ -44,10 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/normalize_pure.css">
+    <link rel="stylesheet" href="../../css/normalize_pure.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Fugaz+One&family=PT+Sans:ital@1&family=Sarabun:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
-    <script src="../js/functions.js"></script>
+    <script src="../../js/functions.js"></script>
 </head>
 <body>
     <header>
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="topo">
             <p class="logo">JavaLato</p>
             <p class="slogan">Seu carro em boas mãos.</p>
-            <img src="../img/Group 1.png" alt="">
+            <img src="../../img/Group 1.png" alt="">
         </div>
     </header>
     <div class="central">

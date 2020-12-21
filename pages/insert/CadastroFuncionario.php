@@ -7,13 +7,6 @@ include_once '../../bd/db.ini.php';
 use connPHPPostgres\FuncionarioModel as FuncionarioModel;
 $funcionarioRegister = new FuncionarioModel($pdo);
 
-try{
-    $funcionarios = $funcionarioRegister->show();
-}catch(PDOException $e){
-    $erro = $e->getMessage();
-}
-
-
 $Nome_funcionario = null;
 $CPF = null;
 $Telefone = null;
@@ -99,24 +92,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </fieldset>   
             <button type="submit" class="pure-button pure-button-primary" value="Cadastrar">Cadastrar</button>
         </form>
-    </div>
-    <div class="direita">
-        <table border="1"> 
-            <tr> 
-            <th>Nome</th> 
-            <th>CPF</th> 
-            <th>Telefone</th> 
-            <th>ID do Funcionário</th> 
-            </tr> 
-            <?php while($dado = $stmt->fetch_array()) { ?> 
-            <tr> 
-            <td><?php echo $dado['Nome_funcionario']; ?></td>
-            <td><?php echo $dado['CPF']; ?></td> 
-            <td><?php echo $dado['Telefone']; ?></td>  
-            <td><?php echo $dado['ID_funcionario']; ?></td>  
-            </tr> 
-            <?php } ?> 
-        </table>
     </div>
 </body>
 
