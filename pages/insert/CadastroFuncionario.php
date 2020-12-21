@@ -1,8 +1,8 @@
 <?php
 
-require '../bd/models/Funcionario.php';
+require '../../bd/models/Funcionario.php';
 
-include_once '../bd/db.ini.php';
+include_once '../../bd/db.ini.php';
 
 use connPHPPostgres\FuncionarioModel as FuncionarioModel;
 $funcionarioRegister = new FuncionarioModel($pdo);
@@ -24,13 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/normalize_pure.css">
+    <link rel="stylesheet" href="../../css/normalize_pure.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Fugaz+One&family=PT+Sans:ital@1&family=Sarabun:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
     <script src="../js/functions.js"></script>
@@ -38,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <header>
-    <!-- <div class="esquerda"><a href="../index.php"><img src="../img/backbutton.png" height="20px"></a></div> -->
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
                 <li class="pure-menu-item pure-menu-selected">
@@ -66,10 +64,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="topo">
             <p class="logo">JavaLato</p>
             <p class="slogan">Seu carro em boas mãos.</p>
-            <img src="../img/Group 1.png" alt="">
+            <img src="../../img/Group 1.png" alt="">
         </div>
     </header>
-    <div class="central">
+    <div class="esquerda">
         <form class="pure-form pure-form-stacked" action="CadastroFuncionario.php" method="post">
             <fieldset>
                 <legend>Dados do Funcionário</legend>
@@ -85,7 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" class="pure-button pure-button-primary" value="Cadastrar">Cadastrar</button>
         </form>
     </div>
-
+    <div class="direita">
+        
+    </div>
 </body>
 
 </html>

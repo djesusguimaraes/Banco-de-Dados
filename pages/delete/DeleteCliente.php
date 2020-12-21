@@ -19,3 +19,4 @@ if (!empty($_GET['cpf'])) { // && !empty($_GET['dependent_name'])) {
     //$dependent_name = $_REQUEST['dependent_name'];
     $Client = $ClientModel->deleteByCPF($CPF);
 }
+

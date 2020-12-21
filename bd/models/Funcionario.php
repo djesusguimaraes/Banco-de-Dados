@@ -11,6 +11,19 @@ class FuncionarioModel
         $this->pdo = $pdo;
     }
 
+    public function show($CPF)
+    {
+        $stmt = $this->pdo->query("SELECT \"Nome_funcionario\", \"CPF\", \"Telefone\" FROM public.\"Funcionario\";");
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        $stocks = [
+            'nome' => $row['Nome_funcionario'],
+            'cpf' => $row['CPF'],
+            'tel' => $row['Telefone']
+        ];
+        return $stocks;
+    }
+
     public function showByID($CPF)
     {
         $stmt = $this->pdo->query("SELECT \"Nome_funcionario\", \"CPF\", \"Telefone\" FROM public.\"Funcionario\" WHERE \"CPF\" = '$CPF'");

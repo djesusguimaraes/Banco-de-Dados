@@ -24,10 +24,10 @@
                     <a href="#" id="menuLink1" class="pure-menu-link">Sobre</a>
                     <ul class="pure-menu-children">
                         <li class="pure-menu-item">
-                            <a href="forms/CadastraServico.php" class="pure-menu-link">Serviços</a>
+                            <a href="pages/insert/CadastraServico.php" class="pure-menu-link">Serviços</a>
                         </li>
                         <li class="pure-menu-item">
-                            <a href="forms/CadastroCliente.php" class="pure-menu-link">Cadastro</a>
+                            <a href="pages/insert/CadastroCliente.php" class="pure-menu-link">Cadastro</a>
                         </li>
                         <li class="pure-menu-item">
                             <a href="pages/sobre.php" class="pure-menu-link">Sobre nós</a>
@@ -47,9 +47,9 @@
     </header>
     <div class="central">
         <div class="meio">
-            <a href="forms/CadastroCliente.php"><img src="img/cliente_click.png" height="200"></a>
-            <a href="forms/CadastroFuncionario.php"><img src="img/funcionario_click.png" height="200"></a>
-            <a href="forms/CadastroServico.php"><img src="img/servico_click.png" height="200"></a>
+            <a href="pages/insert/CadastroCliente.php"><img src="img/cliente_click.png" height="200"></a>
+            <a href="pages/insert/CadastroFuncionario.php"><img src="img/funcionario_click.png" height="200"></a>
+            <a href="pages/insert/CadastroServico.php"><img src="img/servico_click.png" height="200"></a>
         </div>
     </div>
 </body>
