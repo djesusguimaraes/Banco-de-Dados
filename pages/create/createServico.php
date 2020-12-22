@@ -11,7 +11,7 @@ $servicoRegister = new ServicoModel($pdo);
 $nome_servico = null;
 $descricao = null;
 $id_servico = null;
-$id_funcionario = null;
+$preco = null;
 
 if(!empty($_POST['servico'])){
     $id_servico = $_REQUEST['servico'];
@@ -22,9 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome_servico =  $_REQUEST['nome'];
     $descricao =  $_REQUEST['descricao'];
     $id_servico = $_REQUEST['servico'];
+    $preco = $_REQUEST['preco'];
     
     try {
-        $servicoRegister->insert($nome_servico, $descricao, $id_servico);
+        $servicoRegister->insert($nome_servico, $descricao, $id_servico, $preco);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
     }
@@ -52,6 +53,10 @@ require '../../templates/header.php';
                 <div class="form-group">
                     <label for="servico">ID Serviço</label>
                     <input type="text" class="form-control" max-lenght="5" name="servico" id="servico" placeholder="Ex: 666">
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço</label>
+                    <input type="number" class="form-control" name="preco" id="preco" placeholder="Ex: ">
                 </div>
             </fieldset>
             <button type="submit" class="btn btn-primary">Enviar</button>

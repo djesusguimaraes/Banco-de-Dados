@@ -7,7 +7,14 @@ use conpostgres\FuncionarioModel as FuncionarioModel;
 
 $Funcionario = new FuncionarioModel($pdo);
 
+$idAtual = null;
 $id = null;
+$nomeAtual = null;
+$nome = null;
+$cpfAtual = null;
+$cpf = null;
+$telefoneAtual = null;
+$telefone = null;
 
 if (!empty($_POST['id_funcionario'])) {
     $id = $_POST['id_funcionario'];
@@ -21,12 +28,14 @@ if (!empty($_POST['id_funcionario'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // $nome = ;
-    // $cpf = ;
-    // $telefone = ;
+    $nome = isset($_REQUEST['nome']) ? $_REQUEST['nome'] : $nomeAtual;
+    $cpf = isset($_REQUEST['cpf']) ? $_REQUEST['cpf'] : $cpfAtual;
+    $telefone = isset($_REQUEST['telefone']) ? $_REQUEST['telefone'] : $telefoneAtual;
     
+    echo $nome, $cpf, $telefone, $id;
+
     try {
-        $Funcionario->update($_REQUEST['nome'], $_REQUEST['cpf'], $_REQUEST['telefone'], $id);
+        $Funcionario->update($nome, $cpf, $telefone, $id);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
     }
@@ -44,15 +53,15 @@ require '../../templates/header.php';
             <fieldset>
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" max-lenght="80" name="nome" id="nome" placeholder="<?php echo htmlspecialchars($nomeAtual)?>">
+                    <input type="text" class="form-control" max-lenght="80" name="nome" id="nome" placeholder="<?php echo $nomeAtual?>">
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control" max-lenght="14" name="cpf" id="cpf" placeholder="<?php echo htmlspecialchars($cpfAtual)?>">
+                    <input type="text" class="form-control" max-lenght="14" name="cpf" id="cpf" placeholder="<?php echo $cpfAtual?>">
                 </div>
                 <div class="form-group">
                     <label for="telefone">Telefone</label>
-                    <input type="text" class="form-control" max-lenght="5" name="telefone" id="telefone" placeholder="<?php echo htmlspecialchars($telefoneAtual)?>">
+                    <input type="text" class="form-control" max-lenght="5" name="telefone" id="telefone" placeholder="<?php echo $telefoneAtual?>">
                 </div>
             </fieldset>
             <button type="submit" class="btn btn-primary">Enviar</button>

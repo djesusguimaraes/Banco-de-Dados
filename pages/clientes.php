@@ -15,7 +15,7 @@ $Servico = new ServicoModel($pdo);
 $Clientes = $Client->all();
 
 $cpf = null;
-
+$i = 0;
 
 if (!empty($_POST['cpf'])) {
     $cpf = $_POST['cpf'];
@@ -31,10 +31,11 @@ if (!empty($_POST['cpf'])) {
 require '../templates/header.php';
 ?>
 <div class="container">
-<h2><strong>Clientes</strong></h2>
+<h2><strong>Clientes</strong></h2><br>
     <table class="table">
-    <thead class="thead-light">
+    <thead class="thead-dark">
         <tr>
+        <th scope="col">#</th>
         <th scope="col">Nome</th>
         <th scope="col">CPF</th>
         <th scope="col">Carro</th>
@@ -49,6 +50,7 @@ require '../templates/header.php';
     <tbody>
         <?php foreach ($Clientes as $dado) : ?>
             <tr>
+            <td><?php echo $i += 1;?></td>
             <td><?php echo htmlspecialchars($dado['nome']); ?></td>
             <td><?php echo htmlspecialchars($dado['cpf']); ?></td>
             <td><?php echo htmlspecialchars($dado['carro']); ?></td>

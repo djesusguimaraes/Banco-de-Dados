@@ -19,7 +19,9 @@ class ServicoModel
             $stocks[] = [
                 'nome' => $row['nome'],
                 'descricao' => $row['descricao'],
-                'id_servico' => $row['id_servico']
+                'id_servico' => $row['id_servico'],
+                'preco' => $row['preco']
+
             ];
         }
         return $stocks;
@@ -32,20 +34,23 @@ class ServicoModel
         $stocks = [
             'nome' => $row['nome'],
             'descricao' => $row['descricao'],
-            'id_servico' => $row['id_servico']
+            'id_servico' => $row['id_servico'],
+            'preco' => $row['preco']
+
         ];
         return $stocks;
     }
 
-    public function insert($nome_servico, $descricao, $id_servico)
+    public function insert($nome_servico, $descricao, $id_servico, $preco)
     {
         {
-            $sql = "INSERT INTO public.servico (nome, descricao, id_servico) VALUES (:nome, :descricao, :servico);";
+            $sql = "INSERT INTO public.servico (nome, descricao, id_servico, preco) VALUES (:nome, :descricao, :servico, :preco);";
             $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':nome', $nome_servico);
             $stmt->bindValue(':descricao', $descricao);
             $stmt->bindValue(':servico', $id_servico);
+            $stmt->bindValue(':preco', $preco);
 
             $stmt->execute();
         }

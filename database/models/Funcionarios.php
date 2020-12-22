@@ -51,7 +51,7 @@ class FuncionarioModel
     {
 
         {
-            $sql = "INSERT INTO public.funcionario (nome, cpf, telefone, id_funcionario) VALUES (:nome, :cpf, :tel, :funcao);";
+            $sql = "INSERT INTO public.funcionario(nome, cpf, telefone, id_funcionario) VALUES (:nome, :cpf, :tel, :funcao);";
             $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':nome', $nome);
