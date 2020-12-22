@@ -42,10 +42,8 @@ class FuncionarioModel
 
     public function update($nome, $cpf, $telefone, $id)
     {
-        // Preparar pra atualizar novo exemplo
-        $sql = "UPDATE public.funcionario SET nome='$nome', cpf='$cpf', telefone='$telefone' WHERE id_funcionario='$id';";
+        $sql = "UPDATE public.funcionario SET nome='$nome', cpf='$cpf', telefone='$telefone', id_funcionario='$id' WHERE id_funcionario='$id';";
         $stmt = $this->pdo->prepare($sql);
-        // Executar
         $stmt->execute();
     }
 
