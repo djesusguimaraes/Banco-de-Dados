@@ -40,6 +40,15 @@ class FuncionarioModel
         return $stocks;
     }
 
+    public function update($nome, $cpf, $telefone, $id)
+    {
+        // Preparar pra atualizar novo exemplo
+        $sql = "UPDATE public.funcionario SET nome='$nome', cpf='$cpf', telefone='$telefone' WHERE id_funcionario='$id';";
+        $stmt = $this->pdo->prepare($sql);
+        // Executar
+        $stmt->execute();
+    }
+
     public function insert($nome, $cpf, $telefone, $funcao)
     {
 

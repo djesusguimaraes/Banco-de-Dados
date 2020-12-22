@@ -54,7 +54,8 @@ require '../templates/header.php';
             <td><?php echo htmlspecialchars($dado['carro']); ?></td>
             <td><?php echo htmlspecialchars($dado['telefone']); ?></td>
             <td><?php echo htmlspecialchars($dado['placa']); ?></td>
-            <td><?php echo htmlspecialchars($dado['id_servico']);?></td>
+            <td><?php echo htmlspecialchars($Servico->showByID($dado['id_servico'])['nome']); ?></td>
+            
             <td><?php echo htmlspecialchars($Funcionario->showByID($dado['id_funcionario'])['nome']); ?></td>
             <td>
             <div class="d-inline-block">

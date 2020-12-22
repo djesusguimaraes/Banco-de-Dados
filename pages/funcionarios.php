@@ -45,13 +45,14 @@ require '../templates/header.php';
             <td><?php echo htmlspecialchars($dado['telefone']); ?></td>
             <td><?php echo htmlspecialchars($dado['id_funcionario']); ?></td>
             <td>
-            <div class="d-inline-block">
+            <div class="form-check-inline">
                 <form action="funcionarios.php" method="post">
-                    <input type="hidden" name="id_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?>">
+                    <input type="hidden" name="id_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?> ">&nbsp
                     <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                 </form>
-                <form action="funcionarios.php" method="post">
-                    <input type="hidden" name="id_funcionario" value="">
+                <form action="update/upFuncionario.php" method="post">
+                    <input type="hidden" name="id_funcionario" id="id_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?>">&nbsp&nbsp
+                    <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>
                 </form>
             </div>
             </td>

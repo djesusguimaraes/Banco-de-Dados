@@ -37,7 +37,7 @@
                         <a class="dropdown-item" href="#">Outra ação</a>
                         <a class="dropdown-item" href="#">Algo mais aqui</a>
                     </div>
-                    </li>s
+                    </li>
                 </ul>
             </div>
         </nav>

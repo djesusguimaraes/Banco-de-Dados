@@ -29,8 +29,7 @@ class ServicoModel
     {
         $stmt = $this->pdo->query("SELECT * FROM public.servico WHERE id_servico='$id';");
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-        $stocks = [];
-        $stocks[] = [
+        $stocks = [
             'nome' => $row['nome'],
             'descricao' => $row['descricao'],
             'id_servico' => $row['id_servico']
