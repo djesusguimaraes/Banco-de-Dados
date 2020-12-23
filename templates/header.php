@@ -19,7 +19,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                     <a class="nav-link" href="http://localhost/javalato/pages/clientes.php">Cliente</a>
                     </li>
                     <li class="nav-item">
@@ -28,16 +28,10 @@
                     <li class="nav-item">
                     <a class="nav-link" href="http://localhost/javalato/pages/servicos.php">Serviço</a>
                     </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Sobre
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Ação</a>
-                        <a class="dropdown-item" href="#">Outra ação</a>
-                        <a class="dropdown-item" href="#">Algo mais aqui</a>
-                    </div>
+                    <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/javalato/pages/servicos.php">Sobre</a>
                     </li>
+                    
                 </ul>
             </div>
         </nav>

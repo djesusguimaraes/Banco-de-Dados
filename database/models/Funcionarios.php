@@ -28,7 +28,7 @@ class FuncionarioModel
 
     public function showByID($id)
     {
-        $stmt = $this->pdo->query("SELECT * FROM public.funcionario WHERE id_funcionario = '$id';");
+        $stmt = $this->pdo->query("SELECT * FROM public.funcionario WHERE id_funcionario='$id';");
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         $stocks = [
@@ -42,7 +42,7 @@ class FuncionarioModel
 
     public function update($nome, $cpf, $telefone, $id)
     {
-        $sql = "UPDATE public.funcionario SET nome='$nome', cpf='$cpf', telefone='$telefone', id_funcionario='$id' WHERE id_funcionario='$id';";
+        $sql = "UPDATE public.funcionario SET nome='$nome', cpf='$cpf', telefone='$telefone' WHERE id_funcionario='$id';";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }

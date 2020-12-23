@@ -52,9 +52,9 @@ require '../templates/header.php';
                         <input type="hidden" name="id_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?> ">
                         <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                     </form>
-                    <form action="update/upFuncionario.php" method="post">
+                    <form method="post">
                         <input type="hidden" name="id_funcionario" id="id_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?>">&nbsp
-                        <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>
+                        <button type="submit" class="btn btn-outline-info btn-sm">Update</button>
                     </form>
                 </div>
             </td>

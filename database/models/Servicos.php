@@ -41,6 +41,16 @@ class ServicoModel
         return $stocks;
     }
 
+    public function update($nome, $descricao, $preco, $id)
+    {
+        $sql = "UPDATE public.servico
+        SET nome='$nome', descricao='$descricao', preco='$preco'
+        WHERE  id_servico='$id';";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+
+    }
+
     public function insert($nome_servico, $descricao, $id_servico, $preco)
     {
         {
