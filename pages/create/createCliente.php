@@ -44,7 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servico = $_REQUEST['servico'];    
     $funcionario = $_REQUEST['funcao'];    
     
-
     try {
         $clientRegister->insert($nome, $cpf, $carro, $telefone, $placa, $servico, $funcionario);
     } catch (PDOException $exception) {
@@ -97,7 +96,7 @@ require '../../templates/header.php';
             <legend>Dados do Serviço</legend>
             <label for="servico">Serviços</label>
             <select class="form-control" id="servico" name="servico" value="" required>
-                <option value="" disabled selected>Selecione o Serviço</option>
+                <option value="" disabled selected>Selecione os Serviços</option>
                 <?php foreach ($Servicos as $dado) : ?>
                     <tr>
                         <option value="<?php echo htmlspecialchars($dado['id_servico']); ?>"> <?php echo htmlspecialchars($dado['nome']); ?></option>
@@ -120,6 +119,7 @@ require '../../templates/header.php';
     <br>
     <button type="submit" class="btn btn-primary">Enviar</button>    
     </form>
+
 </div>
 </body>
 </html>

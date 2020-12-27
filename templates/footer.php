@@ -5,12 +5,12 @@
 
         
 
-        <!-- <div class="footer-copyright text-center py-3">
-            <img src="../assets/images/logoUft.png" height="60">
-            <img src="../assets/images/logoFabrica.png" height="80">
-            <a> © 2020: Banco de dados</a>
+        <div class="footer-copyright text-center py-3">
+            <img src="assets/images/logoUft.png" height="60">
+            <img src="assets/images/logoFabrica.png" height="80">
+            <a>© 2020: Banco de dados</a>
 
-        </div> -->
+        </div>
         <!-- Copyright -->
     </footer>
 </body>

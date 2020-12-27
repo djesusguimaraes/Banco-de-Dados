@@ -9,7 +9,27 @@ include('templates/header.php');
             </div>
             <div class="col-sm-8">
                 <h1 class="display-4">JavaLato</h1>
-                <p class="lead">Exemplo de CRUD conectando ao Postgres usando PHP</p>
+                <p class="lead">Segurança e confiabilidade em todos os serviços.</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-check-inline">
+        <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="assets/images/lavagem.jpg">
+            <div class="card-body">
+                <p class="card-text">Os melhores serviços com a melhor assistência. Agende já seu horário.</p>
+            </div>
+        </div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="assets/images/lavagem-ecologica.jpg">
+            <div class="card-body">
+                <p class="card-text">Os melhores serviços com a melhor assistência. Agende já seu horário.</p>
+            </div>
+        </div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="assets/images/lavagem-bancos.jpg">
+            <div class="card-body">
+                <p class="card-text">Os melhores serviços com a melhor assistência. Agende já seu horário.</p>
             </div>
         </div>
     </div>

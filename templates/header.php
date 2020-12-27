@@ -29,9 +29,8 @@
                     <a class="nav-link" href="http://localhost/javalato/pages/servicos.php">Serviço</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/javalato/pages/servicos.php">Sobre</a>
+                    <a class="nav-link" href="http://localhost/javalato/pages/sobre.php">Sobre</a>
                     </li>
-                    
                 </ul>
             </div>
         </nav>

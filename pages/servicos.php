@@ -9,6 +9,7 @@ use conpostgres\ServicoModel as ServicoModel;
 $Servico = new ServicoModel($pdo);
 
 $Servicos = $Servico->all();
+
 $i = 0;
 
 if (!empty($_POST['id_servico'])) {
@@ -47,10 +48,10 @@ require '../templates/header.php';
             <td>
             <div class="form-check-inline">
                 <form action="servicos.php" method="post">
-                    <input type="hidden" name="id_servico" id="id_servico" value="<?php echo htmlspecialchars($dado['id_servico']); ?>">
+                    <input type="hidden" name="id_servico" value="<?php echo htmlspecialchars($dado['id_servico']); ?>">
                     <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                 </form>
-                <form action="" method="get">
+                <form action="update/upServico.php" method="post">
                     <input type="hidden" name="id_servico" id="id_servico" value="<?php echo htmlspecialchars($dado['id_servico']);?>">&nbsp&nbsp
                     <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>
                 </form>

@@ -12,6 +12,7 @@ $Funcionarios = $Funcionario->all();
 
 $id = null;
 $i = 0;
+
 if (!empty($_POST['id_funcionario'])) {
     $id = $_POST['id_funcionario'];
     try {
@@ -52,8 +53,8 @@ require '../templates/header.php';
                         <input type="hidden" name="id_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?> ">
                         <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                     </form>
-                    <form method="post">
-                        <input type="hidden" name="id_funcionario" id="id_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?>">&nbsp
+                    <form action="update/upFuncionario.php" method="post">
+                        <input type="hidden" name="id_funcionario" id="id_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?>">&nbsp&nbsp
                         <button type="submit" class="btn btn-outline-info btn-sm">Update</button>
                     </form>
                 </div>
