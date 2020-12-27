@@ -13,7 +13,9 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="http://localhost/javalato/index.php">JAVALATO</a>
+            <a class="navbar-brand" href="http://localhost/javalato/">
+                <img src="http://localhost/javalato/assets/images/brand.png" width="75" height="50" alt="">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
             </button>
