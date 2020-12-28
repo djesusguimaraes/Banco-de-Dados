@@ -62,13 +62,14 @@ require '../templates/header.php';
                 <td><?php echo htmlspecialchars($Servico->showByID($dado['id_servico'])['preco']); ?></td>
                 <td><?php echo htmlspecialchars($Funcionario->showByID($dado['id_funcionario'])['nome']); ?></td>
                 <td>
-                <div class="d-inline-block">
+                <div class="form-inline">
                     <form action="clientes.php" method="post">
                         <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']); ?>">
                         <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                     </form>
-                    <form action="clientes.php" method="post">
-                        <input type="hidden" name="cpf" value="">
+                    <form action="update/upCliente.php" method="post">
+                        <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
+                        <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>
                     </form>
                 </div>
                 </td>

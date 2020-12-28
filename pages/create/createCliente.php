@@ -105,7 +105,7 @@ require '../../templates/header.php';
             </select>
             <br>
 
-            <label for="funcao">Serviços</label>
+            <label for="funcao">Funcionário</label>
             <select class="form-control" id="funcao" name="funcao" value="" required>
                 <option value="" disabled selected>Selecione o Funcionário</option>
                 <?php foreach ($Funcionarios as $dado) : ?>

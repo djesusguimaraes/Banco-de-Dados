@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 ?>
 
     <div class="container-sm">
-        <h2><strong>Update Serviço</strong></h2><br>
+        <h2><strong>Update Serviço <?php echo htmlspecialchars($Servicos['id_servico'])?></strong></h2><br>
 
         <?php if(!empty($_POST['id_servico'])): ?>
             <form action="upServico.php" method="post">

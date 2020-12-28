@@ -33,18 +33,24 @@ class ClientModel
 
     public function showByCPF($cpf)
     {
-        $stmt = $this->pdo->pg_query("SELECT * FROM public.cliente WHERE cpf='$cpf';");
-        $stocks = [];
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $stocks[] = [
-                'Nome' => $row['Nome'],
-                'cpf' => $row['cpf'],
-                'Carro' => $row['Carro'],
-                'Telefone' => $row['Telefone'],
-                'Placa' => $row['Placa']
-            ];
-        }
+        $stmt = $this->pdo->query("SELECT * FROM public.cliente WHERE cpf='$cpf';");
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        $stocks = [
+            'nome' => $row['nome'],
+            'cpf' => $row['cpf'],
+            'carro' => $row['carro'],
+            'telefone' => $row['telefone'],
+            'placa' => $row['placa']
+        ];
         return $stocks;
+    }
+
+    public function update($nome, $telefone, $carro, $placa, $cpf)
+    {
+        $sql = "UPDATE public.cliente SET nome='$nome', telefone='$telefone', carro='$carro', placa='$placa' WHERE  cpf='$cpf';";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
     }
 
     public function insert($nome, $cpf, $carro, $telefone, $placa, $servico, $funcionario)
