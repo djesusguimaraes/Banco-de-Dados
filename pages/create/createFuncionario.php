@@ -54,7 +54,7 @@ require '../../templates/header.php';
             <input type="text" class="form-control" max-lenght="5" name="funcao" id="funcao" placeholder="Ex: 54234">
         </div>
     </fieldset>
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/funcionarios.php';" />
     </form>
 </div>
 </body>

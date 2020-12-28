@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     require '../../templates/header.php';
 ?>
     <div class="container-sm">
-        <h2><strong>Update Funcionário</strong></h2><br>
+        <h2><strong>Update Funcionário <?php echo htmlspecialchars($Funcionarios['id_funcionario'])?></strong></h2><br>
         <?php if(!empty($_POST['id_funcionario'])):?>
             <form action="upFuncionario.php" method="post">
                 <div class="form-group">

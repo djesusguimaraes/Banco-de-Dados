@@ -25,7 +25,11 @@ if (!empty($_POST['id_servico'])) {
 require '../templates/header.php';
 ?>
 <div class="container">
-<h2><strong>Serviços</strong></h2><br>
+    <div class="form-inline">
+        <h2><strong>Serviços</strong></h2>
+        <div class="col-sm-9"></div>
+        <a href="create/createServico.php"><button type="button" class="btn btn-success btn-md">Inserir</button></a>
+    </div><br>
     <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -52,7 +56,7 @@ require '../templates/header.php';
                     <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                 </form>
                 <form action="update/upServico.php" method="post">
-                    <input type="hidden" name="id_servico" id="id_servico" value="<?php echo htmlspecialchars($dado['id_servico']);?>">&nbsp&nbsp
+                    <input type="hidden" name="id_servico" id="id_servico" value="<?php echo htmlspecialchars($dado['id_servico']);?>">&nbsp
                     <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>
                 </form>
             </div>
@@ -61,11 +65,6 @@ require '../templates/header.php';
         <?php endforeach; ?>
     </tbody>
     </table>
-    
 </div>
-<div class="container">
-    <a href="create/createServico.php"><button type="button" class="btn btn-outline-success btn-lg">Insert</button></a>
-</div>
-
 </body>
 </html>

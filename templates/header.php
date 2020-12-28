@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
-    <script src="../../assets/style/functions.js"></script>
+    <script src="http://localhost/javalato/assets/style/functions.js"></script>
+    <link rel="icon" type="imagem/png" href="http://localhost/javalato/assets/images/icon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaLato</title>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
             <a class="navbar-brand" href="http://localhost/javalato/">
                 <img src="http://localhost/javalato/assets/images/brand.png" width="75" height="50" alt="">
             </a>

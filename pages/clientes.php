@@ -32,7 +32,11 @@ require '../templates/header.php';
 ?>
 <div class="justify-content-center">
     <div class="col">
-    <h2><strong>Clientes</strong></h2><br>
+        <div class="form-inline">
+            <h2><strong>Clientes</strong></h2><br>
+            <div class="col-sm-10"></div>
+            <a href="create/createCliente.php"><button type="button" class="btn btn-success btn-md">Inserir</button></a>
+        </div><br>
         <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -78,7 +82,7 @@ require '../templates/header.php';
         </tbody>
         </table>
 </div>
-<div class="col"><a href="create/createCliente.php"><button type="button" class="btn btn-outline-success btn-lg">Insert</button></a></div>
+<div class="col"></div>
 </div>
 
 </body>

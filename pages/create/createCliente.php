@@ -94,9 +94,9 @@ require '../../templates/header.php';
         </fieldset>
         <fieldset>
             <legend>Dados do Serviço</legend>
-            <label for="servico">Serviços</label>
+            <label for="servico">Serviço</label>
             <select class="form-control" id="servico" name="servico" value="" required>
-                <option value="" disabled selected>Selecione os Serviços</option>
+                <option value="" disabled selected>Selecione o Serviço</option>
                 <?php foreach ($Servicos as $dado) : ?>
                     <tr>
                         <option value="<?php echo htmlspecialchars($dado['id_servico']); ?>"> <?php echo htmlspecialchars($dado['nome']); ?></option>
@@ -117,7 +117,7 @@ require '../../templates/header.php';
 
         </fieldset>
     <br>
-    <button type="submit" class="btn btn-primary">Enviar</button>    
+    <button type="submit" class="btn btn-info">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" /> 
     </form>
 
 </div>
