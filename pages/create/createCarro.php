@@ -29,8 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ano =  isset($_REQUEST['ano']) ? $_REQUEST['ano'] : ' ';
     $cpf = isset($_REQUEST['cpf']) ? $_REQUEST['cpf']: ' ';
 
-    echo $placa, $cpf;
-
     try {
         $Carro->insert($placa, $modelo, $ano, $cpf);
     } catch (PDOException $exception) {

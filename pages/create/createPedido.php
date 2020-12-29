@@ -28,35 +28,26 @@ $quantidade = null;
 $numero = null; 
 $data = null;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $cpf = $_POST['cpf'];
-    $id_funcionario = $_POST['id_funcionario'];
-    $numero = $_POST['numero'];
-    $order_date = $_POST['data'];
+if (!empty($_POST['insert'])){
+    $id_pedido = $_POST['insert'];
+}
 
-    echo $cpf.'/'.$id_funcionario.'/'.$order_date.'/'.$numero.'  '; 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : '';
+    $id_funcionario = isset($_POST['id_funcionario']) ? $_POST['id_funcionario'] : '';
+    $numero = isset($_POST['numero']) ? $_POST['numero'] : '';
+    $order_date = isset($_POST['data']) ? $_POST['data'] : '';
+    $id_servico = isset($_POST['id_servico']) ? $_POST['id_servico'] : '';
+    $quantidade = isset($_POST['quantidade']) ? $_POST['quantidade'] : '';
+    $id_pedido = isset($_POST['id_pedido']) ? $_POST['id_pedido'] : '';
+
     try {
-        $Pedido->insert($numero, $cpf, $id_funcionario, $order_date);
+        $Pedido->insert($numero, $cpf, $id_funcionario, $order_date, $id_pedido);
+        $Item->insert($id_servico, $quantidade);
     } catch (PDOException $e) {
         $error = $e->getMessage();
     }
 }
-
-$id_funcionario = $Pedido->last();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_servico = $_POST['id_servico'];
-    $quantidade = $_POST['quantidade'];
-
-    try {
-        $Item->insert($id_servico, $id_funcionario, $quantidade);
-        echo '...';
-    }catch (PDOException $exception){
-        $error = $exception->getMessage();
-    }
-}
-
-
 ?>
 <script>
     function aleatorio(){
@@ -116,6 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <input type="hidden" name="numero" id="numero" value="<?php echo rand(1000, 9999);?>">
         <input type="hidden" name="data" id="data" value="<?php echo $date->format('Y-m-d');?>">
+        <input type="hidden" name="id_pedido" id="id_pedido" value="<?php echo $Pedido->last() + 1;?>">
         <br>
 
     <button type="submit" class="btn btn-primary" >Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" /> 

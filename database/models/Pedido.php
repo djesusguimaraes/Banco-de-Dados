@@ -44,19 +44,29 @@ class PedidoModel
     }
 
     public function last(){
-        $sql = "SELECT MAX(id_pedido) FROM public.pedido;";
+        $stmt = $this->pdo->query("SELECT MAX(id_pedido) FROM public.pedido;");
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $stocks = $row['max'];
+        return $stocks;
+   
+    }
+
+    public function update($numero, $cpf, $id_funcionario, $order_date, $id_pedido)    
+    {
+        $sql = "UPDATE public.pedido SET numero='$numero', cpf_cliente='$cpf', id_funcionario='$id_funcionario', order_date='$order_date' WHERE  id_pedido='$id_pedido';";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }
 
-    public function insert($numero, $cpf, $id_funcionario, $order_date)
+    public function insert($numero, $cpf, $id_funcionario, $order_date, $id_pedido)
     {
         {
-            $sql = "INSERT INTO public.pedido(numero, cpf_cliente, id_funcionario, order_date) VALUES (:numero, :cpf_cliente, :id_funcionario, :order_date);";
+            $sql = "INSERT INTO public.pedido(numero, cpf_cliente, id_pedido, id_funcionario, order_date) VALUES (:numero, :cpf_cliente, :id_pedido, :id_funcionario, :order_date);";
             $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':numero', $numero);
             $stmt->bindValue(':cpf_cliente', $cpf);
+            $stmt->bindValue(':id_pedido', $id_pedido);
             $stmt->bindValue(':id_funcionario', $id_funcionario);
             $stmt->bindValue(':order_date', $order_date);
             $stmt->execute();

@@ -34,7 +34,7 @@ include('templates/header.php');
         <div class="card" style="width: 20rem; box-shadow: 2px 2px 6px #777;">
         <img class="card-img-top" src="http://localhost/javalato/assets/images/lavagem-bancos.png">
             <div class="card-body">
-                <p class="card-text">Higienização de bancos e estofados. Agende já seu horário!</p>
+                <p class="card-text">Hipermeabilização e Higienização de bancos e estofados. Agende já seu horário!</p>
             </div>
         </div>
     </div>

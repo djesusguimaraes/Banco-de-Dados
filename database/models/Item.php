@@ -48,11 +48,11 @@ class ItemModel
         $stmt->execute();
     }
 
-    public function insert($id_servico, $id_funcionario, $quantidade)
+    public function insert($id_servico, $quantidade)
     {
 
         {
-            $sql = "INSERT INTO public.item(id_servico, id_funcionario, quantidade) VALUES (:id_servico, :quantidade);";
+            $sql = "INSERT INTO public.item(id_servico, quantidade) VALUES (:id_servico, :quantidade);";
             $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':id_servico', $id_servico);

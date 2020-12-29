@@ -20,7 +20,7 @@ $Itens = $Item->all();
 $id = null;
 $i = 0;
 
-if (!empty($_POST['id_pedido'])) {
+if (!empty($_POST['id_pedido'])){
     $id = $_POST['id_pedido'];
     try {
         $Pedido->deleteByID($id);
@@ -33,12 +33,15 @@ if (!empty($_POST['id_pedido'])) {
 <?php
 require '../templates/header.php';
 ?>
-<div class="container" style="margin-top: 30px;">
+<div class="col-sm-12" style="margin-top: 30px;">
     <div class="form-inline">
         <a href="http://localhost/javalato/"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <h2><strong>Compras</strong></h2>
     </div>
-    <a href="http://localhost/javalato/pages/create/createPedido.php"><button type="button" class="btn btn-success btn-md float-right">Inserir</button></a><br>&nbsp
+    <form action="http://localhost/javalato/pages/create/createPedido.php" method="post">
+        <input type="hidden" value="<?php echo $Pedido->last() + 1; ?>" name="insert" id="insert">
+        <button type="submit" class="btn btn-success btn-md float-right">Inserir</button>
+    </form><br>&nbsp
     <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -46,21 +49,21 @@ require '../templates/header.php';
         <th scope="col">Nº do Pedido</th>
         <th scope="col">Cliente</th>
         <th scope="col">Serviços</th>
+        <th scope="col">Funcionário</th>
         <th scope="col">Quantidade</th>
         <th scope="col">Total(R$)</th>
         <th scope="col">Ações</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($Pedidos as $dado) : 
-                foreach($Itens as $item):?>
+        <?php foreach ($Pedido as $dado):?>
             <tr>
             <td><?php echo $i += 1;?></td>
             <td><?php echo htmlspecialchars($dado['numero']); ?></td>
-            <td><?php echo htmlspecialchars($Client->showByCPF($dado['cpf'])); ?></td>
-            <td><?php echo htmlspecialchars($Servico->showByID($item['id_servico'])); ?></td>
-            <td><?php echo htmlspecialchars($dado['quantidade']); ?></td>
-            <td><?php echo htmlspecialchars(int($Servico->showByID($item['preco']))*int($dado['quantidade'])); ?></td>
+            <td><?php echo htmlspecialchars($Client->showByCPF($dado['cpf'])['nome']);?></td>
+            <td><?php echo htmlspecialchars($Servico->showByID($item['id_servico']));?></td>
+            <td><?php echo htmlspecialchars($dado['quantidade']);?></td>
+            <td><?php echo htmlspecialchars(int($Servico->showByID($item['preco']))*int($dado['quantidade']));?></td>
             <td>
                 <div class="form-check-inline">
                     <form action="pedidos.php" method="post">
@@ -70,7 +73,7 @@ require '../templates/header.php';
                 </div>
             </td>
             </tr>
-        <?php endforeach; endforeach;?>
+        <?php endforeach;?>
     </tbody>
     </table>
 </div>
