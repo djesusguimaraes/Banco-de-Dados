@@ -63,7 +63,6 @@ class CarroModel
 
     public function insert($placa, $modelo, $ano, $cpf)
     {
-
         {
             $sql = "INSERT INTO public.carro(placa, modelo, ano, cpf) VALUES (:placa, :modelo, :ano, :cpf);";
             $stmt = $this->pdo->prepare($sql);
@@ -73,7 +72,6 @@ class CarroModel
             $stmt->bindValue(':ano', $ano);
             $stmt->bindValue(':cpf', $cpf);
             $stmt->execute();
-
         }
     }
 

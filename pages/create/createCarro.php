@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $placa =  isset($_REQUEST['placa']);
     $modelo =  isset($_REQUEST['modelo']);
     $ano =  isset($_REQUEST['ano']);
+    $cpf = isset($_REQUEST['cpf']);
 
     try {
         $Carro->insert($placa, $modelo, $ano, $cpf);
@@ -55,6 +56,7 @@ require '../../templates/header.php';
                 <input type="text" class="form-control" max-lenght="80" name="placa" id="placa" placeholder="Ex: ABC1234">
                 <small id="help" class="form-text text-muted">Campo Obrigatório</small>
             </div>
+            <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($cpf);?>">
         </fieldset><br>
     <button type="submit" class="btn btn-info">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" /> 
     </form>

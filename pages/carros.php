@@ -4,9 +4,11 @@ require '../database/models.php';
 
 include_once '../database/ini.php';
 
+use conpostgres\ClientModel as ClientModel;
 use conpostgres\CarroModel as CarroModel;
 
 $Carro = new CarroModel($pdo);
+$Clientes = new ClientModel($pdo);
 
 $placa = null;
 $cpf = null;
@@ -17,6 +19,7 @@ if (!empty($_POST['cpf'])){
 }
 
 $Carros = $Carro->show($cpf);
+$Cliente = $Clientes->showByCPF($cpf);
 
 if (!empty($_POST['placa'])) {
     $placa = $_POST['placa'];
@@ -30,3 +33,49 @@ if (!empty($_POST['placa'])) {
 <?php
 require '../templates/header.php';
 ?>
+<div class="col-lg-12">
+    <div class="form-inline">
+        <h2><strong>Carros de <?php echo htmlspecialchars($Cliente['nome']); ?></strong></h2><br>
+        <div class="col-sm-8"></div>
+        <a href="create/createCarro.php"><button type="button" class="btn btn-success btn-md">Inserir</button></a>
+    </div><br>
+    <table class="table">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">Ano</th>
+        <th scope="col">Placa</th>
+        <th scope="col">Ações</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($Carros as $dado) : ?>
+            <tr>
+            <td><?php echo $i += 1;?></td>
+            <td><?php echo htmlspecialchars(isset($dado['modelo']));?></td>
+            <td><?php echo htmlspecialchars(isset($dado['ano'])); ?></td>
+            <td><?php echo htmlspecialchars(isset($dado['placa'])); ?></td>
+            <td>    
+            <div class="form-inline">
+                <form action="carros.php" method="post">
+                    <input type="hidden" name="placa" id="placa" value="<?php echo htmlspecialchars($dado['placa']); ?>">
+                    <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
+                </form>
+                <form action="update/upCliente.php" method="post">
+                    <input type="hidden" name="uplaca" id="uplaca" value="<?php echo htmlspecialchars($dado['placa']);?>">&nbsp&nbsp
+                    <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>
+                </form>
+            </div>
+            </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+    </table>
+</div>
+<div class="col"></div>
+</div>
+
+</body>
+</html>
