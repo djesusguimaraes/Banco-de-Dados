@@ -3,7 +3,7 @@ include('templates/header.php');
 ?>
 <div class="container" style="padding-top: 30px; ">
     
-    <div class="jumbotron" style="box-shadow: 2px 2px 6px #777;">
+    <div class="jumbotron" style="box-shadow: 2px 2px 6px #777; border-radius: 0px;">
         <div class="row">
             <div class="col-sm-4">
                 <img src="assets/images/logo.png" alt="" height="250">

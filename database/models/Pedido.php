@@ -18,52 +18,49 @@ class PedidoModel
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC))
         {
             $stocks[] = [
-                'nome' => $row['nome'],
-                'cpf' => $row['cpf'],
-                'telefone' => $row['telefone']
+                'numero' => $row['numero'],
+                'id_pedido' => $row['id_pedido'],
+                'cpf_cliente' => $row['cpf_cliente'],
+                'id_funcionario' => $row['id_funcionario'],
+                'order_date' => $row['order_date']
             ];
         }
         return $stocks;
     }
 
-    public function showByCPF($cpf)
+    public function showByID($id_pedido)
     {
-        $stmt = $this->pdo->query("SELECT * FROM public.cliente WHERE cpf='$cpf';");
+        $stmt = $this->pdo->query("SELECT * FROM public.pedido WHERE id_pedido='$id_pedido';");
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         $stocks = [
-            'nome' => $row['nome'],
-            'cpf' => $row['cpf'],
-            'telefone' => $row['telefone']
+            'numero' => $row['numero'],
+            'id_pedido' => $row['id_pedido'],
+            'cpf_cliente' => $row['cpf_cliente'],
+            'id_funcionario' => $row['id_funcionario'],
+            'order_date' => $row['order_date']
         ];
         return $stocks;
     }
 
-    public function update($nome, $cpf, $telefone)
-    {
-        $sql = "UPDATE public.cliente SET nome='$nome', cpf='$cpf', telefone='$telefone' WHERE  cpf='$cpf';";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
-    }
-
     public function insert($nome, $cpf, $telefone)
     {
-
         {
-            $sql = "INSERT INTO public.cliente(nome, cpf, telefone) VALUES (:nome, :cpf, :tel);";
+            $sql = "INSERT INTO public.pedido(numero, id_pedido, cpf_cliente, id_funcionario, order_date) VALUES (:numero, :id_pedido, :cpf_cliente, :id_funcionario, :order_date);";
             $stmt = $this->pdo->prepare($sql);
 
-            $stmt->bindValue(':nome', $nome);
-            $stmt->bindValue(':cpf', $cpf);
-            $stmt->bindValue(':tel', $telefone);
+            $stmt->bindValue(':numero', $numero);
+            $stmt->bindValue(':id_pedido', $id_pedido);
+            $stmt->bindValue(':cpf_cliente', $cpf_cliente);
+            $stmt->bindValue(':id_funcionario', $id_funcionario);
+            $stmt->bindValue(':order_date', $order_date);
             $stmt->execute();
-
         }
     }
 
-    public function deleteByCPF($cpf)
+    public function deleteByID($id_pedido)
     {
-        $sql = "DELETE FROM public.cliente WHERE cpf='$cpf';";
+        $sql = "DELETE FROM public.pedido WHERE id_pedido='$id_pedido';";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }
