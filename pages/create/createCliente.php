@@ -19,12 +19,6 @@ $Funcionarios = $funcionarioRegister->all();
 $nome = null;
 $cpf = null;
 $telefone = null;
-$modelo = null;
-$ano = null;
-$carro = null;
-$placa = null;
-$servico = null;
-$funcionario = null;
 
 if(!empty($_POST['cpf'])){
     $cpf = $_REQUEST['cpf'];
@@ -35,17 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome =  $_REQUEST['nome'];
     $cpf =  $_REQUEST['cpf'];
     $telefone =  $_REQUEST['tel'];
-    $modelo = $_REQUEST['modelo'];
-    $ano = $_REQUEST['ano'];
-
-    $carro = $modelo.'/'.$ano;
-    
-    $placa = $_REQUEST['placa'];    
-    $servico = $_REQUEST['servico'];    
-    $funcionario = $_REQUEST['funcao'];    
     
     try {
-        $clientRegister->insert($nome, $cpf, $carro, $telefone, $placa, $servico, $funcionario);
+        $clientRegister->insert($nome, $cpf, $telefone);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
     }
@@ -73,50 +59,7 @@ require '../../templates/header.php';
                 <label for="tel">Telefone</label>
                 <input type="text" oninput="mascara(this, 'tel');" max-lenght="14" class="form-control" name="tel" id="tel" placeholder="Ex: (00) 00000-0000">
             </div>
-        </fieldset>
-        
-        <fieldset>
-            <legend>Dados do Veículo</legend>
-            <label for="modelo" class="d-sm-flex">Descrição</label>  
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" class="form-control" name="modelo" id="modelo" placeholder="Ex: Fusca">
-                </div>
-                <div class="col">
-                    <input type="number" max-lenght="4" class="form-control" name="ano" id="ano" placeholder="Ex: 2009">
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="placa">Número da Placa</label>
-                <input type="text" class="form-control" max-lenght="80" name="placa" id="placa" placeholder="Ex: ABC1234">
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>Dados do Serviço</legend>
-            <label for="servico">Serviço</label>
-            <select class="form-control" id="servico" name="servico" value="" required>
-                <option value="" disabled selected>Selecione o Serviço</option>
-                <?php foreach ($Servicos as $dado) : ?>
-                    <tr>
-                        <option value="<?php echo htmlspecialchars($dado['id_servico']); ?>"> <?php echo htmlspecialchars($dado['nome']); ?></option>
-                    </tr>
-                <?php endforeach; ?>
-            </select>
-            <br>
-
-            <label for="funcao">Funcionário</label>
-            <select class="form-control" id="funcao" name="funcao" value="" required>
-                <option value="" disabled selected>Selecione o Funcionário</option>
-                <?php foreach ($Funcionarios as $dado) : ?>
-                    <tr>
-                        <option value="<?php echo htmlspecialchars($dado['id_funcionario']); ?>"> <?php echo htmlspecialchars($dado['nome']); ?></option>
-                    </tr>
-                <?php endforeach; ?>
-            </select>
-
-        </fieldset>
-    <br>
+        </fieldset><br>
     <button type="submit" class="btn btn-info">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" /> 
     </form>
 

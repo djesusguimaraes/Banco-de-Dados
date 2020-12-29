@@ -20,12 +20,7 @@ class ClientModel
             $stocks[] = [
                 'nome' => $row['nome'],
                 'cpf' => $row['cpf'],
-                'carro' => $row['carro'],
-                'telefone' => $row['telefone'],
-                'placa' => $row['placa'],
-                'id_servico' => $row['id_servico'],
-                'id_funcionario' => $row['id_funcionario']
-
+                'telefone' => $row['telefone']
             ];
         }
         return $stocks;
@@ -39,34 +34,28 @@ class ClientModel
         $stocks = [
             'nome' => $row['nome'],
             'cpf' => $row['cpf'],
-            'carro' => $row['carro'],
-            'telefone' => $row['telefone'],
-            'placa' => $row['placa']
+            'telefone' => $row['telefone']
         ];
         return $stocks;
     }
 
-    public function update($nome, $telefone, $carro, $placa, $cpf)
+    public function update($nome, $cpf, $telefone)
     {
-        $sql = "UPDATE public.cliente SET nome='$nome', telefone='$telefone', carro='$carro', placa='$placa' WHERE  cpf='$cpf';";
+        $sql = "UPDATE public.cliente SET nome='$nome', cpf='$cpf', telefone='$telefone' WHERE  cpf='$cpf';";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }
 
-    public function insert($nome, $cpf, $carro, $telefone, $placa, $servico, $funcionario)
+    public function insert($nome, $cpf, $telefone)
     {
 
         {
-            $sql = "INSERT INTO public.cliente(nome, cpf, carro, telefone, placa, id_servico, id_funcionario) VALUES (:nome, :cpf, :carro, :tel, :placa, :servico, :funcao);";
+            $sql = "INSERT INTO public.cliente(nome, cpf, telefone) VALUES (:nome, :cpf, :tel);";
             $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':nome', $nome);
             $stmt->bindValue(':cpf', $cpf);
-            $stmt->bindValue(':carro', $carro);
             $stmt->bindValue(':tel', $telefone);
-            $stmt->bindValue(':placa', $placa);
-            $stmt->bindValue(':servico', $servico);
-            $stmt->bindValue(':funcao', $funcionario);
             $stmt->execute();
 
         }
@@ -74,10 +63,8 @@ class ClientModel
 
     public function deleteByCPF($cpf)
     {
-
         $sql = "DELETE FROM public.cliente WHERE cpf='$cpf';";
         $stmt = $this->pdo->prepare($sql);
-
         $stmt->execute();
     }
 }
