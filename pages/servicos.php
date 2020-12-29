@@ -24,12 +24,12 @@ if (!empty($_POST['id_servico'])) {
 <?php
 require '../templates/header.php';
 ?>
-<div class="container">
+<div class="col-sm-12" style="margin-top: 30px;">
     <div class="form-inline">
+        <a href="http://localhost/javalato/"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <h2><strong>Serviços</strong></h2>
-        <div class="col-sm-9"></div>
-        <a href="create/createServico.php"><button type="button" class="btn btn-success btn-md">Inserir</button></a>
-    </div><br>
+    </div>
+    <a href="create/createServico.php"><button type="button" class="btn btn-success btn-md float-right">Inserir</button></a><br>&nbsp
     <table class="table">
     <thead class="thead-dark">
         <tr>

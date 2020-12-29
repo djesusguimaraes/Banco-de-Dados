@@ -33,12 +33,16 @@ if (!empty($_POST['placa'])) {
 <?php
 require '../templates/header.php';
 ?>
-<div class="col-lg-12">
+<div class="container" style="margin-top: 30px;">
     <div class="form-inline">
+        <a href="http://localhost/javalato/pages/clientes.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <h2><strong>Carros de <?php echo htmlspecialchars($Cliente['nome']); ?></strong></h2><br>
-        <div class="col-sm-8"></div>
-        <a href="create/createCarro.php"><button type="button" class="btn btn-success btn-md">Inserir</button></a>
-    </div><br>
+    </div>
+    <form action="http://localhost/javalato/pages/create/createCarro.php" method="post">
+        <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($Cliente['cpf']);?>">
+        <button type="submit" class="btn btn-success btn-md float-sm-right">Inserir</button>
+    </form>
+    <a href=""></a><br>&nbsp
     <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -54,9 +58,9 @@ require '../templates/header.php';
         <?php foreach ($Carros as $dado) : ?>
             <tr>
             <td><?php echo $i += 1;?></td>
-            <td><?php echo htmlspecialchars(isset($dado['modelo']));?></td>
-            <td><?php echo htmlspecialchars(isset($dado['ano'])); ?></td>
-            <td><?php echo htmlspecialchars(isset($dado['placa'])); ?></td>
+            <td><?php echo htmlspecialchars($dado['modelo']);?></td>
+            <td><?php echo htmlspecialchars($dado['ano']);?></td>
+            <td><?php echo htmlspecialchars($dado['placa']); ?></td>
             <td>    
             <div class="form-inline">
                 <form action="carros.php" method="post">

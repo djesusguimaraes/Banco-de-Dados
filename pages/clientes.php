@@ -16,6 +16,7 @@ $Car = new CarroModel($pdo);
 
 $Clientes = $Client->all();
 
+
 $cpf = null;
 $i = 0;
 
@@ -32,13 +33,13 @@ if (!empty($_POST['cpf'])) {
 <?php
 require '../templates/header.php';
 ?>
-<div class="" aling="center">
-    <div class="col-lg-12">
+<div class="container" style="margin-top: 30px">
+    <div class="">
         <div class="form-inline">
+            <a href="http://localhost/javalato/"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <h2><strong>Clientes</strong></h2><br>
-            <div class="col-sm-8"></div>
-            <a href="create/createCliente.php"><button type="button" class="btn btn-success btn-md">Inserir</button></a>
-        </div><br>
+        </div>
+        <a href="create/createCliente.php"><button type="button" class="btn btn-success btn-md float-sm-right">Inserir</button></a><br>&nbsp
         <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -46,7 +47,6 @@ require '../templates/header.php';
             <th scope="col">CPF</th>
             <th scope="col">Nome</th>
             <th scope="col">Telefone</th>
-            <th scope="col">Carros</th>
             <th scope="col">Ações</th>
 
             </tr>
@@ -58,24 +58,19 @@ require '../templates/header.php';
                 <td><?php echo htmlspecialchars($dado['cpf']); $cpfAtual = $dado['cpf']; ?></td>
                 <td><?php echo htmlspecialchars($dado['nome']); ?></td>
                 <td><?php echo htmlspecialchars($dado['telefone']); ?></td>
-                <td>        </td>
                 <td>
                 <div class="form-inline">
                     <form action="clientes.php" method="post">
                         <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']); ?>">
-                        <button type="submit" class="btn btn-outline-danger btn-sm"?>Excluir Cliente</button>
+                        <button type="submit" class="btn btn-danger btn-sm"?>Delete</button>
                     </form>
                     <form action="update/upCliente.php" method="post">
                         <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
-                        <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>
-                    </form>
-                    <form action="create/createCarro.php" method="post">
-                        <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
-                        <button type="submit" class="btn btn-outline-success btn-sm"?>Inserir Carro</button>
+                        <button type="submit" class="btn btn-info btn-sm"?>Update</button>
                     </form>
                     <form action="carros.php" method="post">
                         <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
-                        <button type="submit" class="btn btn-outline-danger btn-sm"?>Excluir Carro</button>
+                        <button type="submit" class="btn btn-outline-success btn-sm"?>Carros <?php if (!empty(count($Carros = $Car->show($dado['cpf'])))){echo count($Carros = $Car->show($dado['cpf']));};?></button>
                     </form>
                 </div>
                 </td>

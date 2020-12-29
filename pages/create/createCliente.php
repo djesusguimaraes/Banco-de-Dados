@@ -40,8 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 require '../../templates/header.php';
 ?>
-<div class="container-sm">
-    <h2><strong>Cadastro de Cliente</strong></h2><br>
+<div class="container" style="margin-top: 30px;">
+    <div class="form-inline">
+        <a href="http://localhost/javalato/pages/clientes.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <h2><strong>Cadastro de Cliente</strong></h2><br>
+    </div><br>
+    
     <form action="createCliente.php" method="post">
         <fieldset>
             <legend>Dados do Cliente</legend>
@@ -60,7 +64,7 @@ require '../../templates/header.php';
                 <input type="text" oninput="mascara(this, 'tel');" max-lenght="14" class="form-control" name="tel" id="tel" placeholder="Ex: (00) 00000-0000">
             </div>
         </fieldset><br>
-    <button type="submit" class="btn btn-info">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" /> 
+    <button type="submit" class="btn btn-primary">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" /> 
     </form>
 
 </div>

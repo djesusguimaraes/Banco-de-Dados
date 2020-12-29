@@ -26,12 +26,12 @@ if (!empty($_POST['id_funcionario'])) {
 <?php
 require '../templates/header.php';
 ?>
-<div class="container-lg">
+<div class="container" style="margin-top: 30px;">
     <div class="form-inline">
+        <a href="http://localhost/javalato/"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <h2><strong>Funcionários</strong></h2>
-        <div class="col-sm-6"></div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a href="create/createFuncionario.php"><button type="button" class="btn btn-success btn-md">Inserir</button></a>
-    </div><br>
+    </div>
+    <a href="create/createFuncionario.php"><button type="button" class="btn btn-success btn-md float-right">Inserir</button></a><br>&nbsp
     <table class="table">
     <thead class="thead-dark">
         <tr>
