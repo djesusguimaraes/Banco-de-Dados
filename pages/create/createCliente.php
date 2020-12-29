@@ -62,7 +62,7 @@ require '../../templates/header.php';
             <div class="form-group">
                 <label for="tel">Telefone</label>
                 <input type="text" oninput="mascara(this, 'tel');" max-lenght="14" class="form-control" name="tel" id="tel" placeholder="Ex: (00) 00000-0000">
-            </div>
+            </div> n
         </fieldset><br>
     <button type="submit" class="btn btn-primary">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" /> 
     </form>
