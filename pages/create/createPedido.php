@@ -28,10 +28,6 @@ $quantidade = null;
 $numero = null; 
 $data = null;
 
-if (!empty($_POST['insert'])){
-    $id_pedido = $_POST['insert'];
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : '';
     $id_funcionario = isset($_POST['id_funcionario']) ? $_POST['id_funcionario'] : '';
@@ -110,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="hidden" name="id_pedido" id="id_pedido" value="<?php echo $Pedido->last() + 1;?>">
         <br>
 
-    <button type="submit" class="btn btn-primary" >Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" /> 
+    <button type="submit" class="btn btn-primary" >Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/pedidos.php';" /> 
     </form>
 
 </div>

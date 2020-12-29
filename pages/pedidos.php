@@ -38,10 +38,7 @@ require '../templates/header.php';
         <a href="http://localhost/javalato/"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <h2><strong>Compras</strong></h2>
     </div>
-    <form action="http://localhost/javalato/pages/create/createPedido.php" method="post">
-        <input type="hidden" value="<?php echo $Pedido->last() + 1; ?>" name="insert" id="insert">
-        <button type="submit" class="btn btn-success btn-md float-right">Inserir</button>
-    </form><br>&nbsp
+    <a href="http://localhost/javalato/pages/create/createPedido.php"><button type="submit" class="btn btn-success btn-md float-right">Inserir</button></a><br>&nbsp
     <table class="table">
     <thead class="thead-dark">
         <tr>
