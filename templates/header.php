@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/javalato/pages/buy.php">Compras</a>
+                    <a class="nav-link" href="http://localhost/javalato/pages/pedidos.php">Compras</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="http://localhost/javalato/pages/clientes.php">Cliente</a>

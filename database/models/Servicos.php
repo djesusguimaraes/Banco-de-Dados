@@ -49,15 +49,14 @@ class ServicoModel
         $stmt->execute();
     }
 
-    public function insert($nome_servico, $descricao, $id_servico, $preco)
+    public function insert($nome_servico, $descricao, $preco)
     {
         {
-            $sql = "INSERT INTO public.servico (nome, descricao, id_servico, preco) VALUES (:nome, :descricao, :servico, :preco);";
+            $sql = "INSERT INTO public.servico (nome, descricao, preco) VALUES (:nome, :descricao, :preco);";
             $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':nome', $nome_servico);
             $stmt->bindValue(':descricao', $descricao);
-            $stmt->bindValue(':servico', $id_servico);
             $stmt->bindValue(':preco', $preco);
 
             $stmt->execute();

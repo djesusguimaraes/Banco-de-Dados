@@ -21,11 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nome_servico =  $_REQUEST['nome'];
     $descricao =  $_REQUEST['descricao'];
-    $id_servico = $_REQUEST['servico'];
     $preco = $_REQUEST['preco'];
     
     try {
-        $servicoRegister->insert($nome_servico, $descricao, $id_servico, $preco);
+        $servicoRegister->insert($nome_servico, $descricao, $preco);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
     }
@@ -49,10 +48,6 @@ require '../../templates/header.php';
                     <label for="descricao">Descrição</label>
                     <input type="text" class="form-control" max-lenght="200" name="descricao" id="descricao" placeholder="Descrição do serviço">
                     <small id="help" class="form-text text-muted">Campo Obrigatório</small>
-                </div>
-                <div class="form-group">
-                    <label for="servico">ID Serviço</label>
-                    <input type="text" class="form-control" max-lenght="5" name="servico" id="servico" placeholder="Ex: 666">
                 </div>
                 <div class="form-group">
                     <label for="preco">Preço</label>

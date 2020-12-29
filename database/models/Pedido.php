@@ -43,15 +43,20 @@ class PedidoModel
         return $stocks;
     }
 
-    public function insert($nome, $cpf, $telefone)
+    public function last(){
+        $sql = "SELECT MAX(id_pedido) FROM public.pedido;";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+    }
+
+    public function insert($numero, $cpf, $id_funcionario, $order_date)
     {
         {
-            $sql = "INSERT INTO public.pedido(numero, id_pedido, cpf_cliente, id_funcionario, order_date) VALUES (:numero, :id_pedido, :cpf_cliente, :id_funcionario, :order_date);";
+            $sql = "INSERT INTO public.pedido(numero, cpf_cliente, id_funcionario, order_date) VALUES (:numero, :cpf_cliente, :id_funcionario, :order_date);";
             $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':numero', $numero);
-            $stmt->bindValue(':id_pedido', $id_pedido);
-            $stmt->bindValue(':cpf_cliente', $cpf_cliente);
+            $stmt->bindValue(':cpf_cliente', $cpf);
             $stmt->bindValue(':id_funcionario', $id_funcionario);
             $stmt->bindValue(':order_date', $order_date);
             $stmt->execute();
