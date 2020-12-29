@@ -21,6 +21,7 @@ $Clientes = $Client->all();
 $Servicos = $Servico->all();
 $Funcionarios = $Funcionario->all();
 
+
 $cpf = null;
 $id_servico = null; 
 $id_funcionario = null;
@@ -36,10 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_servico = isset($_POST['id_servico']) ? $_POST['id_servico'] : '';
     $quantidade = isset($_POST['quantidade']) ? $_POST['quantidade'] : '';
     $id_pedido = isset($_POST['id_pedido']) ? $_POST['id_pedido'] : '';
+    $servicos = $Servico->showByID($id_servico);
+    $preco_total = $quantidade * $servicos['preco'];
 
     try {
-        $Pedido->insert($numero, $cpf, $id_funcionario, $order_date, $id_pedido);
-        $Item->insert($id_servico, $quantidade);
+        $Pedido->insert($numero, $cpf, $id_funcionario, $order_date, $id_pedido, $preco_total);
+        $Item->insert($id_pedido, $id_servico, $quantidade);
     } catch (PDOException $e) {
         $error = $e->getMessage();
     }

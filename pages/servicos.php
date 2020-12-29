@@ -48,7 +48,7 @@ require '../templates/header.php';
             <td><?php echo htmlspecialchars($dado['nome']); ?></td>
             <td><?php echo htmlspecialchars($dado['descricao']); ?></td>
             <td><?php echo htmlspecialchars($dado['id_servico']); ?></td>
-            <td><?php echo htmlspecialchars($dado['preco']); ?></td>
+            <td><?php echo htmlspecialchars($dado['preco']);?></td>
             <td>
             <div class="form-check-inline">
                 <form action="servicos.php" method="post">

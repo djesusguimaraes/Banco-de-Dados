@@ -22,7 +22,9 @@ class PedidoModel
                 'id_pedido' => $row['id_pedido'],
                 'cpf_cliente' => $row['cpf_cliente'],
                 'id_funcionario' => $row['id_funcionario'],
-                'order_date' => $row['order_date']
+                'order_date' => $row['order_date'],
+                'preco_total' => $row['preco_total']
+
             ];
         }
         return $stocks;
@@ -38,7 +40,8 @@ class PedidoModel
             'id_pedido' => $row['id_pedido'],
             'cpf_cliente' => $row['cpf_cliente'],
             'id_funcionario' => $row['id_funcionario'],
-            'order_date' => $row['order_date']
+            'order_date' => $row['order_date'],
+            'preco_total' => $row['preco_total']
         ];
         return $stocks;
     }
@@ -58,10 +61,10 @@ class PedidoModel
         $stmt->execute();
     }
 
-    public function insert($numero, $cpf, $id_funcionario, $order_date, $id_pedido)
+    public function insert($numero, $cpf, $id_funcionario, $order_date, $id_pedido, $preco_total)
     {
         {
-            $sql = "INSERT INTO public.pedido(numero, cpf_cliente, id_pedido, id_funcionario, order_date) VALUES (:numero, :cpf_cliente, :id_pedido, :id_funcionario, :order_date);";
+            $sql = "INSERT INTO public.pedido(numero, cpf_cliente, id_pedido, id_funcionario, order_date, preco_total) VALUES (:numero, :cpf_cliente, :id_pedido, :id_funcionario, :order_date, :preco_total);";
             $stmt = $this->pdo->prepare($sql);
 
             $stmt->bindValue(':numero', $numero);
@@ -69,6 +72,7 @@ class PedidoModel
             $stmt->bindValue(':id_pedido', $id_pedido);
             $stmt->bindValue(':id_funcionario', $id_funcionario);
             $stmt->bindValue(':order_date', $order_date);
+            $stmt->bindValue(':preco_total', $preco_total);
             $stmt->execute();
         }
     }
