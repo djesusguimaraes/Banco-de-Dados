@@ -24,7 +24,7 @@ if (!empty($_POST['id_servico'])) {
 <?php
 require '../templates/header.php';
 ?>
-<div class="col-sm-12" style="margin-top: 30px;">
+<div class="container" style="margin-top: 30px;">
     <div class="form-inline">
         <a href="http://localhost/javalato/"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <h2><strong>Serviços</strong></h2>
@@ -44,7 +44,7 @@ require '../templates/header.php';
     <tbody>
         <?php foreach ($Servicos as $dado) : ?>
             <tr>
-            <td><?php echo $i += 1;?></td>
+            <td class="table-info"><?php echo $i += 1;?></td>
             <td><?php echo htmlspecialchars($dado['nome']); ?></td>
             <td><?php echo htmlspecialchars($dado['descricao']); ?></td>
             <td><?php echo htmlspecialchars($dado['id_servico']); ?></td>

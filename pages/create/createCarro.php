@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $placa =  isset($_REQUEST['placa']) ? $_REQUEST['placa'] : ' ';
     $modelo =  isset($_REQUEST['modelo']) ? $_REQUEST['modelo'] : ' ';
     $ano =  isset($_REQUEST['ano']) ? $_REQUEST['ano'] : ' ';
-    $cpf = isset($_REQUEST['cpf']) ? $_REQUEST['cpf']: ' ';
+    $cpf = isset($_REQUEST['cpf']) ? $_REQUEST['cpf']: $Clientes['cpf'];
 
     try {
         $Carro->insert($placa, $modelo, $ano, $cpf);
@@ -39,11 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 require '../../templates/header.php';
 ?>
-<div class="container-sm">
+<div class="container-sm" style="margin-top: 30px;">
     <div class="form-inline">
-        <a href="http://localhost/javalato/pages/carros.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <h2>Cadastro de carro para <?php echo htmlspecialchars($Clientes['nome']) ?></h2><br>
-    </div>
+        <form action="http://localhost/javalato/pages/carros.php" method="post">
+            <input type="hidden" name="cpf" value="<?php echo htmlspecialchars($Clientes['cpf']);?>">
+            <button type="submit" class="btn"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></button>
+        </form>
+        <h2>Cadastro de carro para <?php echo htmlspecialchars($Clientes['nome']) ?></h2>
+    </div><br>
     <form action="createCarro.php" method="post">
         <fieldset>
             <div class="form-group">

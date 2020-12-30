@@ -30,6 +30,25 @@ class PedidoModel
         return $stocks;
     }
 
+    public function junto(){
+        $stmt = $this->pdo->query('SELECT numero, cpf_cliente, id_funcionario, order_date, preco_total, id_servico, a.id_pedido, c.id_item FROM pedido a INNER JOIN item c ON a.id_pedido = c.id_pedido;');
+        $stocks = [];
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC))
+        {
+            $stocks[] = [
+                'numero' => $row['numero'],
+                'cpf_cliente' => $row['cpf_cliente'],
+                'id_funcionario' => $row['id_funcionario'],
+                'order_date' => $row['order_date'],
+                'preco_total' => $row['preco_total'],
+                'id_servico' => $row['id_servico'],
+                'id_pedido' => $row['id_pedido'],
+                'id_item' => $row['id_item']
+            ];
+        }
+        return $stocks;
+    }
+
     public function showByID($id_pedido)
     {
         $stmt = $this->pdo->query("SELECT * FROM public.pedido WHERE id_pedido='$id_pedido';");

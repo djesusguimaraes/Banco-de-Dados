@@ -48,31 +48,30 @@ require '../templates/header.php';
             <th scope="col">Nome</th>
             <th scope="col">Telefone</th>
             <th scope="col">Ações</th>
-
             </tr>
         </thead>
         <tbody>
             <?php foreach ($Clientes as $dado) : ?>
                 <tr>
-                <td><?php echo $i += 1;?></td>
+                <td class="table-info"><?php echo $i += 1;?></td>
                 <td><?php echo htmlspecialchars($dado['cpf']); $cpfAtual = $dado['cpf']; ?></td>
                 <td><?php echo htmlspecialchars($dado['nome']); ?></td>
                 <td><?php echo htmlspecialchars($dado['telefone']); ?></td>
                 <td>
-                <div class="form-inline">
-                    <form action="clientes.php" method="post">
-                        <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']); ?>">
-                        <button type="submit" class="btn btn-danger btn-sm"?>Delete</button>
-                    </form>
-                    <form action="update/upCliente.php" method="post">
-                        <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
-                        <button type="submit" class="btn btn-info btn-sm"?>Update</button>
-                    </form>
-                    <form action="carros.php" method="post">
-                        <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
-                        <button type="submit" class="btn btn-outline-success btn-sm"?>Carros <?php if (!empty(count($Carros = $Car->show($dado['cpf'])))){echo count($Carros = $Car->show($dado['cpf']));};?></button>
-                    </form>
-                </div>
+                    <div class="form-inline">
+                        <form action="clientes.php" method="post">
+                            <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']); ?>">
+                            <button type="submit" class="btn btn-danger btn-sm"?>Delete</button>
+                        </form>
+                        <form action="update/upCliente.php" method="post">
+                            <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
+                            <button type="submit" class="btn btn-info btn-sm"?>Update</button>
+                        </form>
+                        <form action="carros.php" method="post">
+                            <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
+                            <button type="submit" class="btn btn-outline-success btn-sm"?><?php if (!empty(count($Carros = $Car->show($dado['cpf'])))){echo count($Carros = $Car->show($dado['cpf']));};?> Carros</button>
+                        </form>
+                    </div>
                 </td>
                 </tr>
             <?php endforeach; ?>

@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="" disabled selected>Selecione o Serviço</option>
                 <?php foreach ($Servicos as $dado) : ?>
                     <tr>
-                        <option value="<?php echo htmlspecialchars($dado['id_servico']); ?>"> <?php echo htmlspecialchars($dado['nome']); ?></option>
+                        <option value="<?php echo htmlspecialchars($dado['id_servico']); ?>"> <?php echo htmlspecialchars($dado['nome']).'(R$'.htmlspecialchars($dado['preco']).'.00)'; ?></option>
                     </tr>
                 <?php endforeach; ?>
             </select>

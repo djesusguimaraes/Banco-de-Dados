@@ -35,8 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 require '../../templates/header.php';
 ?>
 
-    <div class="container-sm">
-        <h2><strong>Cadastro de Serviço</strong></h2>
+    <div class="container-sm" style="margin-top: 30px;">
+        <div class="form-inline">
+            <a href="http://localhost/javalato/pages/servicos.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <h2><strong>Cadastro de Serviço</strong></h2>
+        </div><br>
         <form action="createServico.php" method="post">
             <fieldset>
                 <div class="form-group">
@@ -52,7 +55,7 @@ require '../../templates/header.php';
                 <div class="form-group">
                     <label for="preco">Preço</label>
                     <input type="number" class="form-control" name="preco" id="preco" placeholder="Ex: ">
-                </div>
+                </div><br>
             </fieldset>
             <button type="submit" class="btn btn-primary">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/servicos.php';" />
         </form>

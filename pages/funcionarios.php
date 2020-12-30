@@ -46,12 +46,12 @@ require '../templates/header.php';
     <tbody>
         <?php foreach ($Funcionarios as $dado) : ?>
             <tr>
-            <td><?php echo $i += 1;?></td>
+            <td class="table-info"><?php echo $i += 1;?></td>
             <td><?php echo htmlspecialchars($dado['id_funcionario']); ?></td>
             <td><?php echo htmlspecialchars($dado['nome']); ?></td>
             <td><?php echo htmlspecialchars($dado['cpf']); ?></td>
             <td><?php echo htmlspecialchars($dado['telefone']); ?></td>
-            <td>
+            <td >
                 <div class="form-check-inline">
                     <form action="funcionarios.php" method="post">
                         <input type="hidden" name="id_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?> ">

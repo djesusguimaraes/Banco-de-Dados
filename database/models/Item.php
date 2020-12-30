@@ -62,9 +62,9 @@ class ItemModel
         }
     }
 
-    public function deleteByID($id)
+    public function deleteByID($id_item)
     {
-        $sql = "DELETE FROM public.item WHERE cpf='$id';";
+        $sql = "DELETE FROM public.item WHERE id_item='$id_item';";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }

@@ -48,7 +48,6 @@ require '../../templates/header.php';
     
     <form action="createCliente.php" method="post">
         <fieldset>
-            <legend>Dados do Cliente</legend>
             <div class="form-group">
                 <label for="nome">Nome Completo</label>
                 <input type="text" class="form-control" max-lenght="80" name="nome" id="nome" placeholder="Seu nome">

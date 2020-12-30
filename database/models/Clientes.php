@@ -39,9 +39,9 @@ class ClientModel
         return $stocks;
     }
 
-    public function update($nome, $cpf, $telefone)
+    public function update($nome, $telefone, $cpf)
     {
-        $sql = "UPDATE public.cliente SET nome='$nome', cpf='$cpf', telefone='$telefone' WHERE  cpf='$cpf';";
+        $sql = "UPDATE public.cliente SET nome='$nome', telefone='$telefone' WHERE  cpf='$cpf';";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }

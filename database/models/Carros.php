@@ -35,28 +35,30 @@ class CarroModel
             $stocks[] = [
                 'placa' => $row['placa'],
                 'modelo' => $row['modelo'],
-                'ano' => $row['ano']
+                'ano' => $row['ano'],
+                'cpf' => $row['cpf']
             ];
         }
         return $stocks;
     }
 
-    public function showByCPF($cpf)
+    public function showByPlaca($placa)
     {
-        $stmt = $this->pdo->query("SELECT * FROM public.carro WHERE cpf='$cpf';");
+        $stmt = $this->pdo->query("SELECT * FROM public.carro WHERE placa='$placa';");
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         $stocks = [
             'placa' => $row['placa'],
             'modelo' => $row['modelo'],
-            'ano' => $row['ano']
+            'ano' => $row['ano'],
+            'cpf' => $row['cpf']
         ];
         return $stocks;
     }
 
     public function update($placa, $modelo, $ano)
     {
-        $sql = "UPDATE public.carro SET placa='$placa', modelo='$modelo', ano='$ano' WHERE  placa='$placa';";
+        $sql = "UPDATE public.carro SET modelo='$modelo', ano='$ano' WHERE  placa='$placa';";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }

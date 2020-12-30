@@ -10,8 +10,6 @@ $Client = new ClientModel($pdo);
 $cpf = null;
 $nome = null;
 $telefone = null;
-$carro = null;
-$placa = null;
 
 if(!empty($_POST['cpf'])){
     $cpf = $_POST['cpf'];
@@ -22,14 +20,13 @@ $Cliente = $Client -> showByCPF($cpf);
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $nome = isset($_REQUEST['nome']) ? $_REQUEST['nome'] : $Cliente['nome'];
     $telefone = isset($_REQUEST['telefone']) ? $_REQUEST['telefone'] : $Cliente['telefone'];
-    $carro = isset($_REQUEST['carro']) ? $_REQUEST['carro'] : $Cliente['carro'];
-    $placa = isset($_REQUEST['placa']) ? $_REQUEST['placa'] : $Cliente['placa'];
-    $cpf = $Cliente['cpf'];
+    $cpf = isset($_REQUEST['cpf']) ? $_REQUEST['cpf'] : $Cliente['cpf'];
 
     try {
-        $Client -> update($nome, $telefone, $carro, $placa, $cpf);
+        $Client -> update($nome, $telefone, $cpf);
     }catch (PDOExpection $expection) {
         $error = $expection -> getMessage();
+        echo $error;
     }
 }
 ?>
@@ -52,18 +49,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <label for="telefone">Telefone</label>
                         <input type="text" oninput="mascara(this, 'tel')" class="form-control" name="telefone" id="telefone" placeholder="<?php echo isset($Cliente['telefone']) ? $Cliente['telefone'] : 'Digite nova telefone' ?>" >
                     </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Dados do Veículo</legend>
-                    <div class="form-group">
-                        <label for="carro">Carro(Modelo/Ano)</label>
-                        <input type="text" class="form-control" name="carro" id="carro" placeholder="<?php echo isset($Cliente['carro']) ? $Cliente['carro'] : 'Digite novo carro' ?>" >
-                    </div>
-                    <div class="form-group">
-                        <label for="placa">Placa</label>
-                        <input type="text" class="form-control" name="placa" id="placa" placeholder="<?php echo isset($Cliente['placa']) ? $Cliente['placa'] : 'Digite nova placa' ?>" >
-                    </div>
-                </fieldset>                
+                </fieldset>        
                 <input type="hidden" name="cpf" id="cpf" value="<?php echo $Cliente['cpf'];?>">
                 <button type="submit" class="btn btn-primary">Update</button>
                 <input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" />

@@ -22,11 +22,13 @@ $Carros = $Carro->show($cpf);
 $Cliente = $Clientes->showByCPF($cpf);
 
 if (!empty($_POST['placa'])) {
+    $cpf = $_POST['cpf'];
     $placa = $_POST['placa'];
     try {
         $Carro->deleteByplaca($placa);
     } catch (PDOException $e) {
         $error = $e->getMessage();
+        echo $error;
     }
 }
 ?>
@@ -57,7 +59,7 @@ require '../templates/header.php';
     <tbody>
         <?php foreach ($Carros as $dado) : ?>
             <tr>
-            <td><?php echo $i += 1;?></td>
+            <td class="table-info"><?php echo $i += 1;?></td>
             <td><?php echo htmlspecialchars($dado['modelo']);?></td>
             <td><?php echo htmlspecialchars($dado['ano']);?></td>
             <td><?php echo htmlspecialchars($dado['placa']); ?></td>
@@ -65,10 +67,12 @@ require '../templates/header.php';
             <div class="form-inline">
                 <form action="carros.php" method="post">
                     <input type="hidden" name="placa" id="placa" value="<?php echo htmlspecialchars($dado['placa']); ?>">
+                    <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
                     <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                 </form>
-                <form action="update/upCliente.php" method="post">
+                <form action="update/upCarro.php" method="post">
                     <input type="hidden" name="uplaca" id="uplaca" value="<?php echo htmlspecialchars($dado['placa']);?>">&nbsp&nbsp
+                    <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
                     <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>
                 </form>
             </div>
