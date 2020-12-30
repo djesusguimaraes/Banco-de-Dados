@@ -44,7 +44,7 @@ require '../templates/header.php';
             <a href="http://localhost/javalato/"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <h2><strong>Pedidos</strong></h2>
         </div>
-        <a href="http://localhost/javalato/pages/create/createPedido.php"><button type="submit" class="btn btn-success btn-md float-right">Inserir</button></a><br>&nbsp
+        <a href="http://localhost/javalato/pages/create/createPedido.php"><button type="submit" class="btn btn-success btn-md float-right">Fazer Pedido</button></a><br>&nbsp
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -64,8 +64,8 @@ require '../templates/header.php';
                         <td class="table-info"><?php echo $i += 1;?></td>
                         <td><?php echo htmlspecialchars($dado['id_pedido']); ?></td>
                         <td><?php echo htmlspecialchars($dado['order_date']); ?></td>
-                        <td><a href=""></a><?php echo htmlspecialchars($Client->showByCPF($dado['cpf_cliente'])['nome']);?></td>
-                        <td><?php echo htmlspecialchars($Servico->showByID($dado['id_servico'])['nome']).'R$'.htmlspecialchars($Servico->showByID($dado['id_servico'])['preco']).'.00';?></td>
+                        <td><?php echo htmlspecialchars($Client->showByCPF($dado['cpf_cliente'])['nome']);?></td>
+                        <td><?php echo htmlspecialchars($Servico->showByID($dado['id_servico'])['nome']).'(R$'.htmlspecialchars($Servico->showByID($dado['id_servico'])['preco']).'.00)';?></td>
                         <td><?php echo htmlspecialchars($Funcionario->showByID($dado['id_funcionario'])['nome']);?></td>
                         <td><?php echo 'R'.htmlspecialchars($dado['preco_total']);?></td>
                         <td>
