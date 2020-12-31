@@ -18,6 +18,22 @@
         </div>
     </div>
     <div class="jumbotron" style="box-shadow: 2px 2px 6px #6f6f6f;">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="../assets/images/logoUft.png" alt="" height="200">
+            </div>
+            <div class="col-sm-8">
+                <h2>CRUD Básico - Empresa de Lavagem Automotiva</h2><br>
+                <p class="lead"> Universidade Federal do Tocantins</p>
+                <p>Ciência da Computação</p>
+                <p>Campus Palmas</p>
+                <p>Disciplina: Banco de Dados</p>
+                <p>Alunos: Daniel de Jesus e Ítalo Vilarino</p>
+                <span>Terceiro Período</span>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron" style="box-shadow: 2px 2px 6px #6f6f6f;">
         <h2>Sobre Nós</h2><br>
         <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp A Javalato é uma empresa que trabalha e conhece os mais variados modelos de veículos, para executar com a maior perfeição possível o seu serviço.</p>
         <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Em suas biografias, os CEO's da empresa Daniel de Jesus e Ítalo Vilarino narram a história da Javalato de forma bem pessoal e irreverente: De sua própria maneira, eles contam que o gosto pela lavagem de carros se iniciou na infância, de maneira natural e, também, por influência da família que já carregava essa profissão há muito tempo. Esse amor floresceu e fez com que levassem esse aprendizado para sua própria marca.</p>

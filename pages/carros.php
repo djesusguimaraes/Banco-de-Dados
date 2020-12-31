@@ -48,11 +48,11 @@ require '../templates/header.php';
     <table class="table">
     <thead class="thead-dark">
         <tr>
-        <th scope="col">#</th>
-        <th scope="col">Modelo</th>
-        <th scope="col">Ano</th>
-        <th scope="col">Placa</th>
-        <th scope="col">Ações</th>
+        <th style="background-color: #005484;" scope="col">#</th>
+        <th style="background-color: #005484;" scope="col">Modelo</th>
+        <th style="background-color: #005484;" scope="col">Ano</th>
+        <th style="background-color: #005484;" scope="col">Placa</th>
+        <th style="background-color: #005484;" scope="col">Ações</th>
 
         </tr>
     </thead>

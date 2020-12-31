@@ -37,7 +37,7 @@ require '../../templates/header.php';
 
     <div class="container-sm" style="margin-top: 30px;">
         <div class="form-inline">
-            <a href="http://localhost/javalato/pages/servicos.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <a href="http://localhost/javalato/pages/adm.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <h2><strong>Cadastro de Serviço</strong></h2>
         </div><br>
         <form action="createServico.php" method="post">
@@ -57,7 +57,7 @@ require '../../templates/header.php';
                     <input type="number" class="form-control" name="preco" id="preco" placeholder="Ex: ">
                 </div><br>
             </fieldset>
-            <button type="submit" class="btn btn-primary">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/servicos.php';" />
+            <button type="submit" class="btn btn-primary">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/adm.php';" />
         </form>
     </div>
 </body>

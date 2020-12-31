@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container" style="margin-top: 30px;">
     <div class="form-inline">
         <a href="http://localhost/javalato/pages/pedidos.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <h2><strong>Compras</strong></h2><br>
+        <h2><strong>Pedido</strong></h2><br>
     </div><br>
     
     <form action="createPedido.php" method="post">

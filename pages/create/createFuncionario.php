@@ -33,7 +33,7 @@ require '../../templates/header.php';
 
 <div class="container" style="margin-top: 30px;">
     <div class="form-inline">
-        <a href="http://localhost/javalato/pages/funcionarios.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a href="http://localhost/javalato/pages/adm.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <h2><strong>Cadastro de Funcionário</strong></h2>  
     </div><br>
     <form action="createFuncionario.php" method="post">
@@ -57,7 +57,7 @@ require '../../templates/header.php';
                 <input type="text" class="form-control" max-lenght="5" name="funcao" id="funcao" placeholder="Ex: 54234">
             </div><br>
         </fieldset>
-        <button type="submit" class="btn btn-primary">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/funcionarios.php';" />
+        <button type="submit" class="btn btn-primary">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/adm.php';" />
     </form>
 </div>
 </body>

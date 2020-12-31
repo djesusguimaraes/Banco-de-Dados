@@ -43,11 +43,11 @@ require '../templates/header.php';
         <table class="table">
         <thead class="thead-dark">
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Ações</th>
+            <th style="background-color: #005484;" scope="col">#</th>
+            <th style="background-color: #005484;" scope="col">CPF</th>
+            <th style="background-color: #005484;" scope="col">Nome</th>
+            <th style="background-color: #005484;" scope="col">Telefone</th>
+            <th style="background-color: #005484;" scope="col">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -61,14 +61,14 @@ require '../templates/header.php';
                     <div class="form-inline">
                         <form action="clientes.php" method="post">
                             <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']); ?>">
-                            <button type="submit" class="btn btn-danger btn-sm"?>Delete</button>
-                        </form>
+                            <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
+                        </form>&nbsp
                         <form action="update/upCliente.php" method="post">
-                            <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
-                            <button type="submit" class="btn btn-info btn-sm"?>Update</button>
-                        </form>
+                            <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">
+                            <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>
+                        </form>&nbsp
                         <form action="carros.php" method="post">
-                            <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
+                            <input type="hidden" name="cpf"value="<?php echo htmlspecialchars($dado['cpf']);?>">
                             <button type="submit" class="btn btn-outline-success btn-sm"?><?php if (!empty(count($Carros = $Car->show($dado['cpf'])))){echo count($Carros = $Car->show($dado['cpf']));};?> Carros</button>
                         </form>
                     </div>

@@ -62,10 +62,10 @@ class FuncionarioModel
         }
     }
 
-    public function deleteByID($id)
+    public function deleteByID($id_funcionario)
     {
 
-        $sql = "DELETE FROM public.funcionario WHERE id_funcionario='$id';";
+        $sql = "DELETE FROM public.funcionario WHERE id_funcionario='$id_funcionario';";
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute();

@@ -38,8 +38,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php
     require '../../templates/header.php';
 ?>
-    <div class="container-sm">
-        <h2><strong>Update Funcionário <?php echo htmlspecialchars($Funcionarios['id_funcionario'])?></strong></h2><br>
+    <div class="container-sm"  style="margin-top: 30px;">
+        <div class="form-inline">
+            <a href="http://localhost/javalato/pages/adm.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <h2><strong>Update Funcionário <?php echo htmlspecialchars($Funcionarios['id_funcionario'])?></strong></h2>
+        </div><br>
         <?php if(!empty($_POST['id_funcionario'])):?>
             <form action="upFuncionario.php" method="post">
                 <div class="form-group">
@@ -55,7 +58,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="form-group">
                     <label for="telefone">Telefone</label>
                     <input type="text" oninput="mascara(this, 'tel');" class="form-control" max-lenght="14" name="telefone" id="telefone" placeholder="<?php echo isset($Funcionarios['telefone']) ? $Funcionarios['telefone'] : 'Digite novo telefone';?>">
-                </div>
+                </div><br>
                 <input type="hidden" name="id_funcionario" id="id_funcionario" value="<?php echo $Funcionarios['id_funcionario'];?>">
                 <button type="submit" class="btn btn-primary">Enviar</button>
                 <input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/funcionarios.php';" />

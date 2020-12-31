@@ -34,9 +34,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     require '../../templates/header.php';
 ?>
 
-    <div class="container-sm">
-        <h2><strong>Update Cliente <?php echo htmlspecialchars($Cliente['cpf'])?></strong></h2><br>
-
+    <div class="container-sm" style="margin-top: 30px;">
+        <div class="form-inline">
+            <a href="http://localhost/javalato/pages/clientes.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <h2><strong>Update Cliente <?php echo htmlspecialchars($Cliente['cpf'])?></strong></h2>
+        </div><br>
         <?php if(!empty($_POST['cpf'])): ?>
             <form action="upCliente.php" method="post">
                 <fieldset>
@@ -49,7 +51,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <label for="telefone">Telefone</label>
                         <input type="text" oninput="mascara(this, 'tel')" class="form-control" name="telefone" id="telefone" placeholder="<?php echo isset($Cliente['telefone']) ? $Cliente['telefone'] : 'Digite nova telefone' ?>" >
                     </div>
-                </fieldset>        
+                </fieldset><br>     
                 <input type="hidden" name="cpf" id="cpf" value="<?php echo $Cliente['cpf'];?>">
                 <button type="submit" class="btn btn-primary">Update</button>
                 <input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" />

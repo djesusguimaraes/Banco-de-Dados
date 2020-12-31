@@ -30,10 +30,7 @@
                     <a class="nav-link" href="http://localhost/javalato/pages/clientes.php">Cliente</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/javalato/pages/funcionarios.php">Funcionário</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/javalato/pages/servicos.php">Serviço</a>
+                    <a class="nav-link" href="http://localhost/javalato/pages/adm.php">Admin</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="http://localhost/javalato/pages/sobre.php">Sobre</a>
