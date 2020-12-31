@@ -105,7 +105,7 @@ require '../templates/header.php';
         </thead>
         <tbody>
             <?php foreach ($Servicos as $dado) : ?>
-                <tr>
+                <tr style="font-size: 11pt;">
                 <td class="table-info"><?php echo $i += 1;?></td>
                 <td><?php echo htmlspecialchars($dado['nome']); ?></td>
                 <td><?php echo htmlspecialchars($dado['descricao']); ?></td>
