@@ -28,6 +28,8 @@ $k = 0;
 
 $id_funcionario = null;
 $id_servico = null;
+$id_pedido = null;
+$id_item = null;
 $cpf = null;
 
 if (!empty($_POST['id_funcionario'])) {
@@ -51,10 +53,11 @@ if (!empty($_POST['id_servico'])) {
 if (!empty($_POST['delete'])) {
     $cpf = $_POST['delete'];
     $id_pedido = $Pedido->showByCPF($cpf);
-    $id_item = $Item->getID($id_pedido);
+    foreach($id_pedido as $dado){
+        $Item->deleteByID($dado);
+        $Pedido->deleteByID($dado);
+    };
     try {
-        $Item->deleteByID($id_item);
-        $Pedido->deleteByCPF($cpf);
         $Car->deleteByCPF($cpf);
         $Client->deleteByCPF($cpf);
     } catch (PDOException $e) {
