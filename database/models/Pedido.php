@@ -11,6 +11,19 @@ class PedidoModel
        $this->pdo = $pdo;
     }
 
+    public function showByCPF($cpf)
+    {
+    $stmt = $this->pdo->query("SELECT id_pedido FROM public.pedido WHERE cpf_cliente='$cpf';");
+        $stocks = [];
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC))
+        {
+            $stocks[] = [
+                'id_pedido' => $row['id_pedido']
+            ];
+        }
+        return $stocks;
+    }
+
     public function all()
     {
         $stmt = $this->pdo->query('SELECT * FROM public.pedido;');
@@ -95,6 +108,13 @@ class PedidoModel
     public function deleteByID($id_pedido)
     {
         $sql = "DELETE FROM public.pedido WHERE id_pedido='$id_pedido';";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+    }
+
+    public function deleteByCPF($cpf)
+    {
+        $sql = "DELETE FROM public.pedido WHERE cpf_cliente='$cpf';";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }

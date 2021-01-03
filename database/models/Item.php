@@ -27,18 +27,11 @@ class ItemModel
         return $stocks;
     }
 
-    public function showByID($id)
+    public function getID($id)
     {
-        $stmt = $this->pdo->query("SELECT * FROM public.item WHERE id_item='$id';");
-        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $stmt = $this->pdo->query("SELECT id_item FROM public.item WHERE id_pedido='$id';");
 
-        $stocks = [
-            'id_item' => $row['id_item'],
-            'id_pedido' => $row['id_pedido'],
-            'id_servico' => $row['id_servico'],
-            'quantidade' => $row['quantidade']
-        ];
-        return $stocks;
+        return $stmt;
     }
 
     public function update($id, $quantidade)    

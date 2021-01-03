@@ -7,15 +7,20 @@ include_once '../database/ini.php';
 use conpostgres\ServicoModel as ServicoModel;
 use conpostgres\FuncionarioModel as FuncionarioModel;
 use conpostgres\ClientModel as ClientModel;
+use conpostgres\CarroModel as CarroModel;
+use conpostgres\PedidoModel as PedidoModel;
+use conpostgres\ItemModel as ItemModel;
 
 $Funcionario = new FuncionarioModel($pdo);
 $Servico = new ServicoModel($pdo);
 $Client = new ClientModel($pdo);
+$Car = new CarroModel($pdo);
+$Pedido = new PedidoModel($pdo);
+$Item = new ItemModel($pdo);
 
 $Funcionarios = $Funcionario->all();
 $Servicos = $Servico->all();
 $Clientes = $Client->all();
-
 
 $i = 0;
 $j = 0;
@@ -45,7 +50,12 @@ if (!empty($_POST['id_servico'])) {
 
 if (!empty($_POST['delete'])) {
     $cpf = $_POST['delete'];
+    $id_pedido = $Pedido->showByCPF($cpf);
+    $id_item = $Item->getID($id_pedido);
     try {
+        $Item->deleteByID($id_item);
+        $Pedido->deleteByCPF($cpf);
+        $Car->deleteByCPF($cpf);
         $Client->deleteByCPF($cpf);
     } catch (PDOException $e) {
         $error = $e->getMessage();
@@ -131,7 +141,7 @@ require '../templates/header.php';
                         <tr style="font-size: 11pt;">
                             <td class="table-info"><?php echo $k += 1;?></td>
                             <td><?php echo htmlspecialchars($dado['delete_at']); ?></td>
-                            <td><?php echo htmlspecialchars($dado['cpf']); $cpfAtual = $dado['cpf']; ?></td>
+                            <td><?php echo htmlspecialchars($dado['cpf']); ?></td>
                             <td><?php echo htmlspecialchars($dado['nome']); ?></td>
                             <td>
                                 <div class="form-check-inline">

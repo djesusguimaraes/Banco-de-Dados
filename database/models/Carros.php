@@ -83,5 +83,12 @@ class CarroModel
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }
+
+    public function deleteByCPF($cpf)
+    {
+        $sql = "DELETE FROM public.carro WHERE cpf='$cpf';";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+    }
 }
 ?>

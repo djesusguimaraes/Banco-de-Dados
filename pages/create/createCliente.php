@@ -49,11 +49,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $url = $error;
     }
 }
+
 if ($url == 1){
     $texto = ("<div class=\"alert alert-success\" role=\"alert\">Cliente cadastrado com sucesso!</div>");
 }else if($url != null){
     $texto = ("<div class=\"alert alert-danger\" role=\"alert\"><?php echo $url;?></div>");
 }
+
 ?>
 <?php
 require '../../templates/header.php';
