@@ -21,7 +21,7 @@ $cpf = null;
 $mostra = null;
 $i = 0;
 
-if (!empty($_POST['cpf'])) {
+if (!empty($_POST['delete_at'])) {
     $mostra = $_POST['delete_at'];
     $cpf = $_POST['cpf'];
     try {
@@ -35,13 +35,6 @@ if (!empty($_POST['cpf'])) {
 <?php
 require '../templates/header.php';
 ?>
-<!--  -->
-<script type="text/javascript">
-    function apagar(){
-
-    }
-
-</script>
 <div class="container" style="margin-top: 30px">
     <div class="">
         <div class="form-inline">
@@ -49,33 +42,32 @@ require '../templates/header.php';
             <h2 style="margin: 0px auto auto 20px;"><strong>Clientes</strong></h2><br>
         </div>
         <a href="create/createCliente.php"><button type="button" class="btn btn-success btn-md float-sm-right">Cadastrar Cliente</button></a><br>&nbsp
-        <table class="table" style="margin-top: 10px">
+        <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484;">
             <thead class="thead-dark">
                 <tr>
                 <th style="background-color: #005484;" scope="col">#</th>
                 <th style="background-color: #005484;" scope="col">CPF</th>
                 <th style="background-color: #005484;" scope="col">Nome</th>
                 <th style="background-color: #005484;" scope="col">Telefone</th>
-                <th style="background-color: #005484;" scope="col">Ações</th>
+                <th style="background-color: #005484; border-left: 1px solid #fff;" scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($Clientes as $dado) : ?>
                     <?php if ($dado['delete_at'] == null):?>
                         <tr style="font-size: 11pt;">
-                            <td class="table-info"><?php echo $i += 1;?></td>
+                            <td class="table-info" style=" border-right: 1px solid #005484;"><?php echo $i += 1;?></td>
                             <td><?php echo htmlspecialchars($dado['cpf']); $cpfAtual = $dado['cpf']; ?></td>
                             <td><?php echo htmlspecialchars($dado['nome']); ?></td>
                             <td><?php echo htmlspecialchars($dado['telefone']); ?></td>
                             <td>
-                                <div class="form-inline">
-                                    <?php $cpf = $dado['cpf']; $data = $date->format('Y-m-d');?>
-                                    <button class="btn btn-outline-danger btn-sm" onclick="apagar();">Delete</button>&nbsp
-                                    <!-- <form action="clientes.php" method="post">
+                                <div class="form-check-inline">
+                                    <!-- <button class="btn btn-outline-danger btn-sm" onclick="">Delete</button>&nbsp -->
+                                    <form action="clientes.php" method="post">
                                         <input type="hidden" name="cpf" value="<?php echo htmlspecialchars($dado['cpf']); ?>">
                                         <input type="hidden" name="delete_at" value="<?php echo $date->format('Y-m-d'); ?>">
                                         <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
-                                    </form>&nbsp -->
+                                    </form>&nbsp
                                     <form action="update/upCliente.php" method="post">
                                         <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">
                                         <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>

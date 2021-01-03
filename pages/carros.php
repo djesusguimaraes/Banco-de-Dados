@@ -45,38 +45,37 @@ require '../templates/header.php';
         <button type="submit" class="btn btn-success btn-md float-sm-right">Inserir</button>
     </form>
     <a href=""></a><br>&nbsp
-    <table class="table">
+    <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484;">
     <thead class="thead-dark">
         <tr>
-        <th style="background-color: #005484;" scope="col">#</th>
-        <th style="background-color: #005484;" scope="col">Modelo</th>
-        <th style="background-color: #005484;" scope="col">Ano</th>
-        <th style="background-color: #005484;" scope="col">Placa</th>
-        <th style="background-color: #005484;" scope="col">Ações</th>
-
+            <th style="background-color: #005484;" scope="col">#</th>
+            <th style="background-color: #005484;" scope="col">Modelo</th>
+            <th style="background-color: #005484;" scope="col">Ano</th>
+            <th style="background-color: #005484;" scope="col">Placa</th>
+            <th style="background-color: #005484; border-left: 1px solid #fff;" scope="col">Ações</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($Carros as $dado) : ?>
             <tr>
-            <td class="table-info"><?php echo $i += 1;?></td>
-            <td><?php echo htmlspecialchars($dado['modelo']);?></td>
-            <td><?php echo htmlspecialchars($dado['ano']);?></td>
-            <td><?php echo htmlspecialchars($dado['placa']); ?></td>
-            <td>    
-            <div class="form-inline">
-                <form action="carros.php" method="post">
-                    <input type="hidden" name="placa" id="placa" value="<?php echo htmlspecialchars($dado['placa']); ?>">
-                    <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
-                    <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
-                </form>
-                <form action="update/upCarro.php" method="post">
-                    <input type="hidden" name="uplaca" id="uplaca" value="<?php echo htmlspecialchars($dado['placa']);?>">&nbsp&nbsp
-                    <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">&nbsp&nbsp
-                    <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>
-                </form>
-            </div>
-            </td>
+                <td class="table-info" style="border-right: 1px solid #005484;"><?php echo $i += 1;?></td>
+                <td><?php echo htmlspecialchars($dado['modelo']);?></td>
+                <td><?php echo htmlspecialchars($dado['ano']);?></td>
+                <td><?php echo htmlspecialchars($dado['placa']); ?></td>
+                <td>    
+                    <div class="form-check-inline">
+                        <form action="carros.php" method="post">
+                            <input type="hidden" name="placa" id="placa" value="<?php echo htmlspecialchars($dado['placa']); ?>">
+                            <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">
+                            <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
+                        </form>&nbsp
+                        <form action="update/upCarro.php" method="post">
+                            <input type="hidden" name="uplaca" id="uplaca" value="<?php echo htmlspecialchars($dado['placa']);?>">
+                            <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dado['cpf']);?>">
+                            <button type="submit" class="btn btn-outline-info btn-sm"?>Update</button>
+                        </form>
+                    </div>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>

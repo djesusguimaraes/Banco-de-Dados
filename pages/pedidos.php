@@ -71,7 +71,7 @@ require '../templates/header.php';
                     </div>
 
                 </div>
-                    <table class="table">
+                    <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484;">
                         <thead class="thead-dark">
                             <tr>
                                 <th style="background-color: #005484;" scope="col">#</th>

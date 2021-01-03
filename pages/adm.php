@@ -19,6 +19,7 @@ $Clientes = $Client->all();
 
 $i = 0;
 $j = 0;
+$k = 0;
 
 $id_funcionario = null;
 $id_servico = null;
@@ -45,7 +46,7 @@ if (!empty($_POST['id_servico'])) {
 if (!empty($_POST['delete'])) {
     $cpf = $_POST['delete'];
     try {
-        $Client->deleteByID($cpf);
+        $Client->deleteByCPF($cpf);
     } catch (PDOException $e) {
         $error = $e->getMessage();
     }
@@ -64,18 +65,17 @@ if (!empty($_POST['restore'])) {
 require '../templates/header.php';
 ?>
 
-<div class="container" style="margin-top: 30px;">
+<div class="container-fluid" style="margin-top: 30px;">
 
-    <div class="">
-        <div class="form-inline">
-            <a href="http://localhost/javalato/"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <h2><strong>Área de Administração</strong></h2>
-        </div>
+    <div class="form-inline" style="margin-left: 65px;">   
+        <a href="http://localhost/javalato/"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>
+        <h2 style="margin-left: 30px;"><strong>Área de Administração</strong></h2>
+    </div>
+    <div class="col-sm-5 float-sm-right" style="margin-right: 50px;">
         <div style="margin-top: 50px;">
-                <h3><strong>Funcionários</strong></h3>
-            
+            <h3 class="col-sm-4" style="margin-bottom: -30px;"><strong>Funcionários</strong></h3>
             <a href="create/createFuncionario.php"><button type="button" class="btn btn-success btn-md float-right">Cadastrar Funcionário</button></a><br>&nbsp
-            <table class="table">
+            <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484;">
             <thead class="thead-dark">
                 <tr>
                 <th style="background-color: #005484;" scope="col">#</th>
@@ -88,7 +88,7 @@ require '../templates/header.php';
             </thead>
             <tbody>
                 <?php foreach ($Funcionarios as $dado) : ?>
-                    <tr>
+                    <tr style="font-size: 11pt;">
                     <td class="table-info"><?php echo $j += 1;?></td>
                     <td><?php echo htmlspecialchars($dado['id_funcionario']); ?></td>
                     <td><?php echo htmlspecialchars($dado['nome']); ?></td>
@@ -111,14 +111,53 @@ require '../templates/header.php';
             </tbody>
             </table>
         </div>
+
+        <div class="form-inline" style="margin-top: 50px;">
+        <h3 class="col-sm-5" style="margin-bottom: 0px;"><strong>Histórico de Clientes</strong></h3>
+        </div>
+        <table class="table" style="border-bottom: 1px solid #848688; border-right: 1px solid #848688;">
+            <thead class="thead-dark">
+                <tr>
+                <th style="background-color: #848688;" scope="col">#</th>
+                <th style="background-color: #848688;" scope="col">Exclusão</th>
+                <th style="background-color: #848688;" scope="col">CPF</th>
+                <th style="background-color: #848688;" scope="col">Nome</th>
+                <th style="background-color: #848688;" scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($Clientes as $dado) : ?>
+                    <?php if ($dado['delete_at'] != null):?>
+                        <tr style="font-size: 11pt;">
+                            <td class="table-info"><?php echo $k += 1;?></td>
+                            <td><?php echo htmlspecialchars($dado['delete_at']); ?></td>
+                            <td><?php echo htmlspecialchars($dado['cpf']); $cpfAtual = $dado['cpf']; ?></td>
+                            <td><?php echo htmlspecialchars($dado['nome']); ?></td>
+                            <td>
+                                <div class="form-check-inline">
+                                    <form action="adm.php" method="post">
+                                        <input type="hidden" name="restore" id="restore" value="<?php echo htmlspecialchars($dado['cpf']);?>">
+                                        <button type="submit" class="btn btn-outline-success btn-sm"?>Restore</button>
+                                    </form>&nbsp
+                                    <form action="adm.php" method="post">
+                                        <input type="hidden" name="delete" value="<?php echo htmlspecialchars($dado['cpf']); ?>">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endif;?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
     
-    <div style="margin-top: 50px;">
+    <div class="col-sm-6" style="margin: 50px auto auto 50px;">
         <div class="form-inline">
-            <h3><strong>Serviços</strong></h3>
+        <h3 class="col-sm-4" style="margin-bottom: -30px;"><strong>Serviços</strong></h3>
         </div>
         <a href="create/createServico.php"><button type="button" class="btn btn-success btn-md float-right">Cadastrar Serviço</button></a><br>&nbsp
-        <table class="table">
+        <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484;">
         <thead class="thead-dark">
             <tr>
             <th style="background-color: #005484;" scope="col">#</th>
@@ -155,44 +194,10 @@ require '../templates/header.php';
         </table>
     </div>
     <div style="margin-top: 50px;">
-        <div class="form-inline">
-            <h3><strong>Histórico de Clientes</strong></h3>
+        <div class="col-sm-8">
+        
         </div>
-        <table class="table" style="margin-top: 10px">
-            <thead class="thead-dark">
-                <tr>
-                <th style="background-color: #848688;" scope="col">#</th>
-                <th style="background-color: #848688;" scope="col">Data de exclusão</th>
-                <th style="background-color: #848688;" scope="col">CPF</th>
-                <th style="background-color: #848688;" scope="col">Nome</th>
-                <th style="background-color: #848688;" scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($Clientes as $dado) : ?>
-                    <?php if ($dado['delete_at'] != null):?>
-                        <tr style="font-size: 11pt;">
-                            <td class="table-info"><?php echo $i += 1;?></td>
-                            <td><?php echo htmlspecialchars($dado['delete_at']); ?></td>
-                            <td><?php echo htmlspecialchars($dado['cpf']); $cpfAtual = $dado['cpf']; ?></td>
-                            <td><?php echo htmlspecialchars($dado['nome']); ?></td>
-                            <td>
-                                <div class="form-inline">
-                                    <form action="adm.php" method="post">
-                                        <input type="hidden" name="restore" id="restore" value="<?php echo htmlspecialchars($dado['cpf']);?>">
-                                        <button type="submit" class="btn btn-outline-success btn-sm"?>Restore</button>
-                                    </form>&nbsp
-                                    <form action="adm.php" method="post">
-                                        <input type="hidden" name="delete" value="<?php echo htmlspecialchars($dado['cpf']); ?>">
-                                        <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php endif;?>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        
     </div>
 </div>
 
