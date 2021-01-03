@@ -36,6 +36,7 @@ if (!empty($_POST['id_funcionario'])) {
     $id_funcionario = $_POST['id_funcionario'];
     try {
         $Funcionario->deleteByID($id_funcionario);
+        header('Location: http://localhost/javalato/pages/adm.php');
     } catch (PDOException $e) {
         $error = $e->getMessage();
     }
@@ -45,6 +46,7 @@ if (!empty($_POST['id_servico'])) {
     $id_servico = $_POST['id_servico'];
     try {
         $Servico->deleteByID($id_servico);
+        header('Location: http://localhost/javalato/pages/adm.php');
     } catch (PDOException $e) {
         $error = $e->getMessage();
     }
@@ -60,6 +62,7 @@ if (!empty($_POST['delete'])) {
     try {
         $Car->deleteByCPF($cpf);
         $Client->deleteByCPF($cpf);
+        header('Location: http://localhost/javalato/pages/adm.php');
     } catch (PDOException $e) {
         $error = $e->getMessage();
     }
@@ -69,6 +72,7 @@ if (!empty($_POST['restore'])) {
     $cpf = $_POST['restore'];
     try {
         $Client->unnhide($cpf);
+        header('Location: http://localhost/javalato/pages/adm.php');
     } catch (PDOException $e) {
         $error = $e->getMessage();
     }
@@ -109,7 +113,7 @@ require '../templates/header.php';
                     <td><?php echo htmlspecialchars($dado['telefone']); ?></td>
                     <td >
                         <div class="form-check-inline">
-                            <form action="adm.php" method="post">
+                            <form action="http://localhost/javalato/pages/adm.php" method="post">
                                 <input type="hidden" name="id_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?> ">
                                 <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                             </form>&nbsp

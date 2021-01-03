@@ -24,25 +24,28 @@ if (!empty($_POST['confirm'])){
     $cpf = $_POST['confirm'];
     $data = $date->format('Y-m-d');
     $url = 1;
-    if ($url != null){
-        $texto = "
-        <div class=\"alert alert-danger\" role=\"alert\">
-            Você quer realmente apagar o cliente?<br>
+}
+
+if ($url != null){
+    $texto = "
+    <div class=\"alert alert-danger\" role=\"alert\">
+        Você quer realmente apagar o cliente?<br>
+        <form action=\"http://localhost/javalato/pages/clientes.php\" method=\"post\">
+            <input type=\"hidden\" name=\"cpf\" id=\"cpf\"value=\"<?php echo htmlspecialchars($cpf); ?>\">
+            <input type=\"hidden\" name=\"delete_at\" id=\"delete_at\" value=\"<?php echo $data; ?>\">
             <div class=\"form-check-inline\">
-                <form action=\"http://localhost/javalato/pages/clientes.php\" method=\"post\">
-                    <input type=\"hidden\" name=\"cpf\" id=\"cpf\"value=\"<?php echo htmlspecialchars($cpf); ?>\">
-                    <input type=\"hidden\" name=\"delete_at\" id=\"delete_at\" value=\"<?php echo $data; ?>\">
-                    <button type=\"submit\" class=\"btn btn-danger btn-sm\"?>Sim</button>
-                </form>&nbsp
-                <a href=\"http://localhost/javalato/pages/clientes.php\"><button class=\"btn btn-outline-success btn-sm\">Não</button></a>
+                <input type=\"button\" class=\"btn btn-outline-danger\" name=\"cancel\" value=\"Cancel\" onClick=\"window.location='http://localhost/javalato/pages/clientes.php?id=1';\" />&nbsp
+                <button type=\"submit\" class=\"btn btn-danger btn-sm\"?>Sim</button>&nbsp
             </div>
-        </div>";
-    }
+        </form>&nbsp
+    </div>";
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $mostra = isset($_POST['delete_at'])?$_POST['delete_at']:$data;
-    $cpf = isset($_POST['cpf'])?$_POST['cpf']:$cpf;
+    if (!isset($_GET['id'])){
+        $mostra = isset($_POST['delete_at'])?$_POST['delete_at']:$data;
+        $cpf = isset($_POST['cpf'])?$_POST['cpf']:$cpf;
+    }
     try {
         $Client->hide($mostra, $cpf);
     } catch (PDOException $e) {
