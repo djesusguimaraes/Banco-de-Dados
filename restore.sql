@@ -5,7 +5,7 @@
 -- Dumped from database version 13.1
 -- Dumped by pg_dump version 13.1
 
--- Started on 2021-01-02 19:17:50
+-- Started on 2021-01-02 23:00:05
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -54,7 +54,7 @@ CREATE SEQUENCE public."Servico_ID_servico_seq"
 ALTER TABLE public."Servico_ID_servico_seq" OWNER TO postgres;
 
 --
--- TOC entry 3050 (class 0 OID 0)
+-- TOC entry 3037 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: Servico_ID_servico_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -63,7 +63,7 @@ ALTER SEQUENCE public."Servico_ID_servico_seq" OWNED BY public.servico.id_servic
 
 
 --
--- TOC entry 211 (class 1259 OID 16885)
+-- TOC entry 206 (class 1259 OID 16885)
 -- Name: carro; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -85,7 +85,8 @@ ALTER TABLE public.carro OWNER TO postgres;
 CREATE TABLE public.cliente (
     nome character(80) NOT NULL,
     cpf character(14) NOT NULL,
-    telefone character(14)
+    telefone character(14),
+    delete_at date
 );
 
 
@@ -107,22 +108,22 @@ CREATE TABLE public.funcionario (
 ALTER TABLE public.funcionario OWNER TO postgres;
 
 --
--- TOC entry 210 (class 1259 OID 16867)
+-- TOC entry 208 (class 1259 OID 33121)
 -- Name: item; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.item (
     id_item integer NOT NULL,
+    quantidade integer NOT NULL,
     id_pedido integer NOT NULL,
-    id_servico integer NOT NULL,
-    quantidade integer NOT NULL
+    id_servico integer NOT NULL
 );
 
 
 ALTER TABLE public.item OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 16861)
+-- TOC entry 207 (class 1259 OID 33119)
 -- Name: item_id_item_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -138,7 +139,7 @@ CREATE SEQUENCE public.item_id_item_seq
 ALTER TABLE public.item_id_item_seq OWNER TO postgres;
 
 --
--- TOC entry 3051 (class 0 OID 0)
+-- TOC entry 3038 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: item_id_item_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -147,96 +148,20 @@ ALTER SEQUENCE public.item_id_item_seq OWNED BY public.item.id_item;
 
 
 --
--- TOC entry 208 (class 1259 OID 16863)
--- Name: item_id_pedido_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.item_id_pedido_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.item_id_pedido_seq OWNER TO postgres;
-
---
--- TOC entry 3052 (class 0 OID 0)
--- Dependencies: 208
--- Name: item_id_pedido_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.item_id_pedido_seq OWNED BY public.item.id_pedido;
-
-
---
--- TOC entry 209 (class 1259 OID 16865)
--- Name: item_id_servico_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.item_id_servico_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.item_id_servico_seq OWNER TO postgres;
-
---
--- TOC entry 3053 (class 0 OID 0)
--- Dependencies: 209
--- Name: item_id_servico_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.item_id_servico_seq OWNED BY public.item.id_servico;
-
-
---
--- TOC entry 206 (class 1259 OID 16844)
+-- TOC entry 205 (class 1259 OID 16844)
 -- Name: pedido; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.pedido (
-    numero integer NOT NULL,
     id_pedido integer NOT NULL,
     cpf_cliente character(14) NOT NULL,
-    id_funcionario integer NOT NULL,
     order_date date NOT NULL,
-    preco_total money NOT NULL
+    preco_total money NOT NULL,
+    id_funcionario integer NOT NULL
 );
 
 
 ALTER TABLE public.pedido OWNER TO postgres;
-
---
--- TOC entry 205 (class 1259 OID 16842)
--- Name: pedido_id_funcionario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.pedido_id_funcionario_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.pedido_id_funcionario_seq OWNER TO postgres;
-
---
--- TOC entry 3054 (class 0 OID 0)
--- Dependencies: 205
--- Name: pedido_id_funcionario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.pedido_id_funcionario_seq OWNED BY public.pedido.id_funcionario;
-
 
 --
 -- TOC entry 204 (class 1259 OID 16840)
@@ -255,7 +180,7 @@ CREATE SEQUENCE public.pedido_id_pedido_seq
 ALTER TABLE public.pedido_id_pedido_seq OWNER TO postgres;
 
 --
--- TOC entry 3055 (class 0 OID 0)
+-- TOC entry 3039 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -264,7 +189,7 @@ ALTER SEQUENCE public.pedido_id_pedido_seq OWNED BY public.pedido.id_pedido;
 
 
 --
--- TOC entry 2883 (class 2604 OID 16870)
+-- TOC entry 2876 (class 2604 OID 33124)
 -- Name: item id_item; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -272,23 +197,7 @@ ALTER TABLE ONLY public.item ALTER COLUMN id_item SET DEFAULT nextval('public.it
 
 
 --
--- TOC entry 2884 (class 2604 OID 16871)
--- Name: item id_pedido; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.item ALTER COLUMN id_pedido SET DEFAULT nextval('public.item_id_pedido_seq'::regclass);
-
-
---
--- TOC entry 2885 (class 2604 OID 16872)
--- Name: item id_servico; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.item ALTER COLUMN id_servico SET DEFAULT nextval('public.item_id_servico_seq'::regclass);
-
-
---
--- TOC entry 2881 (class 2604 OID 16847)
+-- TOC entry 2875 (class 2604 OID 16847)
 -- Name: pedido id_pedido; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -296,15 +205,7 @@ ALTER TABLE ONLY public.pedido ALTER COLUMN id_pedido SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 2882 (class 2604 OID 16848)
--- Name: pedido id_funcionario; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.pedido ALTER COLUMN id_funcionario SET DEFAULT nextval('public.pedido_id_funcionario_seq'::regclass);
-
-
---
--- TOC entry 2880 (class 2604 OID 16708)
+-- TOC entry 2874 (class 2604 OID 16708)
 -- Name: servico id_servico; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -312,54 +213,29 @@ ALTER TABLE ONLY public.servico ALTER COLUMN id_servico SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 3044 (class 0 OID 16885)
--- Dependencies: 211
+-- TOC entry 3029 (class 0 OID 16885)
+-- Dependencies: 206
 -- Data for Name: carro; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.carro (placa, modelo, ano, cpf) FROM stdin;
-ABC9471	Brasília Amarela    	1985	374.932.473-94
-GSK5342	Gol Bola Desandado  	2009	052.350.384-02
-JDF0580	Brasília Amarela    	1985	584.059.830-23
-KFS4038	Fusca               	2000	085.004.430-98
-FDS4989	Jeep a Gás          	1999	058.049.383-42
-FDK9853	Girico              	2014	483.049.823-21
-JFD9834	Bug                 	2001	873.904.098-02
-FJS9442	F250 Cabulosa       	2002	048.348.032-33
-TIE8274	D10 Gaisera         	1990	729.372.930-22
-KFD9328	Jetta               	2015	408.230.283-02
-QER8327	Scania 111          	1978	487.294.327-49
-OER7493	Fuscão Preto        	1976	042.340.384-02
-IRE9327	Calhambeque         	1950	943.792.301-23
+FJS8340	Fusca               	1980	734.304.803-24
 \.
 
 
 --
--- TOC entry 3035 (class 0 OID 16798)
+-- TOC entry 3025 (class 0 OID 16798)
 -- Dependencies: 202
 -- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.cliente (nome, cpf, telefone) FROM stdin;
-Clésio Moura                                                                    	374.932.473-94	0890580-4830  
-Daniel Silva                                                                    	052.350.384-02	9449327-84943 
-José Marinho                                                                    	584.059.830-23	4378493-2750  
-Jão da Padaria                                                                  	085.004.430-98	8489394-9849  
-Mourinho Sousa                                                                  	058.049.383-42	3489347-9839  
-Guardiola Silva                                                                 	483.049.823-21	9479349-3842  
-Diney Guimarães                                                                 	873.904.098-02	4739432-7009  
-Teixeira Peão das Neves                                                         	048.348.032-33	9483847-9983  
-Silveirinha da Silva                                                            	729.372.930-22	4937492-6832  
-Severino Marques                                                                	408.230.283-02	9347948-7390  
-Milionário & José Rico                                                          	487.294.327-49	4983794-8739  
-Trio Parada Dura                                                                	042.340.384-02	7865836-4888  
-Roberto Carlos                                                                  	943.792.301-23	4973943-0232  
-Renato Russo                                                                    	974.293.202-38	9374293-8203  
+COPY public.cliente (nome, cpf, telefone, delete_at) FROM stdin;
+Jão da Padaria                                                                  	734.304.803-24	0843048-3049  	\N
 \.
 
 
 --
--- TOC entry 3036 (class 0 OID 16819)
+-- TOC entry 3026 (class 0 OID 16819)
 -- Dependencies: 203
 -- Data for Name: funcionario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -374,43 +250,27 @@ Heitor Silva                                                                    
 
 
 --
--- TOC entry 3043 (class 0 OID 16867)
--- Dependencies: 210
+-- TOC entry 3031 (class 0 OID 33121)
+-- Dependencies: 208
 -- Data for Name: item; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.item (id_item, id_pedido, id_servico, quantidade) FROM stdin;
-38	1	15	1
-39	2	9	1
-40	3	10	2
-41	4	13	1
-42	5	16	1
-43	6	11	2
-44	7	19	3
-45	8	20	1
+COPY public.item (id_item, quantidade, id_pedido, id_servico) FROM stdin;
 \.
 
 
 --
--- TOC entry 3039 (class 0 OID 16844)
--- Dependencies: 206
+-- TOC entry 3028 (class 0 OID 16844)
+-- Dependencies: 205
 -- Data for Name: pedido; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.pedido (numero, id_pedido, cpf_cliente, id_funcionario, order_date, preco_total) FROM stdin;
-1885	1	042.340.384-02	101	2020-12-30	$300.00
-8415	2	374.932.473-94	7799	2020-12-30	$20.00
-1645	3	052.350.384-02	9821	2020-12-30	$100.00
-8315	4	584.059.830-23	1112	2020-12-30	$160.00
-5988	5	483.049.823-21	4739	2020-12-30	$150.00
-6659	6	058.049.383-42	1112	2020-12-30	$160.00
-2306	7	943.792.301-23	9821	2020-12-30	$900.00
-3007	8	974.293.202-38	101	2020-12-30	$350.00
+COPY public.pedido (id_pedido, cpf_cliente, order_date, preco_total, id_funcionario) FROM stdin;
 \.
 
 
 --
--- TOC entry 3034 (class 0 OID 16705)
+-- TOC entry 3024 (class 0 OID 16705)
 -- Dependencies: 201
 -- Data for Name: servico; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -435,7 +295,7 @@ Limpeza Completa                                  	Limpeza interna e externa    
 
 
 --
--- TOC entry 3056 (class 0 OID 0)
+-- TOC entry 3040 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: Servico_ID_servico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -444,43 +304,16 @@ SELECT pg_catalog.setval('public."Servico_ID_servico_seq"', 21, true);
 
 
 --
--- TOC entry 3057 (class 0 OID 0)
+-- TOC entry 3041 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: item_id_item_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.item_id_item_seq', 47, true);
+SELECT pg_catalog.setval('public.item_id_item_seq', 1, false);
 
 
 --
--- TOC entry 3058 (class 0 OID 0)
--- Dependencies: 208
--- Name: item_id_pedido_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.item_id_pedido_seq', 27, true);
-
-
---
--- TOC entry 3059 (class 0 OID 0)
--- Dependencies: 209
--- Name: item_id_servico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.item_id_servico_seq', 1, false);
-
-
---
--- TOC entry 3060 (class 0 OID 0)
--- Dependencies: 205
--- Name: pedido_id_funcionario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.pedido_id_funcionario_seq', 1, false);
-
-
---
--- TOC entry 3061 (class 0 OID 0)
+-- TOC entry 3042 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -489,7 +322,7 @@ SELECT pg_catalog.setval('public.pedido_id_pedido_seq', 21, true);
 
 
 --
--- TOC entry 2889 (class 2606 OID 16802)
+-- TOC entry 2880 (class 2606 OID 16802)
 -- Name: cliente Client_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -498,7 +331,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- TOC entry 2891 (class 2606 OID 16823)
+-- TOC entry 2882 (class 2606 OID 16823)
 -- Name: funcionario Funcionario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -507,7 +340,7 @@ ALTER TABLE ONLY public.funcionario
 
 
 --
--- TOC entry 2887 (class 2606 OID 16710)
+-- TOC entry 2878 (class 2606 OID 16710)
 -- Name: servico Servico_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -516,7 +349,7 @@ ALTER TABLE ONLY public.servico
 
 
 --
--- TOC entry 2897 (class 2606 OID 16889)
+-- TOC entry 2886 (class 2606 OID 16889)
 -- Name: carro carro_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -525,7 +358,7 @@ ALTER TABLE ONLY public.carro
 
 
 --
--- TOC entry 2895 (class 2606 OID 16874)
+-- TOC entry 2888 (class 2606 OID 33126)
 -- Name: item item_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -534,7 +367,7 @@ ALTER TABLE ONLY public.item
 
 
 --
--- TOC entry 2893 (class 2606 OID 16850)
+-- TOC entry 2884 (class 2606 OID 16850)
 -- Name: pedido pedido_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -543,7 +376,7 @@ ALTER TABLE ONLY public.pedido
 
 
 --
--- TOC entry 2902 (class 2606 OID 16890)
+-- TOC entry 2890 (class 2606 OID 16890)
 -- Name: carro carro_cpf_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -552,7 +385,7 @@ ALTER TABLE ONLY public.carro
 
 
 --
--- TOC entry 2900 (class 2606 OID 16875)
+-- TOC entry 2891 (class 2606 OID 33127)
 -- Name: item item_id_pedido_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -561,7 +394,7 @@ ALTER TABLE ONLY public.item
 
 
 --
--- TOC entry 2901 (class 2606 OID 16880)
+-- TOC entry 2892 (class 2606 OID 33132)
 -- Name: item item_id_servico_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -570,7 +403,7 @@ ALTER TABLE ONLY public.item
 
 
 --
--- TOC entry 2898 (class 2606 OID 16851)
+-- TOC entry 2889 (class 2606 OID 16851)
 -- Name: pedido pedido_cpf_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -578,16 +411,7 @@ ALTER TABLE ONLY public.pedido
     ADD CONSTRAINT pedido_cpf_cliente_fkey FOREIGN KEY (cpf_cliente) REFERENCES public.cliente(cpf);
 
 
---
--- TOC entry 2899 (class 2606 OID 16856)
--- Name: pedido pedido_id_funcionario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.pedido
-    ADD CONSTRAINT pedido_id_funcionario_fkey FOREIGN KEY (id_funcionario) REFERENCES public.funcionario(id_funcionario);
-
-
--- Completed on 2021-01-02 19:17:52
+-- Completed on 2021-01-02 23:00:07
 
 --
 -- PostgreSQL database dump complete
