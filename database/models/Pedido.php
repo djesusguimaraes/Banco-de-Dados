@@ -18,7 +18,6 @@ class PedidoModel
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC))
         {
             $stocks[] = [
-                'numero' => $row['numero'],
                 'id_pedido' => $row['id_pedido'],
                 'cpf_cliente' => $row['cpf_cliente'],
                 'id_funcionario' => $row['id_funcionario'],
@@ -31,12 +30,11 @@ class PedidoModel
     }
 
     public function junto(){
-        $stmt = $this->pdo->query('SELECT numero, cpf_cliente, id_funcionario, order_date, preco_total, id_servico, a.id_pedido, c.id_item FROM pedido a INNER JOIN item c ON a.id_pedido = c.id_pedido;');
+        $stmt = $this->pdo->query('SELECT cpf_cliente, id_funcionario, order_date, preco_total, id_servico, a.id_pedido, c.id_item FROM pedido a INNER JOIN item c ON a.id_pedido = c.id_pedido;');
         $stocks = [];
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC))
         {
             $stocks[] = [
-                'numero' => $row['numero'],
                 'cpf_cliente' => $row['cpf_cliente'],
                 'id_funcionario' => $row['id_funcionario'],
                 'order_date' => $row['order_date'],
@@ -55,7 +53,6 @@ class PedidoModel
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         $stocks = [
-            'numero' => $row['numero'],
             'id_pedido' => $row['id_pedido'],
             'cpf_cliente' => $row['cpf_cliente'],
             'id_funcionario' => $row['id_funcionario'],
@@ -73,20 +70,19 @@ class PedidoModel
    
     }
 
-    public function update($numero, $cpf, $id_funcionario, $order_date, $id_pedido)    
+    public function update($cpf, $id_funcionario, $order_date, $id_pedido)    
     {
-        $sql = "UPDATE public.pedido SET numero='$numero', cpf_cliente='$cpf', id_funcionario='$id_funcionario', order_date='$order_date' WHERE  id_pedido='$id_pedido';";
+        $sql = "UPDATE public.pedido SET cpf_cliente='$cpf', id_funcionario='$id_funcionario', order_date='$order_date' WHERE  id_pedido='$id_pedido';";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }
 
-    public function insert($numero, $cpf, $id_funcionario, $order_date, $id_pedido, $preco_total)
+    public function insert($cpf, $id_funcionario, $order_date, $id_pedido, $preco_total)
     {
         {
-            $sql = "INSERT INTO public.pedido(numero, cpf_cliente, id_pedido, id_funcionario, order_date, preco_total) VALUES (:numero, :cpf_cliente, :id_pedido, :id_funcionario, :order_date, :preco_total);";
+            $sql = "INSERT INTO public.pedido(cpf_cliente, id_pedido, id_funcionario, order_date, preco_total) VALUES (:cpf_cliente, :id_pedido, :id_funcionario, :order_date, :preco_total);";
             $stmt = $this->pdo->prepare($sql);
 
-            $stmt->bindValue(':numero', $numero);
             $stmt->bindValue(':cpf_cliente', $cpf);
             $stmt->bindValue(':id_pedido', $id_pedido);
             $stmt->bindValue(':id_funcionario', $id_funcionario);

@@ -20,7 +20,8 @@ class ClientModel
             $stocks[] = [
                 'nome' => $row['nome'],
                 'cpf' => $row['cpf'],
-                'telefone' => $row['telefone']
+                'telefone' => $row['telefone'],
+                'delete_at' => $row['delete_at']
             ];
         }
         return $stocks;
@@ -34,7 +35,8 @@ class ClientModel
         $stocks = [
             'nome' => $row['nome'],
             'cpf' => $row['cpf'],
-            'telefone' => $row['telefone']
+            'telefone' => $row['telefone'],
+            'delete_at' => $row['delete_at']
         ];
         return $stocks;
     }
@@ -42,6 +44,20 @@ class ClientModel
     public function update($nome, $telefone, $cpf)
     {
         $sql = "UPDATE public.cliente SET nome='$nome', telefone='$telefone' WHERE  cpf='$cpf';";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+    }
+
+    public function hide($mostra, $cpf)
+    {
+        $sql = "UPDATE public.cliente SET delete_at = '$mostra' WHERE  cpf='$cpf';";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+    }
+
+    public function unnhide($cpf)
+    {
+        $sql = "UPDATE public.cliente SET delete_at = null WHERE  cpf='$cpf';";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
     }

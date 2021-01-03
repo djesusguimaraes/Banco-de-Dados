@@ -20,6 +20,7 @@ $Funcionarios = $funcionarioRegister->all();
 $nome = null;
 $cpf = null;
 $telefone = null;
+$mostra = null;
 $modelo = null;
 $ano = null;
 $placa = null;
@@ -33,12 +34,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome =  $_REQUEST['nome'];
     $cpf =  $_REQUEST['cpf'];
     $telefone =  $_REQUEST['tel'];
+    $mostra =  $_REQUEST['mostra'];
     $modelo = $_REQUEST['modelo'];
     $ano = $_REQUEST['ano'];
     $placa = $_REQUEST['placa'];
     
     try {
-        $clientRegister->insert($nome, $cpf, $telefone);
+        $clientRegister->insert($nome, $cpf, $telefone, $mostra);
         $carroRegister->insert($placa, $modelo, $ano, $cpf);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
@@ -72,6 +74,7 @@ require '../../templates/header.php';
                 <label for="tel">Telefone</label>
                 <input type="text" oninput="mascara(this, 'tel');" max-lenght="14" class="form-control" name="tel" id="tel" placeholder="Ex: (00) 00000-0000">
             </div>
+            <input type="hidden" name="mostra" value="<?php echo 0;?>">
         </fieldset>
         <fieldset>
             <legend>Dados do Veículo</legend>
