@@ -10,9 +10,16 @@ $Client = new ClientModel($pdo);
 $cpf = null;
 $nome = null;
 $telefone = null;
+$texto = null;
+$url = null;
 
 if(!empty($_POST['cpf'])){
     $cpf = $_POST['cpf'];
+}
+
+if(!empty($_GET['cpf'])){
+    $cpf = $_GET['cpf'];
+    $texto = $_GET['texto'];
 }
 
 $Cliente = $Client -> showByCPF($cpf);
@@ -23,24 +30,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $cpf = isset($_REQUEST['cpf']) ? $_REQUEST['cpf'] : $Cliente['cpf'];
 
     try {
-        $Client -> update($nome, $telefone, $cpf);
+        if (!empty($_REQUEST['nome'])){
+            $Client -> update($nome, $telefone, $cpf);
+            $texto = ("<div class=\"alert alert-success\" role=\"alert\">Cliente atualizado com sucesso!</div>");
+        }
+        header('Location: http://localhost/javalato/pages/update/upCliente.php?cpf='.$cpf.'&texto='.$texto);
     }catch (PDOExpection $expection) {
         $error = $expection -> getMessage();
-        echo $error;
     }
 }
+    
 ?>
+
 <?php 
     require '../../templates/header.php';
 ?>
 
     <div class="container-sm" style="margin-top: 30px;">
         <div class="form-inline">
-            <a href="http://localhost/javalato/pages/clientes.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <a href="http://localhost/javalato/pages/clientes.php"><img src="http://localhost/javalato/assets/images/back.png" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <h2><strong>Update Cliente <?php echo htmlspecialchars($Cliente['cpf'])?></strong></h2>
         </div><br>
-        <?php if(!empty($_POST['cpf'])): ?>
-            <form action="upCliente.php" method="post">
+            <?php echo $texto;?>
+            <form action="#" method="post">
                 <fieldset>
                     <legend>Dados do Cliente</legend>
                     <div class="form-group">
@@ -53,10 +65,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     </div>
                 </fieldset><br>     
                 <input type="hidden" name="cpf" id="cpf" value="<?php echo $Cliente['cpf'];?>">
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary"> Update </button>
                 <input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" />
             </form>
-        <?php endif ?>
     </div>
 </body>
 </html>

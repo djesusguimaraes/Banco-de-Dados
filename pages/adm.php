@@ -31,9 +31,29 @@ $id_servico = null;
 $id_pedido = null;
 $id_item = null;
 $cpf = null;
+$texto = null;
+$nome = null;
+
+if (!empty($_POST['del_funcionario'])){
+    $id_funcionario = $_POST['del_funcionario'];
+    $nome = $Funcionario->showByID($id_funcionario)['nome'];
+    $texto = "
+    <div class=\"alert alert-warning\" role=\"alert\">
+        <form action=\"http://localhost/javalato/pages/adm.php\" method=\"post\">
+            <div class=\"\">
+                Você quer realmente apagar o funcionário $nome, número $id_funcionario?
+                <input type=\"hidden\" name=\"id_funcionario\" id=\"id_funcionario\"value=\"$id_funcionario\">
+            </div><br>
+            <input type=\"button\" class=\"btn btn-success btn-sm\" name=\"cancel\" value=\"Cancelar\" onClick=\"window.location='http://localhost/javalato/pages/adm.php';\" />
+            <button type=\"submit\" name=\"apagou\" class=\"btn btn-outline-danger btn-sm\">Confirmar</button>
+        </form>&nbsp
+    </div>";
+}
 
 if (!empty($_POST['id_funcionario'])) {
-    $id_funcionario = $_POST['id_funcionario'];
+    if (empty($_POST['cancel'])){
+        $id_funcionario = $_POST['id_funcionario'];
+    }
     try {
         $Funcionario->deleteByID($id_funcionario);
         header('Location: http://localhost/javalato/pages/adm.php');
@@ -42,8 +62,26 @@ if (!empty($_POST['id_funcionario'])) {
     }
 }
 
+if (!empty($_POST['del_servico'])){
+    $id_servico = $_POST['del_servico'];
+    $nome = $Servico->showByID($id_servico)['nome'];
+    $texto = "
+    <div class=\"alert alert-warning\" role=\"alert\">
+        <form action=\"http://localhost/javalato/pages/adm.php\" method=\"post\">
+            <div class=\"\">
+                Você quer realmente apagar o serviço de $nome?
+                <input type=\"hidden\" name=\"id_servico\" id=\"id_servico\"value=\"$id_servico\">
+            </div><br>
+            <input type=\"button\" class=\"btn btn-success btn-sm\" name=\"cancel\" value=\"Cancelar\" onClick=\"window.location='http://localhost/javalato/pages/adm.php';\" />
+            <button type=\"submit\" name=\"apagou\" class=\"btn btn-outline-danger btn-sm\">Confirmar</button>
+        </form>&nbsp
+    </div>";
+}
+
 if (!empty($_POST['id_servico'])) {
-    $id_servico = $_POST['id_servico'];
+    if (empty($_POST['cancel'])){
+        $id_servico = $_POST['id_servico'];
+    }
     try {
         $Servico->deleteByID($id_servico);
         header('Location: http://localhost/javalato/pages/adm.php');
@@ -52,8 +90,26 @@ if (!empty($_POST['id_servico'])) {
     }
 }
 
+if(!empty($_POST['kill'])) {
+    $cpf = $_POST['kill'];
+    $nome = $Client->showByCPF($cpf)['nome'];
+    $texto = "
+    <div class=\"alert alert-danger\" role=\"alert\">
+        <form action=\"http://localhost/javalato/pages/adm.php\" method=\"post\">
+            <div class=\"\">
+                Quer realmente apagar PERMANENTEMENTE o cliente $nome?
+                <input type=\"hidden\" name=\"delete\" id=\"delete\"value=\"$cpf\">
+            </div><br>
+            <input type=\"button\" class=\"btn btn-success btn-sm\" name=\"cancel\" value=\"Cancelar\" onClick=\"window.location='http://localhost/javalato/pages/adm.php';\" />
+            <button type=\"submit\" name=\"apagou\" class=\"btn btn-outline-danger btn-sm\">Confirmar</button>
+        </form>&nbsp
+    </div>";
+}
+
 if (!empty($_POST['delete'])) {
-    $cpf = $_POST['delete'];
+    if (empty($_POST['cancel'])){
+        $cpf = $_POST['delete'];
+    }
     $id_pedido = $Pedido->showByCPF($cpf);
     foreach($id_pedido as $dado){
         $Item->deleteByID($dado);
@@ -68,8 +124,26 @@ if (!empty($_POST['delete'])) {
     }
 }
 
-if (!empty($_POST['restore'])) {
+if(!empty($_POST['restore'])) {
     $cpf = $_POST['restore'];
+    $nome = $Client->showByCPF($cpf)['nome'];
+    $texto = "
+    <div class=\"alert alert-warning\" role=\"alert\">
+        <form action=\"http://localhost/javalato/pages/adm.php\" method=\"post\">
+            <div class=\"\">
+                Deseja reativar o cadastro do cliente $nome?
+                <input type=\"hidden\" name=\"restored\" id=\"restored\"value=\"$cpf\">
+            </div><br>
+            <input type=\"button\" class=\"btn btn-outline-danger btn-sm\" name=\"cancel\" value=\"Cancelar\" onClick=\"window.location='http://localhost/javalato/pages/adm.php';\" />
+            <button type=\"submit\" name=\"apagou\" class=\"btn btn-success btn-sm\">Confirmar</button>
+        </form>&nbsp
+    </div>";
+}
+
+if (!empty($_POST['restored'])) {
+    if (empty($_POST['cancel'])){
+        $cpf = $_POST['restored'];
+    }
     try {
         $Client->unnhide($cpf);
         header('Location: http://localhost/javalato/pages/adm.php');
@@ -83,12 +157,15 @@ require '../templates/header.php';
 ?>
 
 <div class="container-fluid" style="margin-top: 30px;">
-
-    <div class="form-inline" style="margin-left: 65px;">   
-        <a href="http://localhost/javalato/"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>
+<!-- Título -->
+    <div class="form-inline">   
+        <a href="http://localhost/javalato/" style="margin-left: 65px;"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>
         <h2 style="margin-left: 30px;"><strong>Área de Administração</strong></h2>
     </div>
     <div class="col-sm-5 float-sm-right" style="margin-right: 50px;">
+        <!-- Confirmação de deleção funcionário, cliente e serviço -->
+        <?php echo $texto; ?>
+        <!-- Tabela de Funcionários -->
         <div style="margin-top: 50px;">
             <h3 class="col-sm-4" style="margin-bottom: -30px;"><strong>Funcionários</strong></h3>
             <a href="create/createFuncionario.php"><button type="button" class="btn btn-success btn-md float-right">Cadastrar Funcionário</button></a><br>&nbsp
@@ -113,8 +190,8 @@ require '../templates/header.php';
                     <td><?php echo htmlspecialchars($dado['telefone']); ?></td>
                     <td >
                         <div class="form-check-inline">
-                            <form action="http://localhost/javalato/pages/adm.php" method="post">
-                                <input type="hidden" name="id_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?> ">
+                            <form action="adm.php" method="post">
+                                <input type="hidden" name="del_funcionario" value="<?php echo htmlspecialchars($dado['id_funcionario']); ?>">
                                 <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                             </form>&nbsp
                             <form action="update/upFuncionario.php" method="post">
@@ -128,7 +205,8 @@ require '../templates/header.php';
             </tbody>
             </table>
         </div>
-
+        
+        <!-- Tabela de Clientes -->
         <div class="form-inline" style="margin-top: 50px;">
         <h3 class="col-sm-5" style="margin-bottom: 0px;"><strong>Histórico de Clientes</strong></h3>
         </div>
@@ -157,7 +235,7 @@ require '../templates/header.php';
                                         <button type="submit" class="btn btn-outline-success btn-sm"?>Restore</button>
                                     </form>&nbsp
                                     <form action="adm.php" method="post">
-                                        <input type="hidden" name="delete" value="<?php echo htmlspecialchars($dado['cpf']); ?>">
+                                        <input type="hidden" name="kill" value="<?php echo htmlspecialchars($dado['cpf']); ?>">
                                         <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                                     </form>
                                 </div>
@@ -169,6 +247,7 @@ require '../templates/header.php';
         </table>
     </div>
     
+    <!-- Tabela de Serviços -->
     <div class="col-sm-6" style="margin: 50px auto auto 50px;">
         <div class="form-inline">
         <h3 class="col-sm-4" style="margin-bottom: -30px;"><strong>Serviços</strong></h3>
@@ -196,7 +275,7 @@ require '../templates/header.php';
                 <td>
                 <div class="form-check-inline float-right">
                     <form action="adm.php" method="post">
-                        <input type="hidden" name="id_servico" value="<?php echo htmlspecialchars($dado['id_servico']); ?>">
+                        <input type="hidden" name="del_servico" value="<?php echo htmlspecialchars($dado['id_servico']); ?>">
                         <button type="submit" class="btn btn-outline-danger btn-sm"?>Delete</button>
                     </form>&nbsp
                     <form action="update/upServico.php" method="post">
@@ -209,12 +288,6 @@ require '../templates/header.php';
             <?php endforeach; ?>
         </tbody>
         </table>
-    </div>
-    <div style="margin-top: 50px;">
-        <div class="col-sm-8">
-        
-        </div>
-        
     </div>
 </div>
 

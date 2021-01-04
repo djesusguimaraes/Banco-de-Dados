@@ -35,8 +35,7 @@ class ClientModel
         $stocks = [
             'nome' => $row['nome'],
             'cpf' => $row['cpf'],
-            'telefone' => $row['telefone'],
-            'delete_at' => $row['delete_at']
+            'telefone' => $row['telefone']
         ];
         return $stocks;
     }

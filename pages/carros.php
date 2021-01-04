@@ -52,7 +52,7 @@ require '../templates/header.php';
             <th style="background-color: #005484;" scope="col">Modelo</th>
             <th style="background-color: #005484;" scope="col">Ano</th>
             <th style="background-color: #005484;" scope="col">Placa</th>
-            <th style="background-color: #005484; border-left: 1px solid #fff;" scope="col">Ações</th>
+            <th style="background-color: #005484;" scope="col">Ações</th>
         </tr>
     </thead>
     <tbody>
