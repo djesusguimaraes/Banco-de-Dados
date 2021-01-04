@@ -25,7 +25,7 @@ if (!empty($_POST['confirm'])){
     $nome = $Client->showByCPF($cpf)['nome'];
     $data = $date->format('Y-m-d');
     $texto = "
-    <div class=\"alert alert-warning\" role=\"alert\">
+    <div class=\"alert alert-warning\" style=\"box-shadow: inset 0 0 .4em gold, 0px 3px 5px #ccc; border-radius: 0px;\" role=\"alert\">
         <form action=\"http://localhost/javalato/pages/clientes.php\" method=\"post\">
             <div class=\"\">
                 Você quer realmente apagar o cliente $nome?

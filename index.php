@@ -3,10 +3,10 @@ include('templates/header.php');
 ?>
 <div class="container" style="margin: 30px auto 150px auto;">
     
-    <div class="jumbotron" style="box-shadow: 2px 2px 6px #777; border-radius: 0px;">
+    <div class="jumbotron" style="background-color: #fcfcfc; box-shadow: 2px 2px 6px #777; border-radius: 0px;">
         <div class="row">
             <div class="col-sm-4">
-                <img src="assets/images/logo.png" alt="" height="250">
+                <img src="assets/images/logo.png" alt="" height="225">
             </div>
             <div class="col-sm-8">
                 <h1 class="display-4">JavaLato</h1>
@@ -18,21 +18,21 @@ include('templates/header.php');
             </div>
         </div>
     </div>
-    <div class="form-inline" style="margin-left: -3px;">
+    <div class="form-check-inline" style="margin-left: 3px;">
         <div class="card" style="width: 23rem; box-shadow: 2px 2px 6px #777;">
-        <a href="http://localhost/javalato/pages/pedidos.php"><img class="card-img-top" src="http://localhost/javalato/assets/images/lavagem.png"></a>
+        <a href="http://localhost/javalato/pages/pedidos.php"><img class="card-img-top" src="http://localhost/javalato/assets/images/lavagem_2.png"></a>
             <div class="card-body">
                 <p class="card-text">Os melhores serviços com a melhor assistência, confiabilidade é aqui. Agende já seu horário!</p>
             </div>
-        </div>&nbsp
+        </div>
         <div class="card" style="width: 23rem; box-shadow: 2px 2px 6px #777;">
-        <a href="http://localhost/javalato/pages/pedidos.php"><img class="card-img-top" src="http://localhost/javalato/assets/images/lavagem-ecologica.png"></a>
+        <a href="http://localhost/javalato/pages/pedidos.php"><img class="card-img-top" src="http://localhost/javalato/assets/images/lavagem-ecologica_2.png"></a>
             <div class="card-body">
                 <p class="card-text">Serviço de lavagem ecológica, brilhando e ajudando o meio ambiente. Agende já seu horário!</p>
             </div>
-        </div>&nbsp
+        </div>
         <div class="card" style="width: 23rem; box-shadow: 2px 2px 6px #777;">
-        <a href="http://localhost/javalato/pages/pedidos.php"><img class="card-img-top" src="http://localhost/javalato/assets/images/lavagem-bancos.png"></a>
+        <a href="http://localhost/javalato/pages/pedidos.php"><img class="card-img-top" src="http://localhost/javalato/assets/images/lavagem-bancos_2.png"></a>
             <div class="card-body">
                 <p class="card-text">Hipermeabilização, higienização e tratamento de bancos e estofados. Agende já seu horário!</p>
             </div>

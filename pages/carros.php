@@ -72,7 +72,7 @@ require '../templates/header.php';
     </div>
     <form action="http://localhost/javalato/pages/create/createCarro.php" method="post">
         <input type="hidden" name="cpf" id="cpf" value="<?php echo htmlspecialchars($Cliente['cpf']);?>">
-        <button type="submit" class="btn btn-success btn-md float-sm-right">Inserir</button>
+        <button type="submit" class="btn btn-success btn-md float-sm-right">Inserir carro</button>
     </form><br>&nbsp
     <?php echo $texto; ?>
     <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484; border-left: 1px solid #005484; box-shadow: 0px 3px 5px #ccc;">

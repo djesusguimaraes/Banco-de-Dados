@@ -29,7 +29,7 @@ if (!empty($_POST['del_pedido'])){
     $id_pedido = $_POST['del_pedido'];
     $id_item = $Item->getID($id_pedido)['id_item'];
     $texto = "
-    <div class=\"alert alert-warning\" style=\"box-shadow: inset 0 0 1em gold;\" role=\"alert\">
+    <div class=\"alert alert-warning\" style=\"box-shadow: inset 0 0 .4em gold, 0px 3px 5px #ccc; border-radius: 0px;\" role=\"alert\">
         <form action=\"http://localhost/javalato/pages/pedidos.php\" method=\"post\">
             <div class=\"\">
                 Você quer realmente apagar o pedido $id_pedido ?
