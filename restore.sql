@@ -5,7 +5,7 @@
 -- Dumped from database version 13.1
 -- Dumped by pg_dump version 13.1
 
--- Started on 2021-01-02 23:00:05
+-- Started on 2021-01-04 15:34:46
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -219,7 +219,25 @@ ALTER TABLE ONLY public.servico ALTER COLUMN id_servico SET DEFAULT nextval('pub
 --
 
 COPY public.carro (placa, modelo, ano, cpf) FROM stdin;
-FJS8340	Fusca               	1980	734.304.803-24
+UTI6181	HB20                	2015	020.392.092-31
+KLS3874	Jeep Renegade       	2014	082.038.203-82
+TER8734	Mayback S600 Pullman	2017	099.809.803-11
+GHS0933	Cadillac SRX        	2011	749.374.938-47
+UEW6565	Opala  SS           	1969	094.320.423-78
+IUS8934	S10                 	2015	084.034.803-28
+HGS9893	Onix                	2018	489.473.986-93
+KFJ8723	HB20                	2015	840.348.023-89
+KSD8743	Cherry              	2003	903.283.092-89
+KJV9823	Frontier            	2020	984.739.462-98
+GKS9438	Gaisera             	1990	044.830.482-30
+FJS8340	Fuscão preto        	1989	734.304.803-24
+IUI9809	HB20                	2015	808.080.808-08
+KLI0932	Calhambeque         	1967	040.938.498-09
+UTE9899	Jetta               	2004	048.307.232-39
+YTY9832	Triton              	2018	090.909.434-23
+YRU9382	Kick                	2017	048.047.320-74
+JGH0123	Fiesta              	2004	732.648.738-72
+LOL8743	F250                	2005	304.830.480-30
 \.
 
 
@@ -230,7 +248,25 @@ FJS8340	Fusca               	1980	734.304.803-24
 --
 
 COPY public.cliente (nome, cpf, telefone, delete_at) FROM stdin;
-Jão da Padaria                                                                  	734.304.803-24	0843048-3049  	\N
+Daniel                                                                          	808.080.808-08	4830438-4080  	2021-01-04
+Jão Roberto Sousa                                                               	048.307.232-39	0098437-8236  	\N
+Tarcísio Salgado                                                                	090.909.434-23	0098419-0190  	\N
+Gabriel Marques                                                                 	048.047.320-74	4197328-7883  	\N
+João Roberto de Barros                                                          	304.830.480-30	0098463-2637  	\N
+Emerson Zuckerman                                                               	020.392.092-31	0098523-1233  	\N
+Michael Jackson da Silva                                                        	099.809.803-11	0098484-8484  	\N
+Sócrates Balbino de Souza                                                       	749.374.938-47	0099932-4341  	\N
+Sérgio Martins                                                                  	084.034.803-28	0099343-3421  	\N
+Maura Silva Júnior                                                              	840.348.023-89	0093437-8434  	\N
+Joana Maria Cunha                                                               	903.283.092-89	0098434-7834  	\N
+Hellena Cordeiro Matos                                                          	984.739.462-98	0093232-3232  	\N
+Telma de Sá                                                                     	489.473.986-93	0098499-8167  	\N
+Roberto Carlos                                                                  	040.938.498-09	0098437-2387  	2021-01-04
+Jão da Padaria                                                                  	734.304.803-24	0843048-3049  	2021-01-04
+Samuel Braga                                                                    	094.320.423-78	0099231-4345  	2021-01-04
+Kevin Teixeira Moura                                                            	082.038.203-82	0099987-2313  	\N
+Killian Martins Silva                                                           	732.648.738-72	0099287-4638  	\N
+Samuel de Jesus                                                                 	044.830.482-30	0483048-3240  	\N
 \.
 
 
@@ -241,11 +277,14 @@ Jão da Padaria                                                                 
 --
 
 COPY public.funcionario (nome, cpf, telefone, id_funcionario) FROM stdin;
-Brandt                                                                          	444.444.444-44	7799937-6311  	7799
-Thays                                                                           	555.555.555-55	6399237-9162  	9821
 Davizão                                                                         	222.222.222-22	6398506-4555  	1112
 Nérso                                                                           	323.323.434-00	4324112-3421  	101
-Heitor Silva                                                                    	923.759.374-93	4873295-2732  	4739
+Brandt                                                                          	444.444.444-44	7799937-6311  	7799
+Thays                                                                           	555.555.555-55	6399237-9162  	9821
+João Batista                                                                    	047.398.498-32	0099992-3212  	80989
+Victor Hugo                                                                     	984.898.943-92	0098467-5412  	6674
+Iniesta                                                                         	090.323.874-67	3398323-7231  	7777
+Heitor                                                                          	923.759.374-93	0098456-7898  	4739
 \.
 
 
@@ -256,6 +295,29 @@ Heitor Silva                                                                    
 --
 
 COPY public.item (id_item, quantidade, id_pedido, id_servico) FROM stdin;
+9	1	9	14
+34	1	10	12
+35	2	11	14
+36	2	12	15
+37	1	13	16
+38	1	14	20
+39	1	15	10
+40	1	16	18
+41	1	17	19
+42	1	18	21
+43	1	19	14
+44	1	20	13
+45	1	21	6
+46	1	22	16
+47	1	23	17
+48	2	24	7
+49	2	25	9
+50	2	26	7
+51	2	27	11
+52	2	28	15
+53	1	29	18
+54	1	30	16
+55	1	31	19
 \.
 
 
@@ -266,6 +328,29 @@ COPY public.item (id_item, quantidade, id_pedido, id_servico) FROM stdin;
 --
 
 COPY public.pedido (id_pedido, cpf_cliente, order_date, preco_total, id_funcionario) FROM stdin;
+10	048.307.232-39	2021-01-04	$140.00	1112
+11	090.909.434-23	2021-01-04	$400.00	7799
+12	048.047.320-74	2021-01-04	$600.00	101
+13	304.830.480-30	2021-01-04	$150.00	7777
+14	020.392.092-31	2021-01-04	$350.00	101
+15	489.473.986-93	2021-01-04	$50.00	4739
+16	840.348.023-89	2021-01-04	$250.00	9821
+17	984.739.462-98	2021-01-04	$300.00	7799
+18	903.283.092-89	2021-01-04	$100.00	1112
+19	084.034.803-28	2021-01-04	$200.00	6674
+20	099.809.803-11	2021-01-04	$160.00	7777
+21	749.374.938-47	2021-01-04	$40.00	1112
+22	048.047.320-74	2021-01-04	$150.00	7799
+23	732.648.738-72	2021-01-04	$200.00	101
+24	048.307.232-39	2021-01-04	$120.00	80989
+25	044.830.482-30	2021-01-04	$40.00	1112
+26	984.739.462-98	2021-01-04	$120.00	9821
+27	099.809.803-11	2021-01-04	$160.00	80989
+28	082.038.203-82	2021-01-04	$600.00	101
+29	903.283.092-89	2021-01-04	$250.00	7777
+30	984.739.462-98	2021-01-04	$150.00	7777
+31	020.392.092-31	2021-01-04	$300.00	7799
+9	044.830.482-30	2021-01-04	$200.00	7799
 \.
 
 
@@ -276,8 +361,6 @@ COPY public.pedido (id_pedido, cpf_cliente, order_date, preco_total, id_funciona
 --
 
 COPY public.servico (nome, descricao, id_servico, preco) FROM stdin;
-Ducha Simples                                     	Limpeza externa básica                                                                              	9	20
-Aplicação de cera                                 	Tratamento com cera para a lataria                                                                  	10	50
 Higienização e Hidratação em Bancos               	Tratamento para couros e estofados automotivos                                                      	11	80
 Higienização de Ar Condicinado                    	Limpeza e troca de filtros de ar automotivo                                                         	12	140
 Higienização de Teto                              	Tratamento químico detalhado para deixar seu teto novo                                              	13	160
@@ -291,6 +374,8 @@ Polimento Técnico                                 	Polimento cristalizado espec
 Lavagem Ecológica                                 	Usa apenas 500ml de água                                                                            	21	100
 Ducha Completa                                    	Lavagem externa detalhada.                                                                          	6	40
 Limpeza Completa                                  	Limpeza interna e externa                                                                           	7	60
+Ducha Simples                                     	Limpeza externa básica                                                                              	9	20
+Aplicação de cera                                 	Tratamento com cera para a lataria                                                                  	10	50
 \.
 
 
@@ -300,7 +385,7 @@ Limpeza Completa                                  	Limpeza interna e externa    
 -- Name: Servico_ID_servico_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Servico_ID_servico_seq"', 21, true);
+SELECT pg_catalog.setval('public."Servico_ID_servico_seq"', 27, true);
 
 
 --
@@ -309,7 +394,7 @@ SELECT pg_catalog.setval('public."Servico_ID_servico_seq"', 21, true);
 -- Name: item_id_item_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.item_id_item_seq', 1, false);
+SELECT pg_catalog.setval('public.item_id_item_seq', 55, true);
 
 
 --
@@ -411,7 +496,7 @@ ALTER TABLE ONLY public.pedido
     ADD CONSTRAINT pedido_cpf_cliente_fkey FOREIGN KEY (cpf_cliente) REFERENCES public.cliente(cpf);
 
 
--- Completed on 2021-01-02 23:00:07
+-- Completed on 2021-01-04 15:34:50
 
 --
 -- PostgreSQL database dump complete

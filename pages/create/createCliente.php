@@ -68,8 +68,8 @@ require '../../templates/header.php';
     
     <?php echo $texto; ?>
     <form action="createCliente.php" method="post">
-        <fieldset>
-            <legend>Dados do Cliente</legend>
+        <fieldset style="padding-bottom: 10px; padding-left: 10px; padding-right: 10px;">
+            <legend style="color: #888; padding-top: 20px;">Dados do Cliente</legend>
             <div class="form-group">
                 <label for="nome">Nome Completo*</label>
                 <input type="text" class="form-control" max-lenght="80" name="nome" id="nome" placeholder="Seu nome" required>
@@ -83,8 +83,8 @@ require '../../templates/header.php';
                 <input type="text" oninput="mascara(this, 'tel');" max-lenght="14" class="form-control" name="tel" id="tel" placeholder="Ex: (00) 00000-0000">
             </div>
         </fieldset>
-        <fieldset>
-            <legend>Dados do Veículo</legend>
+        <fieldset style="padding-left: 10px; padding-bottom: 10px; padding-right: 10px;">
+            <legend style="color: #888; padding-top: 25px;">Dados do Veículo</legend>
             <div class="form-row">
                 <div class="col">
                     <label for="modelo">Modelo do veículo*</label>
@@ -101,7 +101,8 @@ require '../../templates/header.php';
                 <!-- <small id="help" class="form-text text-muted">Campo Obrigatório</small> -->
             </div>
         </fieldset><br>
-        <button type="submit" class="btn btn-primary">Enviar</button>&nbsp&nbsp&nbsp<input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" /> 
+        <button type="submit" class="btn btn-primary" style="margin: auto 20px auto 10px;">Enviar</button>
+        <input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/clientes.php';" /> 
     </form>
 
 </div>
