@@ -1,7 +1,7 @@
 <?php 
     require '../templates/header.php';
 ?>
-<div class="container" style="margin-top: 30px;">
+<div class="container" style="margin: 30px auto 150px auto;">
     <div class="jumbotron" style="box-shadow: 2px 2px 6px #6f6f6f;">
         <div class="row">
             <div class="col-sm-4">

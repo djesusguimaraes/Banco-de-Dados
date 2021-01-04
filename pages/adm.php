@@ -38,7 +38,7 @@ if (!empty($_POST['del_funcionario'])){
     $id_funcionario = $_POST['del_funcionario'];
     $nome = $Funcionario->showByID($id_funcionario)['nome'];
     $texto = "
-    <div class=\"alert alert-warning\" role=\"alert\">
+    <div class=\"alert alert-warning\" style=\"box-shadow: inset 0 0 .4em gold, 0px 3px 5px #ccc;\" role=\"alert\">
         <form action=\"http://localhost/javalato/pages/adm.php\" method=\"post\">
             <div class=\"\">
                 Você quer realmente apagar o funcionário $nome, número $id_funcionario?
@@ -66,7 +66,7 @@ if (!empty($_POST['del_servico'])){
     $id_servico = $_POST['del_servico'];
     $nome = $Servico->showByID($id_servico)['nome'];
     $texto = "
-    <div class=\"alert alert-warning\" role=\"alert\">
+    <div class=\"alert alert-warning\" style=\"box-shadow: inset 0 0 .4em gold, 0px 3px 5px #ccc;\" role=\"alert\">
         <form action=\"http://localhost/javalato/pages/adm.php\" method=\"post\">
             <div class=\"\">
                 Você quer realmente apagar o serviço de $nome?
@@ -94,7 +94,7 @@ if(!empty($_POST['kill'])) {
     $cpf = $_POST['kill'];
     $nome = $Client->showByCPF($cpf)['nome'];
     $texto = "
-    <div class=\"alert alert-danger\" role=\"alert\">
+    <div class=\"alert alert-danger\" style=\"box-shadow: inset 0 0 .4em red, 0px 3px 5px #ccc;\" role=\"alert\">
         <form action=\"http://localhost/javalato/pages/adm.php\" method=\"post\">
             <div class=\"\">
                 Quer realmente apagar PERMANENTEMENTE o cliente $nome?
@@ -128,7 +128,7 @@ if(!empty($_POST['restore'])) {
     $cpf = $_POST['restore'];
     $nome = $Client->showByCPF($cpf)['nome'];
     $texto = "
-    <div class=\"alert alert-warning\" role=\"alert\">
+    <div class=\"alert alert-warning\" style=\"box-shadow: inset 0 0 .4em gold, 0px 3px 5px #ccc; border-radius: 0px;\" role=\"alert\">
         <form action=\"http://localhost/javalato/pages/adm.php\" method=\"post\">
             <div class=\"\">
                 Deseja reativar o cadastro do cliente $nome?
@@ -164,12 +164,16 @@ require '../templates/header.php';
     </div>
     <div class="col-sm-5 float-sm-right" style="margin-right: 50px;">
         <!-- Confirmação de deleção funcionário, cliente e serviço -->
-        <?php echo $texto; ?>
+        <?php if ($texto!=null):?>
+            <div style="margin-top: 100px;">
+                <?php echo $texto; ?>
+            </div>
+        <?php endif; ?>
         <!-- Tabela de Funcionários -->
         <div style="margin-top: 50px;">
             <h3 class="col-sm-4" style="margin-bottom: -30px;"><strong>Funcionários</strong></h3>
             <a href="create/createFuncionario.php"><button type="button" class="btn btn-success btn-md float-right">Cadastrar Funcionário</button></a><br>&nbsp
-            <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484;">
+            <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484; border-left: 1px solid #005484; box-shadow: 0px 3px 5px #ccc;">
             <thead class="thead-dark">
                 <tr>
                 <th style="background-color: #005484;" scope="col">#</th>
@@ -183,7 +187,7 @@ require '../templates/header.php';
             <tbody>
                 <?php foreach ($Funcionarios as $dado) : ?>
                     <tr style="font-size: 11pt;">
-                    <td class="table-info"><?php echo $j += 1;?></td>
+                    <td class="table-info" style="border-right: 1px solid #005484;"><strong><?php echo $j += 1;?></strong></td>
                     <td><?php echo htmlspecialchars($dado['id_funcionario']); ?></td>
                     <td><?php echo htmlspecialchars($dado['nome']); ?></td>
                     <td><?php echo htmlspecialchars($dado['cpf']); ?></td>
@@ -207,10 +211,10 @@ require '../templates/header.php';
         </div>
         
         <!-- Tabela de Clientes -->
-        <div class="form-inline" style="margin-top: 50px;">
-        <h3 class="col-sm-5" style="margin-bottom: 0px;"><strong>Histórico de Clientes</strong></h3>
+        <div class="form-inline" style="margin-top: 50px">
+        <h3 class="col-sm-8" style="margin-bottom: 20px;"><strong>Histórico de Clientes</strong></h3>
         </div>
-        <table class="table" style="border-bottom: 1px solid #848688; border-right: 1px solid #848688;">
+        <table class="table" style="border-bottom: 1px solid #848688; border-right: 1px solid #848688; box-shadow: 0px 3px 5px #ddd; margin-bottom: 150px">
             <thead class="thead-dark">
                 <tr>
                 <th style="background-color: #848688;" scope="col">#</th>
@@ -224,7 +228,7 @@ require '../templates/header.php';
                 <?php foreach ($Clientes as $dado) : ?>
                     <?php if ($dado['delete_at'] != null):?>
                         <tr style="font-size: 11pt;">
-                            <td class="table-info"><?php echo $k += 1;?></td>
+                            <td style="background-color: #ccc;"><?php echo $k += 1;?></td>
                             <td><?php echo htmlspecialchars($dado['delete_at']); ?></td>
                             <td><?php echo htmlspecialchars($dado['cpf']); ?></td>
                             <td><?php echo htmlspecialchars($dado['nome']); ?></td>
@@ -248,12 +252,12 @@ require '../templates/header.php';
     </div>
     
     <!-- Tabela de Serviços -->
-    <div class="col-sm-6" style="margin: 50px auto auto 50px;">
+    <div class="col-sm-6" style="margin: 50px auto 150px 50px;">
         <div class="form-inline">
         <h3 class="col-sm-4" style="margin-bottom: -30px;"><strong>Serviços</strong></h3>
         </div>
         <a href="create/createServico.php"><button type="button" class="btn btn-success btn-md float-right">Cadastrar Serviço</button></a><br>&nbsp
-        <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484;">
+        <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484; border-left: 1px solid #005484; box-shadow: 0px 3px 5px #ccc;">
         <thead class="thead-dark">
             <tr>
             <th style="background-color: #005484;" scope="col">#</th>
@@ -267,7 +271,7 @@ require '../templates/header.php';
         <tbody>
             <?php foreach ($Servicos as $dado) : ?>
                 <tr style="font-size: 11pt;">
-                <td class="table-info"><?php echo $i += 1;?></td>
+                <td class="table-info" style="border-right: 1px solid #005484;"><strong><?php echo $i += 1;?></strong></td>
                 <td><?php echo htmlspecialchars($dado['nome']); ?></td>
                 <td><?php echo htmlspecialchars($dado['descricao']); ?></td>
                 <td><?php echo htmlspecialchars($dado['id_servico']); ?></td>
@@ -293,3 +297,5 @@ require '../templates/header.php';
 
 </body>
 </html>
+<?php
+include('../templates/footer.php');

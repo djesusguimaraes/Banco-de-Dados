@@ -5,7 +5,7 @@
 
         
 
-        <div class="footer-copyright text-center py-3">
+        <div class="footer-copyright text-center py-3" style="border-top: 1px solid #005484;">
             <img src="http://localhost/javalato/assets/images/logoUft.png" height="60">
             <img src="http://localhost/javalato/assets/images/logoFabrica.png" height="80">
             <a>© 2020: Banco de dados</a>

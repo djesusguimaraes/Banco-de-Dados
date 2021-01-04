@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 if ($url == 1){
-    $texto = ("<div class=\"alert alert-success\" role=\"alert\">Funcionário cadastrado com sucesso!</div>");
+    $texto = ("<div class=\"alert alert-success\" role=\"alert\">Seu pedido foi anotado! Agradecemos a preferência!<a href=\"http://localhost/javalato/pages/pedidos.php\" ><button class=\"btn btn-outline-success btn-sm float-right\" style=\"padding: 5px; margin-top: -4px;\">Voltar à seleção</button></a></div>");
 }else if($url != null){
-    $texto = ("<div class=\"alert alert-danger\" role=\"alert\"><?php echo $url;?></div>");
+    $texto = ("<div class=\"alert alert-danger\" role=\"alert\">$url<a href=\"http://localhost/javalato/pages/pedidos.php\" ><button class=\"btn btn-outline-danger btn-sm float-right\" style=\"padding: 5px; margin-top: 0px;\">Voltar à seleção</button></a></div>");
 }
 ?>
 <?php

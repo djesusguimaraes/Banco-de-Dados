@@ -12,6 +12,8 @@ $nome_servico = null;
 $descricao = null;
 $id_servico = null;
 $preco = null;
+$url = null;
+$texto = null;
 
 if(!empty($_POST['servico'])){
     $id_servico = $_REQUEST['servico'];
@@ -25,11 +27,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     try {
         $servicoRegister->insert($nome_servico, $descricao, $preco);
+        $url = 1;
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
+        $url = $error;
     }
 }
 
+if ($url == 1){
+    $texto = ("<div class=\"alert alert-success\" role=\"alert\">Serviço cadastrado com sucesso!<a href=\"http://localhost/javalato/pages/adm.php\" ><button class=\"btn btn-outline-success btn-sm float-right\" style=\"padding: 5px; margin-top: -4px;\">Voltar à seleção</button></a></div>");
+}else if($url != null){
+    $texto = ("<div class=\"alert alert-danger\" role=\"alert\">$url<a href=\"http://localhost/javalato/pages/adm.php\" ><button class=\"btn btn-outline-danger btn-sm float-right\" style=\"padding: 5px; margin-top: 0px;\">Voltar à seleção</button></a></div>");
+}
 ?>
 <?php
 require '../../templates/header.php';
@@ -40,6 +49,7 @@ require '../../templates/header.php';
             <a href="http://localhost/javalato/pages/adm.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <h2><strong>Cadastro de Serviço</strong></h2>
         </div><br>
+        <?php echo $texto;?>
         <form action="createServico.php" method="post">
             <fieldset>
                 <div class="form-group">

@@ -14,19 +14,28 @@ $ano = null;
 
 if(!empty($_POST['uplaca'])){
     $placa = $_POST['uplaca'];
+    $cpf = $_POST['cpf'];
+}
+
+if(!empty($_GET['uplaca'])){
+    $placa = $_GET['uplaca'];
+    $texto = $_GET['texto'];
 }
 
 $Carros = $Carro -> showByPlaca($placa);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $modelo = isset($_REQUEST['modelo']) ? $_REQUEST['modelo'] : $Carros['modelo'];
-    $ano
-     = isset($_REQUEST['ano']) ? $_REQUEST['ano'] : $Carros['ano'];
+    $ano = isset($_REQUEST['ano']) ? $_REQUEST['ano'] : $Carros['ano'];
     $cpf = isset($_REQUEST['cpf']) ? $_REQUEST['cpf'] : $Carros['cpf'];
     $placa = isset($_REQUEST['uplaca']) ? $_REQUEST['uplaca'] : $Carros['placa'];
 
     try {
-        $Carro -> update($placa, $modelo, $ano);
+        if (!empty($_REQUEST['modelo'])){
+            $Carro -> update($placa, $modelo, $ano);
+            $texto = ("<div class=\"alert alert-success\" role=\"alert\">Informações do veículo atualizadas com sucesso!<a href=\"http://localhost/javalato/pages/carros.php?cpf=$cpf\" ><button class=\"btn btn-outline-success btn-sm float-right\" style=\"padding: 5px; margin-top: -4px;\">Voltar à seleção</button></a></div>");
+        }
+        header('Location: http://localhost/javalato/pages/update/upCarro.php?uplaca='.$placa.'&texto='.$texto);
     }catch (PDOExpection $expection) {
         $error = $expection -> getMessage();
         echo $error;
@@ -46,7 +55,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             </form>
             <h2>Update veículo, placa: <?php echo htmlspecialchars($Carros['placa'])?></h2><br>
         </div><br>
-        <?php if(!empty($_POST['uplaca'])): ?>
+        <?php if(!empty($_GET['uplaca'])): ?>
+            <?php echo $texto; ?>
             <form action="upCarro.php" method="post">
                 <fieldset>
                     <div class="form-group">
@@ -61,7 +71,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <input type="hidden" name="cpf" id="cpf" value="<?php echo $Carros['cpf'];?>">
                 <input type="hidden" name="uplaca" id="uplaca" value="<?php echo $Carros['placa'];?>">
                 <button type="submit" class="btn btn-primary">Update</button>
-                <input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/carros.php';" />
+                <input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/carros.php?cpf=<?php echo $Carros['cpf']; ?>';" />
             </form>
         <?php endif ?>
     </div>

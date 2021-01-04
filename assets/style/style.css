@@ -59,6 +59,10 @@ a:active {
     background-color: #00897c;
 }
 
+button:hover{
+    box-shadow: 2px 2px 5px #000000;
+}
+
 .row{
     padding: 0%;
     margin: 0%;

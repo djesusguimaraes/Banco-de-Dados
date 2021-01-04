@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     try {
         if (!empty($_REQUEST['nome'])){
             $Client -> update($nome, $telefone, $cpf);
-            $texto = ("<div class=\"alert alert-success\" role=\"alert\">Cliente atualizado com sucesso!</div>");
+            $texto = ("<div class=\"alert alert-success\" role=\"alert\">Informações de cliente atualizadas com sucesso!<a href=\"http://localhost/javalato/pages/clientes.php\" ><button class=\"btn btn-outline-success btn-sm float-right\" style=\"padding: 5px; margin-top: -4px;\">Voltar à seleção</button></a></div>");
         }
         header('Location: http://localhost/javalato/pages/update/upCliente.php?cpf='.$cpf.'&texto='.$texto);
     }catch (PDOExpection $expection) {

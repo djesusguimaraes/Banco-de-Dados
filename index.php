@@ -1,7 +1,7 @@
 <?php
 include('templates/header.php');
 ?>
-<div class="container" style="padding-top: 30px; ">
+<div class="container" style="margin: 30px auto 150px auto;">
     
     <div class="jumbotron" style="box-shadow: 2px 2px 6px #777; border-radius: 0px;">
         <div class="row">

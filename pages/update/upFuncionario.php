@@ -17,6 +17,11 @@ if(!empty($_POST['id_funcionario'])){
     $id = $_POST['id_funcionario'];
 }
 
+if(!empty($_GET['id_funcionario'])){
+    $id = $_GET['id_funcionario'];
+    $texto = $_GET['texto'];
+}
+
 $Funcionarios = $Funcionario->showByID($id);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,10 +31,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_REQUEST['id_funcionario'];
 
     try {
-        $Funcionario-> update($nome, $cpf, $telefone, $id);
+        if (!empty($_REQUEST['nome'])){
+            $Funcionario-> update($nome, $cpf, $telefone, $id);
+            $texto = ("<div class=\"alert alert-success\" role=\"alert\">Informações do funcionário atualizadas com sucesso!<a href=\"http://localhost/javalato/pages/adm.php\" ><button class=\"btn btn-outline-success btn-sm float-right\" style=\"padding: 5px; margin-top: -4px;\">Voltar à seleção</button></a></div>");
+        }
+        header('Location: http://localhost/javalato/pages/update/upFuncionario.php?id_funcionario='.$id.'&texto='.$texto);
     } catch (PDOException $exception) {
         $error = $exception->getMessage();
-        echo 'Mensagem de erro: '.$error;
     }
 }
 
@@ -43,7 +51,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a href="http://localhost/javalato/pages/adm.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <h2><strong>Update Funcionário <?php echo htmlspecialchars($Funcionarios['id_funcionario'])?></strong></h2>
         </div><br>
-        <?php if(!empty($_POST['id_funcionario'])):?>
+        <?php if(!empty($_GET['id_funcionario'])):?>
+            <?php echo $texto; ?>
             <form action="upFuncionario.php" method="post">
                 <div class="form-group">
                     <label for="nome">Nome</label>
@@ -61,7 +70,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div><br>
                 <input type="hidden" name="id_funcionario" id="id_funcionario" value="<?php echo $Funcionarios['id_funcionario'];?>">
                 <button type="submit" class="btn btn-primary">Enviar</button>
-                <input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/funcionarios.php';" />
+                <input type="button" class="btn btn-outline-danger" name="cancel" value="Cancel" onClick="window.location='http://localhost/javalato/pages/adm.php';" />
             </form>
         <?php endif ?>
     </div>

@@ -64,7 +64,7 @@ require '../templates/header.php';
         
         <a href="create/createCliente.php"><button type="button" class="btn btn-success btn-md float-sm-right">Cadastrar Cliente</button></a><br>&nbsp
         
-        <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484; border-left: 1px solid #005484;">
+        <table class="table" style="border-bottom: 1px solid #005484; border-right: 1px solid #005484; border-left: 1px solid #005484; box-shadow: 0px 3px 5px #ccc; margin-bottom: 150px;">
             <thead class="thead-dark">
                 <tr>
                     <th style="background-color: #005484;" scope="col">#</th>
@@ -108,3 +108,5 @@ require '../templates/header.php';
 </div>
 </body>
 </html>
+<?php
+include('../templates/footer.php');

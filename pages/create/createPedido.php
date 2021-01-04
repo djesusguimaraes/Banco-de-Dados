@@ -27,6 +27,8 @@ $id_servico = null;
 $id_funcionario = null;
 $quantidade = null;
 $data = null;
+$url = null;
+$texto = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : '';
@@ -41,9 +43,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $Pedido->insert($cpf, $id_funcionario, $order_date, $id_pedido, $preco_total);
         $Item->insert($id_pedido, $id_servico, $quantidade);
+        $url = 1;
     } catch (PDOException $e) {
         $error = $e->getMessage();
+        $url = $error;
     }
+}
+if ($url == 1){
+    $texto = ("<div class=\"alert alert-success\" role=\"alert\">Seu pedido foi anotado! Agradecemos a preferência!<a href=\"http://localhost/javalato/pages/pedidos.php\" ><button class=\"btn btn-outline-success btn-sm float-right\" style=\"padding: 5px; margin-top: -4px;\">Voltar à seleção</button></a></div>");
+}else if($url != null){
+    $texto = ("<div class=\"alert alert-danger\" role=\"alert\">$url<a href=\"http://localhost/javalato/pages/pedidos.php\" ><button class=\"btn btn-outline-danger btn-sm float-right\" style=\"padding: 5px; margin-top: 0px;\">Voltar à seleção</button></a></div>");
 }
 ?>
 <?php
@@ -54,16 +63,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="http://localhost/javalato/pages/pedidos.php"><img src="http://localhost/javalato/assets/images/back.png" alt="" height="26"></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <h2><strong>Pedido</strong></h2><br>
     </div><br>
-    
+    <?php echo $texto;?>
     <form action="createPedido.php" method="post">
         <div class="form-group">
             <label for="cpf">Nome do Cliente</label>
             <select class="form-control" id="cpf" name="cpf" value="" required>
                 <option value="" disabled selected>Selecione o Cliente</option>
                 <?php foreach ($Clientes as $dado) : ?>
-                    <tr>
-                        <option value="<?php echo htmlspecialchars($dado['cpf']); ?>"> <?php echo htmlspecialchars($dado['nome']); ?></option>
-                    </tr>
+                    <?php if ($dado['delete_at'] == null) : ?>
+                        <tr>
+                            <option value="<?php echo htmlspecialchars($dado['cpf']); ?>"> <?php echo htmlspecialchars($dado['nome']); ?></option>
+                        </tr>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </select>
             <small id="help" class="form-text text-muted">Campo Obrigatório</small>
@@ -74,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="" disabled selected>Selecione o Serviço</option>
                 <?php foreach ($Servicos as $dado) : ?>
                     <tr>
-                        <option value="<?php echo htmlspecialchars($dado['id_servico']); ?>"> <?php echo htmlspecialchars($dado['nome']).'(R$'.htmlspecialchars($dado['preco']).'.00)'; ?></option>
+                        <option value="<?php echo htmlspecialchars($dado['id_servico']); ?>"><?php echo htmlspecialchars($dado['nome']).'(R$'.htmlspecialchars($dado['preco']).'.00)'; ?></option>
                     </tr>
                 <?php endforeach; ?>
             </select>
