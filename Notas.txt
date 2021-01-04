@@ -1,0 +1,12 @@
+TRABALHO I – BANCO DE DADOS
+Relatório de Implementação
+Daniel de Jesus e Ítalo Vilarino
+Ciência da Computação - Terceiro Período
+
+Tecnologias de Implementação:  
+    PHP(7.4.9), PostgreSQL, HTML, Javascript e CSS(Bootstrap);
+
+Servidor Local PHP: 
+    Wampserver64;
+Modelagem do Banco:
+	O Banco contém 6 tabelas, para descrever o movimento da empresa JavaLato, 4 delas são entidades básicas(Cliente, Carro, Funcionário e Serviço) e as outras são usadas para registro de pedidos(Pedido e Item), conforme modelo apresentado na Figura 1 .
